@@ -1,0 +1,269 @@
+/* Styles spécifiques page Inscriptions */
+/* Fullscreen background for inscriptions page */
+.inscriptions-page,
+.inscriptions-fullscreen {
+  min-height: 100vh;
+  background: url("../images/road3.jpg") center/cover no-repeat fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Blurred translucent container */
+.blur-shell {
+  margin: calc(var(--navbar-height, 80px) + 2rem) auto 3rem;
+  width: min(1100px, 92%);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 28px;
+  padding: 3.5rem 2.75rem 3.25rem;
+  color: #fff;
+  position: relative;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.55);
+}
+.page-head {
+  font-family: "Russo One", sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  margin: 0 0 1.2rem;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.sub-head {
+  text-align: center;
+  font-weight: 300;
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+  margin: 0 0 2.4rem;
+}
+
+/* Formats grid */
+.formats-wrapper {
+  display: grid;
+  gap: 2.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: stretch;
+}
+.inscription-format {
+  --accent: var(--secondary-color);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background: linear-gradient(
+    135deg,
+    rgba(25, 25, 25, 0.85),
+    rgba(15, 15, 15, 0.6)
+  );
+  border: 2px solid var(--accent);
+  border-radius: 22px;
+  padding: 1.9rem 1.6rem 3.2rem;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.7), 0 0 0 4px rgba(0, 0, 0, 0.35);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+}
+.inscription-format[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+.inscription-format:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 14px 32px -8px rgba(0, 0, 0, 0.75), 0 0 0 4px var(--accent);
+}
+.inscription-format:focus {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+.inscription-format h2 {
+  font-family: "Russo One", sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  margin: 0 0 0.65rem;
+}
+.inscription-format p {
+  font-size: 0.92rem;
+  line-height: 1.35;
+  margin: 0;
+  opacity: 0.85;
+}
+.inscription-format .format-logo {
+  width: 72px;
+  height: auto;
+  margin: 0 0 1rem;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+}
+.status-tag {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: var(--accent);
+  color: #111;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.6px;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+}
+.soon-note {
+  text-align: center;
+  margin: 2.8rem 0 0;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* Registration form */
+.registration-form-wrapper {
+  margin-top: 2.4rem;
+  animation: fadeIn 0.5s ease;
+}
+.registration-form-wrapper[hidden] {
+  display: none !important;
+}
+.back-to-formats {
+  background: none;
+  border: none;
+  color: var(--light-color);
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+.back-to-formats:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.form-title {
+  font-family: "Russo One", sans-serif;
+  font-size: 1.8rem;
+  margin: 0 0 1.2rem;
+  letter-spacing: 1px;
+}
+form#inscription-form {
+  display: grid;
+  gap: 1.25rem;
+}
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.form-row label,
+fieldset legend {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select {
+  background: #161616;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+input:focus,
+select:focus {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+fieldset.form-row {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 1rem 1rem 0.8rem;
+  border-radius: 12px;
+}
+.choices-inline {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+.choices-inline label {
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+.submit-btn {
+  align-self: flex-start;
+  background: var(--secondary-color);
+  color: #111;
+  font-weight: 700;
+  padding: 0.85rem 1.4rem;
+  border: none;
+  border-radius: 12px;
+  cursor: not-allowed;
+  letter-spacing: 0.8px;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.6);
+}
+.submit-btn:hover {
+  filter: brightness(1.05);
+}
+.form-hint {
+  font-size: 0.7rem;
+  opacity: 0.55;
+}
+@media (max-width: 680px) {
+  .form-title {
+    font-size: 1.5rem;
+  }
+  .choices-inline {
+    gap: 0.8rem;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 840px) {
+  .blur-shell {
+    padding: 2.6rem 1.8rem 2.4rem;
+    border-radius: 24px;
+  }
+  .inscription-format {
+    padding: 1.7rem 1.4rem 3rem;
+  }
+  .inscription-format .format-logo {
+    width: 64px;
+  }
+}
+@media (max-width: 560px) {
+  .formats-wrapper {
+    gap: 1.4rem;
+  }
+  .page-head {
+    font-size: clamp(2.1rem, 8vw, 3rem);
+  }
+  .blur-shell {
+    margin: calc(var(--navbar-height, 70px) + 1rem) auto 2.5rem;
+  }
+}
+
+/* Accessibility helper retained */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}

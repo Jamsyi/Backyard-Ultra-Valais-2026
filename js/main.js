@@ -1,5 +1,9 @@
 console.log("JavaScript file is loaded correctly.")
 
+// CONFIG: Set your deployed Google Apps Script Web App URL here
+// Example: const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx.../exec';
+const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz0uP0jjOtkn_IM2w7HcGt6_PnpVcTz3PrZC-HpdP08mTxWp960bM6JgtnrSNks9MA5/exec';
+
 // Detect header ASAP to prevent navbar flash
 const pageHeader = document.querySelector('.page-header');
 const heroHeader = document.querySelector('.hero');
@@ -216,5 +220,166 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     } catch (err) {
         console.warn('Could not add desktop submenu hover delays', err);
+    }
+
+    // Dynamic accent colors for inscription format cards (extract dominant average from image)
+    try {
+        const cards = document.querySelectorAll('.inscription-format[data-img]');
+        if (cards.length) {
+            cards.forEach(card => {
+                const src = card.getAttribute('data-img');
+                if (!src) return;
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.src = src;
+                img.onload = () => {
+                    try {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        const w = 40, h = 40;
+                        canvas.width = w; canvas.height = h;
+                        ctx.drawImage(img, 0, 0, w, h);
+                        const data = ctx.getImageData(0,0,w,h).data;
+                        let r=0,g=0,b=0,count=0;
+                        for (let i=0;i<data.length;i+=4) {
+                            const rr=data[i], gg=data[i+1], bb=data[i+2], aa=data[i+3];
+                            if (aa < 120) continue; // skip very transparent
+                            r+=rr; g+=gg; b+=bb; count++;
+                        }
+                        if (count) { r=Math.round(r/count); g=Math.round(g/count); b=Math.round(b/count); }
+                        // Slight vibrance boost
+                        const boost = 1.15;
+                        r=Math.min(255, Math.round(r*boost));
+                        g=Math.min(255, Math.round(g*boost));
+                        b=Math.min(255, Math.round(b*boost));
+                        const accent = `rgb(${r}, ${g}, ${b})`;
+                        card.style.setProperty('--accent', accent);
+                    } catch (e) {
+                        console.warn('Accent extraction failed', e);
+                    }
+                };
+                img.onerror = () => {
+                    console.warn('Could not load image for accent', src);
+                };
+            });
+        }
+    } catch (err) {
+        console.warn('Dynamic accent color initialization failed', err);
+    }
+
+    // Swap to registration form on format click
+    try {
+        const formatCards = document.querySelectorAll('.inscription-format');
+        const formWrapper = document.querySelector('.registration-form-wrapper');
+        const formatsWrapper = document.querySelector('.formats-wrapper');
+        const soonNote = document.querySelector('.soon-note');
+        const formatLabelSpan = document.querySelector('.selected-format-label');
+        const hiddenFormatInput = document.getElementById('selected-format-input');
+        const backBtn = document.querySelector('.back-to-formats');
+
+        function showForm(formatName) {
+            if (!formWrapper || !formatsWrapper) return;
+            formatsWrapper.setAttribute('hidden','');
+            soonNote && soonNote.setAttribute('hidden','');
+            formWrapper.hidden = false;
+            formatLabelSpan.textContent = formatName.toUpperCase();
+            hiddenFormatInput.value = formatName;
+        }
+
+        function showFormats() {
+            if (!formWrapper || !formatsWrapper) return;
+            formWrapper.hidden = true;
+            formatsWrapper.removeAttribute('hidden');
+            soonNote && soonNote.removeAttribute('hidden');
+            hiddenFormatInput.value = '';
+            formatLabelSpan.textContent = '';
+        }
+
+        formatCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+                const title = card.querySelector('h2');
+                if (!title) return;
+                showForm(title.textContent.trim());
+            });
+            card.removeAttribute('aria-disabled'); // allow interaction now
+        });
+
+        backBtn && backBtn.addEventListener('click', () => showFormats());
+
+        // Basic client validation (still passive since form inactive)
+        const form = document.getElementById('inscription-form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const requiredFields = form.querySelectorAll('[required]');
+                let valid = true;
+                requiredFields.forEach(f => {
+                    if ((f.type === 'radio' && !form.querySelector('input[name="genre"]:checked')) || (!f.value && f.type !== 'radio')) {
+                        valid = false;
+                        f.classList.add('invalid');
+                    } else {
+                        f.classList.remove('invalid');
+                    }
+                });
+                // Honeypot: if filled, silently succeed
+                const hp = form.querySelector('input[name="website"]');
+                if (hp && hp.value) {
+                    showFakeSuccess();
+                    return;
+                }
+
+                if (!valid) {
+                    alert('Veuillez compléter tous les champs obligatoires.');
+                    return;
+                }
+
+                const submitBtn = form.querySelector('.submit-btn');
+                const prevText = submitBtn ? submitBtn.textContent : '';
+                if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Envoi…'; }
+
+                // If no GAS URL configured, keep passive behavior
+                if (!GOOGLE_SHEETS_WEB_APP_URL) {
+                    alert('Destinataire Google Sheets non configuré. Partage-moi l\'URL Apps Script pour l\'activer.');
+                    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = prevText; }
+                    return;
+                }
+
+                // Build x-www-form-urlencoded body (simple request avoids complex CORS)
+                const fd = new FormData(form);
+                const data = new URLSearchParams();
+                for (const [k, v] of fd.entries()) data.append(k, String(v));
+
+                fetch(GOOGLE_SHEETS_WEB_APP_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: data.toString(),
+                    mode: 'no-cors'
+                }).then(() => {
+                    showFakeSuccess();
+                }).catch(() => {
+                    alert('Impossible d\'envoyer pour le moment. Réessayez plus tard.');
+                }).finally(() => {
+                    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = prevText; }
+                });
+
+                function showFakeSuccess() {
+                    const wrapper = document.querySelector('.registration-form-wrapper');
+                    if (!wrapper) return;
+                    wrapper.innerHTML = `
+                        <h2 class="form-title">Merci !</h2>
+                        <p>Votre demande d'inscription a été transmise. Vous recevrez une confirmation par e-mail dès l'ouverture officielle.</p>
+                        <button type="button" class="back-to-formats" onclick="location.reload()">← Retour</button>
+                    `;
+                }
+            });
+            // If GAS configured, make button look active
+            if (GOOGLE_SHEETS_WEB_APP_URL) {
+                const submitBtn = form.querySelector('.submit-btn');
+                if (submitBtn) submitBtn.style.cursor = 'pointer';
+            }
+        }
+    } catch (err) {
+        console.warn('Could not initialize format->form swap', err);
     }
 });
