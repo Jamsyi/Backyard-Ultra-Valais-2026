@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <script>
+      // Prevent navbar flash by setting class before render
+      document.documentElement.classList.add("has-header-page");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informations - Backyard Ultra Valais</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Rubik+Dirt&family=Russo+One&family=Shippori+Antique&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../css/index_style.css" />
+    <link rel="stylesheet" href="../css/informations_style.css" />
+    <link
+      rel="shortcut icon"
+      href="../images/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
+  <body class="has-header">
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <a href="/">
+            <img src="../images/buv.png" alt="logo" />
+          </a>
+        </div>
+
+        <!--Hamburger button-->
+        <button id="hamburger-button" class="hamburger-button">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+
+        <div class="main-menu">
+          <ul>
+            <li>
+              <a href="/">Accueil</a>
+            </li>
+            <li>
+              <a href="/informations">Informations</a>
+            </li>
+            <li class="has-submenu">
+              <a
+                href="#"
+                class="parent-link"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Résultats</a
+              >
+              <ul class="dropdown-menu">
+                <li><a href="/resultats/2025">2025</a></li>
+                <li><a href="/resultats/2026">2026</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a
+                href="#"
+                class="parent-link"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Photos</a
+              >
+              <ul class="dropdown-menu">
+                <li><a href="/photos/2025">2025</a></li>
+                <li><a href="/photos/2026">2026</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/about-us">Notre Equipe</a>
+            </li>
+            <li>
+              <a href="/partenaires">Partenaires</a>
+            </li>
+            <li class="social-nav">
+              <a
+                href="https://www.instagram.com/backyard.ultra.valais/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-icon"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61566704801123"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-icon"
+              >
+                <i class="fab fa-facebook"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile menu - outside navbar to avoid transparency inheritance -->
+    <div class="mobile-menu">
+      <button class="close-menu-button">&times;</button>
+      <ul>
+        <li>
+          <a href="/">Accueil</a>
+        </li>
+        <li>
+          <a href="/informations">Informations</a>
+        </li>
+        <li class="has-submenu">
+          <a
+            href="#"
+            class="parent-link"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >Résultats</a
+          >
+          <ul class="dropdown-menu">
+            <li><a href="/resultats/2025">2025</a></li>
+            <li><a href="/resultats/2026">2026</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a
+            href="#"
+            class="parent-link"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >Photos</a
+          >
+          <ul class="dropdown-menu">
+            <li><a href="/photos/2025">2025</a></li>
+            <li><a href="/photos/2026">2026</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/about-us">Notre Equipe</a>
+        </li>
+        <li>
+          <a href="/partenaires">Partenaires</a>
+        </li>
+        <li class="social-mobile">
+          <a
+            href="https://www.instagram.com/backyard.ultra.valais/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/profile.php?id=61566704801123"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+          >
+            <i class="fab fa-facebook"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-title">Informations</h1>
+        <!-- Subtitle removed per user request -->
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="info-content">
+      <div class="container">
+        <div class="info-section">
+          <h2 class="section-title">Guide du coureur</h2>
+          <p class="section-text">
+            Le guide du coureur sera en ligne deux semaines avant la course pour
+            t'accompagner jusqu'à la ligne de départ.
+          </p>
+          <p class="section-text">Vous trouverez ici le guide.</p>
+        </div>
+
+        <div class="info-section">
+          <h2 class="section-title">Programme</h2>
+
+          <div class="program-grid">
+            <!-- Vendredi -->
+            <div class="program-card">
+              <div class="program-header">
+                <i class="fa-solid fa-calendar-day"></i>
+                <h3>Vendredi 3 avril</h3>
+              </div>
+              <div class="program-content">
+                <div class="schedule-item">
+                  <span class="time"
+                    ><i class="fa-solid fa-clock"></i> 09:30 - 11:30</span
+                  >
+                  <span class="event"
+                    ><i class="fa-solid fa-id-card"></i> Retrait des dossards |
+                    Café offert</span
+                  >
+                </div>
+                <div class="schedule-item">
+                  <span class="time"
+                    ><i class="fa-solid fa-clock"></i> 11:40</span
+                  >
+                  <span class="event"
+                    ><i class="fa-solid fa-comments"></i> Briefing</span
+                  >
+                </div>
+                <div class="schedule-item">
+                  <span class="time"
+                    ><i class="fa-solid fa-clock"></i> 11:45</span
+                  >
+                  <span class="event"
+                    ><i class="fa-solid fa-camera"></i> Photo de groupe</span
+                  >
+                </div>
+                <div class="schedule-item">
+                  <span class="time"
+                    ><i class="fa-solid fa-clock"></i> 12:00</span
+                  >
+                  <span class="event"
+                    ><i class="fa-solid fa-flag-checkered"></i> Départ INFINITY
+                    & EXPLORER</span
+                  >
+                </div>
+                <div class="schedule-item">
+                  <span class="time"
+                    ><i class="fa-solid fa-clock"></i> 12:00+</span
+                  >
+                  <span class="event"
+                    ><i class="fa-solid fa-utensils"></i> Raclette</span
+                  >
+                </div>
+                <div class="schedule-item">
+                  <span class="time"
+                    ><i class="fa-solid fa-clock"></i> 18:00</span
+                  >
+                  <span class="event"
+                    ><i class="fa-solid fa-flag"></i> Dernier départ
+                    EXPLORER</span
+                  >
+                </div>
+                <div class="schedule-item">
+                  <span class="time"
+                    ><i class="fa-solid fa-clock"></i> 19:15</span
+                  >
+                  <span class="event"
+                    ><i class="fa-solid fa-trophy"></i> Remise des prix
+                    EXPLORER</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Samedi -->
+            <div class="program-card">
+              <div class="program-header">
+                <i class="fa-solid fa-calendar-day"></i>
+                <h3>Samedi 4 avril</h3>
+              </div>
+              <div class="program-content">
+                <div class="schedule-item">
+                  <span class="time"
+                    ><i class="fa-solid fa-clock"></i> 12:00+</span
+                  >
+                  <span class="event"
+                    ><i class="fa-solid fa-utensils"></i> Raclette</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Dimanche -->
+            <div class="program-card">
+              <div class="program-header">
+                <i class="fa-solid fa-calendar-day"></i>
+                <h3>Dimanche 5 avril</h3>
+              </div>
+              <div class="program-content">
+                <div class="schedule-item">
+                  <span class="time"
+                    ><i class="fa-solid fa-clock"></i> TBD</span
+                  >
+                  <span class="event"
+                    ><i class="fa-solid fa-trophy"></i> Remise des prix
+                    INFINITY</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h2 class="section-title">Infrastructures à disposition</h2>
+          <div class="facilities-grid">
+            <div class="facility-item">
+              <i class="fa-solid fa-house" style="color: orange"></i>
+              <div class="facility-text">
+                <strong>Salle de repos intérieure</strong>
+                <p>
+                  Couvert des Aprages - réservé au format INFINITY. Les
+                  participants EXPLORER pourront s'installer sur les tables et
+                  bancs extérieurs.
+                </p>
+              </div>
+            </div>
+            <div class="facility-item">
+              <i class="fa-solid fa-lock" style="color: orange"></i>
+              <div class="facility-text">
+                <strong>Objets de valeur</strong>
+                <p>Vos objets de valeur sous clé sur présentation du dossard</p>
+              </div>
+            </div>
+            <div class="facility-item">
+              <i class="fa-solid fa-restroom" style="color: orange"></i>
+              <div class="facility-text">
+                <strong>Toilettes</strong>
+                <p>Sanitaires disponibles sur place</p>
+              </div>
+            </div>
+            <div class="facility-item">
+              <i class="fa-solid fa-droplet" style="color: orange"></i>
+              <div class="facility-text">
+                <strong>Eau potable</strong>
+                <p>À disposition</p>
+              </div>
+            </div>
+            <div class="facility-item">
+              <i class="fa-solid fa-plug" style="color: orange"></i>
+              <div class="facility-text">
+                <strong>Prises électriques</strong>
+                <p>Pour recharger vos appareils</p>
+              </div>
+            </div>
+            <div class="facility-item">
+              <i class="fa-solid fa-fire-burner" style="color: orange"></i>
+              <div class="facility-text">
+                <strong>Micro-ondes</strong>
+                <p>À disposition pour réchauffer vos repas</p>
+              </div>
+            </div>
+            <div class="facility-item">
+              <i class="fa-solid fa-shower" style="color: #888"></i>
+              <div class="facility-text">
+                <strong style="color: #888">Douches</strong>
+                <p style="color: #888">À confirmer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h2 class="section-title">Formats</h2>
+
+          <!-- INFINITY Format -->
+          <div class="format-full format-infinity">
+            <div class="format-header">
+              <div class="format-header-left">
+                <img
+                  src="../images/infinity.png"
+                  alt="Infinity Format"
+                  class="format-header-img"
+                />
+                <h3>Le format INFINITY</h3>
+              </div>
+              <div class="format-header-right">
+                <p class="format-info-item">
+                  <i class="fa-solid fa-flag-checkered"></i>
+                  <strong>Départ :</strong> vendredi 3 avril à 12:00
+                </p>
+                <p class="format-info-item">
+                  <i class="fa-solid fa-house"></i>
+                  <strong>Base de repos :</strong> Couvert des Aprages
+                  (intérieure)
+                </p>
+                <p class="format-info-item">
+                  <i class="fa-solid fa-users"></i> <strong>Limite :</strong> 50
+                  personnes
+                </p>
+              </div>
+            </div>
+
+            <div class="format-bubbles-grid format-bubbles-grid-3col">
+              <!-- Row 1: Explanation spans 3 columns -->
+              <div class="format-detail-bubble bubble-span-3">
+                <p class="format-description">
+                  Format phare de l'événement, celui-ci se range parfaitement
+                  dans les codes du concept de la Backyard Ultra créé par
+                  Lazarus Lake. Le but : compléter une boucle de 6,7 km chaque
+                  heure, en moins d'une heure, jusqu'à ce qu'il ne reste plus
+                  qu'un seul participant en lice. Ainsi, tant qu'au moins deux
+                  coureurs sont toujours en course, l'épreuve est infinie, sa
+                  fin totalement imprévisible.
+                </p>
+              </div>
+
+              <!-- Row 2: Price table spans 2 columns, Ce format 1 column -->
+              <div class="format-detail-bubble bubble-span-2">
+                <p class="format-description">
+                  <strong>Tarifs d'inscription évolutifs :</strong>
+                </p>
+                <div class="table-responsive">
+                  <table class="pricing-table pricing-table-infinity">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Dates</th>
+                        <th>Tarif</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>EARLY BIRD</td>
+                        <td>29 novembre → 31 décembre</td>
+                        <td>60 CHF</td>
+                      </tr>
+                      <tr>
+                        <td>STANDARD</td>
+                        <td>1er janvier → 15 février</td>
+                        <td>65 CHF</td>
+                      </tr>
+                      <tr>
+                        <td>LAST CHANCE</td>
+                        <td>16 février → 30 mars</td>
+                        <td>70 CHF</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="format-detail-bubble">
+                <p class="format-description">
+                  <strong>Ce format est fait pour toi si :</strong>
+                </p>
+                <ul class="format-description">
+                  <li>
+                    Tu aimes les défis sans fin, où le mental prime sur le
+                    chrono.
+                  </li>
+                  <li>
+                    Tu n'as pas peur de la nuit, ni de recommencer, encore et
+                    encore.
+                  </li>
+                  <li>
+                    Tu sais que ta plus grande limite, c'est celle que tu n'as
+                    pas encore atteinte.
+                  </li>
+                  <li>
+                    Tu veux vivre une expérience de course qui se transforme en
+                    aventure humaine.
+                  </li>
+                  <li>
+                    Tu penses être capable de réaliser plus de 7 boucles (46 km)
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Row 3: Récompenses 1 column, Inscription spans 2 columns -->
+              <div class="format-detail-bubble">
+                <p class="format-description">
+                  <strong>Récompenses et Médailles :</strong>
+                </p>
+                <ul class="format-description">
+                  <li>Récompense pour le Finisher (1er) et l'Assist (2e)</li>
+                  <li>
+                    Meilleure femme/meilleur homme selon le sexe du Finisher
+                  </li>
+                  <li>Médaille pour tous les participants</li>
+                </ul>
+              </div>
+
+              <div class="format-detail-bubble bubble-span-2">
+                <p class="format-description">
+                  <strong>Le prix de l'inscription comprend :</strong>
+                </p>
+                <div class="facilities-grid">
+                  <div class="facility-item">
+                    <i class="fa-solid fa-running" style="color: orange"></i>
+                    <div class="facility-text">
+                      <strong>Participation</strong>
+                      <p>BUV INFINITY 2026</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-id-badge" style="color: orange"></i>
+                    <div class="facility-text">
+                      <strong>Dossard nominatif</strong>
+                      <p>Pour les inscrits avant le 16 février</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-medal" style="color: orange"></i>
+                    <div class="facility-text">
+                      <strong>Médaille</strong>
+                      <p>Pour tous les participants</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-shirt" style="color: orange"></i>
+                    <div class="facility-text">
+                      <strong>T-shirt souvenir</strong>
+                      <p>Offert à chaque participant</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-gift" style="color: orange"></i>
+                    <div class="facility-text">
+                      <strong>Tirage au sort</strong>
+                      <p>Participation pour un coaching</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-utensils" style="color: orange"></i>
+                    <div class="facility-text">
+                      <strong>Ravitaillements</strong>
+                      <p>Solides à intervalles réguliers</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-house" style="color: orange"></i>
+                    <div class="facility-text">
+                      <strong>Zone de repos</strong>
+                      <p>Accès à la zone intérieure</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-lock" style="color: orange"></i>
+                    <div class="facility-text">
+                      <strong>Objets de valeur</strong>
+                      <p>Mise sous-clé sur présentation du dossard</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-stopwatch" style="color: orange"></i>
+                    <div class="facility-text">
+                      <strong>Chronométrage</strong>
+                      <p>Et classement officiel</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-camera" style="color: orange"></i>
+                    <div class="facility-text">
+                      <strong>Photos officielles</strong>
+                      <p>Couverture photo de l'événement</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EXPLORER Format -->
+          <div class="format-full format-explorer">
+            <div class="format-header">
+              <div class="format-header-left">
+                <img
+                  src="../images/explorer.png"
+                  alt="Explorer Format"
+                  class="format-header-img"
+                />
+                <h3>Le format EXPLORER</h3>
+              </div>
+              <div class="format-header-right">
+                <p class="format-info-item">
+                  <i class="fa-solid fa-flag-checkered"></i>
+                  <strong>Départ :</strong> vendredi 3 avril à 12:00
+                </p>
+                <p class="format-info-item">
+                  <i class="fa-solid fa-flag"></i>
+                  <strong>Dernier départ :</strong> vendredi 3 avril à 18:00
+                </p>
+                <p class="format-info-item">
+                  <i class="fa-solid fa-house"></i>
+                  <strong>Base de repos :</strong> devant le Couvert
+                  (extérieure)
+                </p>
+                <p class="format-info-item">
+                  <i class="fa-solid fa-users"></i>
+                  <strong>Limite :</strong> 100 personnes
+                </p>
+              </div>
+            </div>
+
+            <div class="format-bubbles-grid format-bubbles-grid-3col">
+              <!-- Row 1: Explanation spans 3 columns -->
+              <div class="format-detail-bubble bubble-span-3">
+                <p class="format-description">
+                  Comme notre format INFINITY est limité à seulement 50
+                  participants cette année encore, nous nous sommes demandé
+                  comment nous pourrions accueillir plus de monde. C'est comme
+                  ça qu'est né le format EXPLORER : une course pour découvrir
+                  l'ultra-endurance et la Backyard Ultra, ou tout simplement
+                  pour sortir de ses sentiers battus le temps d'une journée. Les
+                  règles sont les mêmes que pour le format INFINITY. Seule
+                  différence : vous vous inscrivez ici pour, au maximum, 7
+                  boucles, ce qui fait tout de même plus de 46 km. De plus, vous
+                  n'aurez accès qu'à la zone de repos extérieure et non la zone
+                  intérieure.
+                </p>
+              </div>
+
+              <!-- Row 2: Price table spans 2 columns, Ce format 1 column -->
+              <div class="format-detail-bubble bubble-span-2">
+                <p class="format-description">
+                  <strong>Tarifs d'inscription évolutifs :</strong>
+                </p>
+                <div class="table-responsive">
+                  <table class="pricing-table pricing-table-explorer">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Dates</th>
+                        <th>Tarif</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>EARLY BIRD</td>
+                        <td>29 novembre → 31 décembre</td>
+                        <td>35 CHF</td>
+                      </tr>
+                      <tr>
+                        <td>STANDARD</td>
+                        <td>1er janvier → 15 février</td>
+                        <td>40 CHF</td>
+                      </tr>
+                      <tr>
+                        <td>LAST CHANCE</td>
+                        <td>16 février → 30 mars</td>
+                        <td>45 CHF</td>
+                      </tr>
+                      <tr>
+                        <td>Sur place</td>
+                        <td>Jour de course</td>
+                        <td>50 CHF</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="format-detail-bubble">
+                <p class="format-description">
+                  <strong>Ce format est fait pour toi si :</strong>
+                </p>
+                <ul class="format-description">
+                  <li>
+                    Tu veux t'essayer au concept de la Backyard Ultra en
+                    conditions réelles.
+                  </li>
+                  <li>
+                    Tu veux vivre la même ambiance que les participants du
+                    format INFINITY.
+                  </li>
+                  <li>
+                    Tu veux découvrir le concept de la Backyard Ultra sans aller
+                    jusqu'au bout de la nuit.
+                  </li>
+                  <li>
+                    Tu veux partager la boucle avec des passionnés, sans
+                    forcément viser la victoire.
+                  </li>
+                  <li>
+                    Tu veux vivre une expérience de course qui se transforme en
+                    aventure humaine.
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Row 3: Récompenses 1 column, Inscription spans 2 columns -->
+              <div class="format-detail-bubble">
+                <p class="format-description">
+                  <strong>Récompenses et Médailles :</strong>
+                </p>
+                <ul class="format-description">
+                  <li>Médaille pour tous les participants</li>
+                  <li>
+                    Attention particulière pour les finishers de la 7ème boucle
+                  </li>
+                </ul>
+              </div>
+
+              <div class="format-detail-bubble bubble-span-2">
+                <p class="format-description">
+                  <strong>Le prix de l'inscription comprend :</strong>
+                </p>
+                <div class="facilities-grid">
+                  <div class="facility-item">
+                    <i class="fa-solid fa-running" style="color: #ffc107"></i>
+                    <div class="facility-text">
+                      <strong>Participation</strong>
+                      <p>BUV EXPLORER 2026</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-id-badge" style="color: #ffc107"></i>
+                    <div class="facility-text">
+                      <strong>Dossard nominatif</strong>
+                      <p>Pour les inscrits avant le 16 février</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-medal" style="color: #ffc107"></i>
+                    <div class="facility-text">
+                      <strong>Médaille</strong>
+                      <p>Pour tous les participants</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-shirt" style="color: #ffc107"></i>
+                    <div class="facility-text">
+                      <strong>T-shirt souvenir</strong>
+                      <p>Offert à chaque participant</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-utensils" style="color: #ffc107"></i>
+                    <div class="facility-text">
+                      <strong>Ravitaillements</strong>
+                      <p>Solides à intervalles réguliers</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-lock" style="color: #ffc107"></i>
+                    <div class="facility-text">
+                      <strong>Objets de valeur</strong>
+                      <p>Mise sous-clé sur présentation du dossard</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-stopwatch" style="color: #ffc107"></i>
+                    <div class="facility-text">
+                      <strong>Chronométrage</strong>
+                      <p>Et classement officiel</p>
+                    </div>
+                  </div>
+                  <div class="facility-item">
+                    <i class="fa-solid fa-camera" style="color: #ffc107"></i>
+                    <div class="facility-text">
+                      <strong>Photos officielles</strong>
+                      <p>Couverture photo de l'événement</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h2 class="section-title">Transport</h2>
+          <p class="section-text">
+            <strong>ACCÈS :</strong> le village d'Ardon se situe au cœur du
+            Canton du Valais en Suisse, à seulement 7 minutes de Sion et 17
+            minutes de Martigny en train, et à une quinzaine de minutes de ces
+            deux villes par l'A9 en voiture.
+          </p>
+          <p class="section-text">
+            Le Couvert des Aprages, base de vie et zone de départ/arrivée de la
+            BUV 2026, se situe à moins de 9 minutes à pied depuis la gare
+            d'Ardon.
+          </p>
+          <p class="section-text">
+            Si tu ne peux pas faire autrement, tu pourras parquer ton véhicule à
+            proximité du Couvert des Aprages en suivant la signalisation mise en
+            place ou les indications des bénévoles.
+          </p>
+        </div>
+
+        <div class="info-section">
+          <h2 class="section-title">Hébergement</h2>
+          <p class="section-text">
+            Tu es à la recherche d'un logement pour dormir au mieux avant et
+            après ta course, ou même pendant la course pour tes accompagnants ?
+          </p>
+          <p class="section-text">
+            La région du Valais a tellement à offrir, tu as tout intérêt à jouer
+            les prolongations avant/après la manifestation !
+          </p>
+        </div>
+
+        <div class="info-section">
+          <h2 class="section-title">FAQ</h2>
+          <div class="program-grid">
+            <div class="program-card">
+              <div class="program-content">
+                <div class="faq-item">
+                  <p class="faq-question chat-bubble chat-question">
+                    <strong>Quels sont les tarifs d'inscription ?</strong>
+                  </p>
+                  <p class="faq-answer chat-bubble chat-answer">
+                    Voir les tarifs évolutifs de chaque format dans l'onglet
+                    format.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-card">
+              <div class="program-content">
+                <div class="faq-item">
+                  <p class="faq-question chat-bubble chat-question">
+                    <strong>Quelles sont les catégories ?</strong>
+                  </p>
+                  <p class="faq-answer chat-bubble chat-answer">
+                    Voir les catégories de chaque format dans l'onglet format.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-card">
+              <div class="program-content">
+                <div class="faq-item">
+                  <p class="faq-question chat-bubble chat-question">
+                    <strong
+                      >Comment fonctionnent les ravitaillements proposés par
+                      l'organisation ?</strong
+                    >
+                  </p>
+                  <p class="faq-answer chat-bubble chat-answer">
+                    Toutes les informations à propos des ravitaillements se
+                    trouveront dans le document "Guide du coureur" deux semaines
+                    avant l'évènement.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h2 class="section-title">Règlement et conditions générales</h2>
+          <p class="section-text">À venir</p>
+        </div>
+      </div>
+    </section>
+
+    <!--Footer-->
+    <footer class="footer bg-black">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a href="/">
+              <img src="../images/buv.png" alt="logo" />
+            </a>
+            <d class="copyright text-sm">
+              © Backyard Ultra Valais 2026 - Suisse<br />
+            </d>
+          </div>
+          <div>
+            <h4 class="contact-headline">Contacts</h4>
+            <b class="contact text-md">
+              <i class="fa fa-envelope"></i> backyardultravalais@gmail.com
+            </b>
+          </div>
+          <div></div>
+          <div>
+            <a
+              href="https://www.instagram.com/backyard.ultra.valais/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61566704801123"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              <i class="fab fa-facebook"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+  </body>
+</html>
