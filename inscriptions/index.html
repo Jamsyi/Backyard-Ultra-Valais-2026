@@ -187,6 +187,7 @@
             href="#"
             class="inscription-format"
             data-img="../images/infinity.png"
+            data-price="65"
             aria-disabled="true"
             tabindex="0"
           >
@@ -205,6 +206,7 @@
             href="#"
             class="inscription-format"
             data-img="../images/explorer.png"
+            data-price="40"
             aria-disabled="true"
             tabindex="0"
           >
@@ -328,10 +330,92 @@
               </select>
             </div>
             <div class="form-actions">
-              <button type="submit" class="submit-btn">Envoyer</button>
+              <button type="button" id="go-payment-btn" class="submit-btn">
+                Passer au paiement
+                <span class="price-tag" id="payment-price"></span>
+              </button>
               <p class="form-hint">* Champs obligatoires.</p>
             </div>
           </form>
+        </div>
+
+        <!-- Section Paiement (masquée au départ) -->
+        <div class="payment-section" aria-labelledby="paiement-title" hidden>
+          <h2 id="paiement-title" class="form-title">Paiement</h2>
+          <p class="payment-intro">
+            Le paiement est requis pour valider définitivement votre inscription
+            une fois le formulaire ouvert. Deux méthodes seront proposées :
+            TWINT (préféré) ou virement bancaire.
+          </p>
+          <p class="selected-summary" id="selected-summary" hidden>
+            Format choisi : <strong id="summary-format"></strong> —
+            <strong id="summary-price"></strong> CHF
+          </p>
+          <div class="payment-methods">
+            <div class="payment-card twint">
+              <h3 class="payment-heading">
+                <i class="fa-brands fa-twint"></i> Paiement TWINT
+              </h3>
+              <p>
+                Scannez le QR code ci-dessous avec votre application TWINT et
+                indiquez en remarque :
+                <strong>"Nom Prénom - Format"</strong> (ex:
+                <em>Durand Marie - Infinity</em>).
+              </p>
+              <div class="twint-qr-wrapper">
+                <img
+                  src="../images/twintbtn.jpg"
+                  alt="QR Code TWINT"
+                  class="twint-qr"
+                />
+              </div>
+              <ul class="payment-details">
+                <li>
+                  <strong>Montant:</strong>
+                  <span id="payment-section-price">(à définir)</span> CHF
+                </li>
+                <li>
+                  <strong>Remarque:</strong> Nom Prénom - Infinity / Explorer
+                </li>
+              </ul>
+              <p class="payment-note">
+                Validation quasi immédiate. Merci de privilégier cette méthode.
+              </p>
+            </div>
+            <div class="payment-card bank">
+              <h3 class="payment-heading">
+                <i class="fa-solid fa-building-columns"></i> Virement bancaire
+              </h3>
+              <p>
+                Si vous ne pouvez pas utiliser TWINT, effectuez un virement
+                bancaire avec les informations ci-dessous. Le traitement peut
+                prendre quelques jours.
+              </p>
+              <ul class="payment-details">
+                <li><strong>Bénéficiaire:</strong> Backyard Ultra Valais</li>
+                <li>
+                  <strong>IBAN:</strong> CH00 0000 0000 0000 0000 0 (exemple)
+                </li>
+                <li><strong>Banque:</strong> (à confirmer)</li>
+                <li><strong>SWIFT / BIC:</strong> (si nécessaire)</li>
+                <li>
+                  <strong>Communication:</strong> Nom Prénom - Infinity /
+                  Explorer
+                </li>
+              </ul>
+              <p class="payment-note">
+                Veuillez vérifier que toutes les informations sont correctes.
+                Remplacez les champs <em>(exemple)</em> par les données
+                officielles lorsque disponibles.
+              </p>
+            </div>
+          </div>
+          <p class="payment-footer">
+            En cas de question paiement:
+            <a href="mailto:backyardultravalais@gmail.com"
+              >backyardultravalais@gmail.com</a
+            >
+          </p>
         </div>
       </div>
     </main>
@@ -378,5 +462,137 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+      (function () {
+        const formatLinks = document.querySelectorAll(".inscription-format");
+        const formatsWrapper = document.querySelector(".formats-wrapper");
+        const soonNote = document.querySelector(".soon-note");
+        const formWrapper = document.querySelector(
+          ".registration-form-wrapper"
+        );
+        const paymentSection = document.querySelector(".payment-section");
+        const goPaymentBtn = document.getElementById("go-payment-btn");
+        const selectedFormatInput = document.getElementById(
+          "selected-format-input"
+        );
+        const selectedFormatLabel = document.querySelector(
+          ".selected-format-label"
+        );
+        const paymentPriceSpan = document.getElementById("payment-price");
+        const paymentSectionPrice = document.getElementById(
+          "payment-section-price"
+        );
+        const summary = document.getElementById("selected-summary");
+        const summaryFormat = document.getElementById("summary-format");
+        const summaryPrice = document.getElementById("summary-price");
+        const backBtn = document.querySelector(".back-to-formats");
+
+        function selectFormat(link) {
+          const formatName = link.querySelector("h2").textContent.trim();
+          const price = link.dataset.price || "??";
+          selectedFormatInput.value = formatName;
+          selectedFormatLabel.textContent = formatName;
+          paymentPriceSpan.textContent = price + " CHF";
+          paymentSectionPrice.textContent = price;
+          summaryFormat.textContent = formatName;
+          summaryPrice.textContent = price;
+          summary.hidden = false;
+          formWrapper.hidden = false;
+          formatsWrapper.style.display = "none";
+          soonNote.style.display = "none";
+          window.scrollTo({
+            top: formWrapper.offsetTop - 80,
+            behavior: "smooth",
+          });
+        }
+
+        formatLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            // Permettre l'ouverture même si aria-disabled = true
+            selectFormat(link);
+          });
+          link.addEventListener("keypress", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              selectFormat(link);
+            }
+          });
+        });
+
+        backBtn.addEventListener("click", () => {
+          formWrapper.hidden = true;
+          paymentSection.hidden = true;
+          formatsWrapper.style.display = "";
+          soonNote.style.display = "";
+          summary.hidden = true;
+          window.scrollTo({
+            top: formatsWrapper.offsetTop - 80,
+            behavior: "smooth",
+          });
+        });
+
+        goPaymentBtn.addEventListener("click", () => {
+          const form = document.getElementById("inscription-form");
+          // Valider le formulaire avant de passer au paiement
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+          // Envoi au Google Apps Script avant affichage paiement
+          const originalText = goPaymentBtn.textContent;
+          goPaymentBtn.disabled = true;
+          goPaymentBtn.textContent = "Envoi…";
+
+          const fd = new FormData(form);
+          const data = new URLSearchParams();
+          for (const [k, v] of fd.entries()) data.append(k, String(v));
+
+          // Fallback si URL non configurée
+          const url =
+            typeof GOOGLE_SHEETS_WEB_APP_URL !== "undefined" &&
+            GOOGLE_SHEETS_WEB_APP_URL
+              ? GOOGLE_SHEETS_WEB_APP_URL
+              : "";
+
+          const proceedToPayment = () => {
+            goPaymentBtn.disabled = false;
+            goPaymentBtn.textContent = originalText;
+            formWrapper.hidden = true;
+            paymentSection.hidden = false;
+            window.scrollTo({
+              top: paymentSection.offsetTop - 80,
+              behavior: "smooth",
+            });
+          };
+
+          if (!url) {
+            console.warn(
+              "GOOGLE_SHEETS_WEB_APP_URL manquant - passage direct au paiement"
+            );
+            proceedToPayment();
+            return;
+          }
+
+          fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: data.toString(),
+            mode: "no-cors",
+          })
+            .then(() => {
+              // Impossible de vérifier la réponse en no-cors, on continue
+              proceedToPayment();
+            })
+            .catch((err) => {
+              console.warn("Erreur envoi formulaire", err);
+              proceedToPayment(); // On autorise quand même le paiement
+            });
+        });
+        // Sécurité: forcer masquage initial
+        paymentSection.hidden = true;
+        formWrapper.hidden = true;
+      })();
+    </script>
   </body>
 </html>
