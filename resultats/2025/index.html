@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <script>
+      // Prevent navbar flash by setting class before render
+      document.documentElement.classList.add("has-header-page");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Résultats 2025 - Backyard Ultra Valais</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Rubik+Dirt&family=Russo+One&family=Shippori+Antique&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../../css/index_style.css" />
+    <link rel="stylesheet" href="../../css/informations_style.css" />
+    <link rel="stylesheet" href="../../css/resultats_style.css" />
+    <link
+      rel="shortcut icon"
+      href="../../images/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
+  <body class="has-header results-page">
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <a href="/">
+            <img src="../../images/buv.png" alt="logo" />
+          </a>
+        </div>
+
+        <!--Hamburger button-->
+        <button id="hamburger-button" class="hamburger-button">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+
+        <div class="main-menu">
+          <ul>
+            <li>
+              <a href="/">Accueil</a>
+            </li>
+            <li>
+              <a href="/informations">Informations</a>
+            </li>
+            <li class="has-submenu">
+              <a
+                href="#"
+                class="parent-link"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Résultats</a
+              >
+              <ul class="dropdown-menu">
+                <li><a href="/resultats/2025">2025</a></li>
+                <li><a href="/resultats/2026">2026</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a
+                href="#"
+                class="parent-link"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Photos</a
+              >
+              <ul class="dropdown-menu">
+                <li><a href="/photos/2025">2025</a></li>
+                <li><a href="/photos/2026">2026</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/about-us">Notre Equipe</a>
+            </li>
+            <li>
+              <a href="/partenaires">Partenaires</a>
+            </li>
+            <li class="social-nav">
+              <a
+                href="https://www.instagram.com/backyard.ultra.valais/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-icon"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61566704801123"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-icon"
+              >
+                <i class="fab fa-facebook"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile menu - outside navbar to avoid transparency inheritance -->
+    <div class="mobile-menu">
+      <button class="close-menu-button">&times;</button>
+      <ul>
+        <li>
+          <a href="/">Accueil</a>
+        </li>
+        <li>
+          <a href="/informations">Informations</a>
+        </li>
+        <li class="has-submenu">
+          <a
+            href="#"
+            class="parent-link"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >Résultats</a
+          >
+          <ul class="dropdown-menu">
+            <li><a href="/resultats/2025">2025</a></li>
+            <li><a href="/resultats/2026">2026</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a
+            href="#"
+            class="parent-link"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >Photos</a
+          >
+          <ul class="dropdown-menu">
+            <li><a href="/photos/2025">2025</a></li>
+            <li><a href="/photos/2026">2026</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/about-us">Notre Equipe</a>
+        </li>
+        <li>
+          <a href="/partenaires">Partenaires</a>
+        </li>
+        <li class="social-mobile">
+          <a
+            href="https://www.instagram.com/backyard.ultra.valais/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/profile.php?id=61566704801123"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+          >
+            <i class="fab fa-facebook"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-title">Résultats 2025</h1>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="info-content">
+      <div class="container">
+        <div class="info-section">
+          <h2 class="section-title">Format INFINITY</h2>
+          <p class="section-text">
+            Backyard Ultra Valais 2025 - Première édition
+          </p>
+
+          <div class="results-table">
+            <table>
+              <thead>
+                <tr>
+                  <th style="text-align: center">Rang</th>
+                  <th>Nom</th>
+                  <th>Prénom</th>
+                  <th>Genre</th>
+                  <th>Boucles</th>
+                  <th>Distance (km)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="rank-1">
+                  <td class="rank">1</td>
+                  <td>Ohl</td>
+                  <td>Sébastien</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>31</td>
+                  <td>207.7</td>
+                </tr>
+                <tr class="rank-2">
+                  <td class="rank">2</td>
+                  <td>Gervaix</td>
+                  <td>François</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>30</td>
+                  <td>201.0</td>
+                </tr>
+                <tr class="rank-3">
+                  <td class="rank">3</td>
+                  <td>Mila</td>
+                  <td>Gregory</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>20</td>
+                  <td>134.0</td>
+                </tr>
+                <tr>
+                  <td class="rank">4</td>
+                  <td>Lawson</td>
+                  <td>Angus</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>18</td>
+                  <td>120.6</td>
+                </tr>
+                <tr>
+                  <td class="rank">5</td>
+                  <td>Calamo</td>
+                  <td>Nicolas</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>16</td>
+                  <td>107.2</td>
+                </tr>
+                <tr>
+                  <td class="rank">5</td>
+                  <td>Galliano</td>
+                  <td>Nicolas</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>16</td>
+                  <td>107.2</td>
+                </tr>
+                <tr>
+                  <td class="rank">7</td>
+                  <td>De Preux</td>
+                  <td>Sébastien</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>15</td>
+                  <td>100.5</td>
+                </tr>
+                <tr>
+                  <td class="rank">7</td>
+                  <td>Fusco</td>
+                  <td>Mélanie</td>
+                  <td><span class="gender-badge gender-f">F</span></td>
+                  <td>15</td>
+                  <td>100.5</td>
+                </tr>
+                <tr>
+                  <td class="rank">7</td>
+                  <td>Hubert</td>
+                  <td>Alexandre</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>15</td>
+                  <td>100.5</td>
+                </tr>
+                <tr>
+                  <td class="rank">7</td>
+                  <td>Toppazzini</td>
+                  <td>Fabien</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>15</td>
+                  <td>100.5</td>
+                </tr>
+                <tr>
+                  <td class="rank">11</td>
+                  <td>Bender</td>
+                  <td>Loïc</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>14</td>
+                  <td>93.8</td>
+                </tr>
+                <tr>
+                  <td class="rank">11</td>
+                  <td>Bétrisey</td>
+                  <td>Martin</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>14</td>
+                  <td>93.8</td>
+                </tr>
+                <tr>
+                  <td class="rank">13</td>
+                  <td>Ecoffey</td>
+                  <td>Cindy</td>
+                  <td><span class="gender-badge gender-f">F</span></td>
+                  <td>13</td>
+                  <td>87.1</td>
+                </tr>
+                <tr>
+                  <td class="rank">13</td>
+                  <td>Zürcher</td>
+                  <td>Pierre</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>13</td>
+                  <td>87.1</td>
+                </tr>
+                <tr>
+                  <td class="rank">15</td>
+                  <td>Huber</td>
+                  <td>Michel</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>12</td>
+                  <td>80.4</td>
+                </tr>
+                <tr>
+                  <td class="rank">15</td>
+                  <td>Rose</td>
+                  <td>Mélanie</td>
+                  <td><span class="gender-badge gender-f">F</span></td>
+                  <td>12</td>
+                  <td>80.4</td>
+                </tr>
+                <tr>
+                  <td class="rank">15</td>
+                  <td>Trask</td>
+                  <td>Michael</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>12</td>
+                  <td>80.4</td>
+                </tr>
+                <tr>
+                  <td class="rank">18</td>
+                  <td>Delacrétaz</td>
+                  <td>Jean-Christophe</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>11</td>
+                  <td>73.7</td>
+                </tr>
+                <tr>
+                  <td class="rank">18</td>
+                  <td>Farquet</td>
+                  <td>Alexandre</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>11</td>
+                  <td>73.7</td>
+                </tr>
+                <tr>
+                  <td class="rank">18</td>
+                  <td>Savioz</td>
+                  <td>Anaël</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>11</td>
+                  <td>73.7</td>
+                </tr>
+                <tr>
+                  <td class="rank">21</td>
+                  <td>Emery</td>
+                  <td>Mathias</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>10</td>
+                  <td>67.0</td>
+                </tr>
+                <tr>
+                  <td class="rank">21</td>
+                  <td>Martin</td>
+                  <td>Frédéric</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>10</td>
+                  <td>67.0</td>
+                </tr>
+                <tr>
+                  <td class="rank">23</td>
+                  <td>Burgener</td>
+                  <td>Hugo</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>9</td>
+                  <td>60.3</td>
+                </tr>
+                <tr>
+                  <td class="rank">23</td>
+                  <td>Deridder</td>
+                  <td>Henri</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>9</td>
+                  <td>60.3</td>
+                </tr>
+                <tr>
+                  <td class="rank">23</td>
+                  <td>Génard</td>
+                  <td>Laurine</td>
+                  <td><span class="gender-badge gender-f">F</span></td>
+                  <td>9</td>
+                  <td>60.3</td>
+                </tr>
+                <tr>
+                  <td class="rank">23</td>
+                  <td>Nick</td>
+                  <td>Alexandre</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>9</td>
+                  <td>60.3</td>
+                </tr>
+                <tr>
+                  <td class="rank">23</td>
+                  <td>Putallaz</td>
+                  <td>Lionel</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>9</td>
+                  <td>60.3</td>
+                </tr>
+                <tr>
+                  <td class="rank">28</td>
+                  <td>Bruchez</td>
+                  <td>Jérémie</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>8</td>
+                  <td>53.6</td>
+                </tr>
+                <tr>
+                  <td class="rank">28</td>
+                  <td>Combaz</td>
+                  <td>Elias</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>8</td>
+                  <td>53.6</td>
+                </tr>
+                <tr>
+                  <td class="rank">28</td>
+                  <td>Gilliéron</td>
+                  <td>Antoine</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>8</td>
+                  <td>53.6</td>
+                </tr>
+                <tr>
+                  <td class="rank">28</td>
+                  <td>Pellaud</td>
+                  <td>Fabien</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>8</td>
+                  <td>53.6</td>
+                </tr>
+                <tr>
+                  <td class="rank">28</td>
+                  <td>Perruchoud</td>
+                  <td>Nathan</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>8</td>
+                  <td>53.6</td>
+                </tr>
+                <tr>
+                  <td class="rank">28</td>
+                  <td>Vauclair</td>
+                  <td>Frédéric</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>8</td>
+                  <td>53.6</td>
+                </tr>
+                <tr>
+                  <td class="rank">34</td>
+                  <td>Buchilly</td>
+                  <td>Cédric</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>7</td>
+                  <td>46.9</td>
+                </tr>
+                <tr>
+                  <td class="rank">34</td>
+                  <td>Vouilloz</td>
+                  <td>Elise</td>
+                  <td><span class="gender-badge gender-f">F</span></td>
+                  <td>7</td>
+                  <td>46.9</td>
+                </tr>
+                <tr>
+                  <td class="rank">36</td>
+                  <td>Mele</td>
+                  <td>Mauro</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>6</td>
+                  <td>40.2</td>
+                </tr>
+                <tr>
+                  <td class="rank">36</td>
+                  <td>Woelfli</td>
+                  <td>Laurent</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>6</td>
+                  <td>40.2</td>
+                </tr>
+                <tr>
+                  <td class="rank">38</td>
+                  <td>Buchilly</td>
+                  <td>Didi</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>5</td>
+                  <td>33.5</td>
+                </tr>
+                <tr>
+                  <td class="rank">38</td>
+                  <td>Cordonier</td>
+                  <td>Pierre</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>5</td>
+                  <td>33.5</td>
+                </tr>
+                <tr>
+                  <td class="rank">40</td>
+                  <td>Balmer</td>
+                  <td>Pauline</td>
+                  <td><span class="gender-badge gender-f">F</span></td>
+                  <td>4</td>
+                  <td>26.8</td>
+                </tr>
+                <tr>
+                  <td class="rank">40</td>
+                  <td>Constantin</td>
+                  <td>Bérénice</td>
+                  <td><span class="gender-badge gender-f">F</span></td>
+                  <td>4</td>
+                  <td>26.8</td>
+                </tr>
+                <tr>
+                  <td class="rank">40</td>
+                  <td>Hass</td>
+                  <td>Julia</td>
+                  <td><span class="gender-badge gender-f">F</span></td>
+                  <td>4</td>
+                  <td>26.8</td>
+                </tr>
+                <tr>
+                  <td class="rank">40</td>
+                  <td>Odier</td>
+                  <td>Vincent</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>4</td>
+                  <td>26.8</td>
+                </tr>
+                <tr>
+                  <td class="rank">40</td>
+                  <td>Pezzoni</td>
+                  <td>Christian</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>4</td>
+                  <td>26.8</td>
+                </tr>
+                <tr>
+                  <td class="rank">40</td>
+                  <td>Rhoner</td>
+                  <td>Sacha</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>4</td>
+                  <td>26.8</td>
+                </tr>
+                <tr>
+                  <td class="rank">46</td>
+                  <td>Balmer</td>
+                  <td>Alice</td>
+                  <td><span class="gender-badge gender-f">F</span></td>
+                  <td>3</td>
+                  <td>20.1</td>
+                </tr>
+                <tr>
+                  <td class="rank">46</td>
+                  <td>Pinuela</td>
+                  <td>Tatiana</td>
+                  <td><span class="gender-badge gender-f">F</span></td>
+                  <td>3</td>
+                  <td>20.1</td>
+                </tr>
+                <tr>
+                  <td class="rank">46</td>
+                  <td>Thurre</td>
+                  <td>Émilie</td>
+                  <td><span class="gender-badge gender-f">F</span></td>
+                  <td>3</td>
+                  <td>20.1</td>
+                </tr>
+                <tr>
+                  <td class="rank">49</td>
+                  <td>Luisier</td>
+                  <td>Romane</td>
+                  <td><span class="gender-badge gender-f">F</span></td>
+                  <td>2</td>
+                  <td>13.4</td>
+                </tr>
+                <tr>
+                  <td class="rank">50</td>
+                  <td>Feldmann</td>
+                  <td>Felix</td>
+                  <td><span class="gender-badge gender-m">M</span></td>
+                  <td>DNS</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h2 class="section-title">Statistiques de l'édition</h2>
+          <div class="facilities-grid">
+            <div class="facility-item">
+              <i class="fa-solid fa-clock" style="color: orange"></i>
+              <div class="facility-text">
+                <strong>Durée totale</strong>
+                <p>31 heures</p>
+              </div>
+            </div>
+            <div class="facility-item">
+              <i class="fa-solid fa-route" style="color: orange"></i>
+              <div class="facility-text">
+                <strong>Distance maximale</strong>
+                <p>207.7 km</p>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="section-subtitle">
+            Répartition des coureurs par boucle complétée
+          </h3>
+          <div class="chart-container">
+            <canvas id="lapsChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script>
+      // Données du graphique basées sur les résultats
+      const lapsData = {
+        0: 1,
+        1: 0,
+        2: 1,
+        3: 3,
+        4: 6,
+        5: 2,
+        6: 2,
+        7: 2,
+        8: 6,
+        9: 5,
+        10: 2,
+        11: 3,
+        12: 3,
+        13: 2,
+        14: 2,
+        15: 4,
+        16: 2,
+        17: 0,
+        18: 1,
+        19: 0,
+        20: 1,
+        21: 0,
+        22: 0,
+        23: 0,
+        24: 0,
+        25: 0,
+        26: 0,
+        27: 0,
+        28: 0,
+        29: 0,
+        30: 1,
+        31: 1,
+      };
+
+      const ctx = document.getElementById("lapsChart");
+      const chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: Object.keys(lapsData),
+          datasets: [
+            {
+              label: "Nombre de participants",
+              data: Object.values(lapsData),
+              backgroundColor: "rgba(241, 132, 40, 0.8)",
+              borderColor: "rgba(241, 132, 40, 1)",
+              borderWidth: 2,
+              borderRadius: 8,
+              hoverBackgroundColor: "rgba(241, 132, 40, 1)",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 3,
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              backgroundColor: "rgba(0, 0, 0, 0.8)",
+              titleColor: "#fff",
+              bodyColor: "#fff",
+              borderColor: "rgba(241, 132, 40, 0.8)",
+              borderWidth: 1,
+              padding: 12,
+              displayColors: false,
+              callbacks: {
+                title: function (context) {
+                  const label = context[0].label;
+                  return label === "0"
+                    ? "DNS (Did Not Start)"
+                    : label + " boucle(s)";
+                },
+                label: function (context) {
+                  const count = context.parsed.y;
+                  return count + " participant" + (count > 1 ? "s" : "");
+                },
+              },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1,
+                color: "#e0e0e0",
+                font: {
+                  size: 12,
+                },
+              },
+              grid: {
+                color: "rgba(255, 255, 255, 0.1)",
+                borderColor: "rgba(255, 255, 255, 0.2)",
+              },
+              title: {
+                display: true,
+                text: "Nombre de participants",
+                color: "#e0e0e0",
+                font: {
+                  size: 14,
+                  weight: "bold",
+                },
+              },
+            },
+            x: {
+              ticks: {
+                color: "#e0e0e0",
+                font: {
+                  size: 11,
+                },
+              },
+              grid: {
+                color: "rgba(255, 255, 255, 0.05)",
+                borderColor: "rgba(255, 255, 255, 0.2)",
+              },
+              title: {
+                display: true,
+                text: "Nombre de boucles",
+                color: "#e0e0e0",
+                font: {
+                  size: 14,
+                  weight: "bold",
+                },
+              },
+            },
+          },
+        },
+      });
+    </script>
+
+    <!--Footer-->
+    <footer class="footer bg-black">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a href="/">
+              <img src="../../images/buv.png" alt="logo" />
+            </a>
+            <d class="copyright text-sm">
+              © Backyard Ultra Valais 2026 - Suisse<br />
+            </d>
+          </div>
+          <div>
+            <h4 class="contact-headline">Contacts</h4>
+            <b class="contact text-md">
+              <i class="fa fa-envelope"></i> backyardultravalais@gmail.com
+            </b>
+          </div>
+          <div></div>
+          <div>
+            <a
+              href="https://www.instagram.com/backyard.ultra.valais/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61566704801123"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              <i class="fab fa-facebook"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

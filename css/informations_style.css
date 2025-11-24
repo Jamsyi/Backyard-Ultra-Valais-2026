@@ -37,6 +37,11 @@
   justify-content: center; /* horizontally center content */
 }
 
+/* Specific background for results pages */
+body.results-page .page-header {
+  background: url("../images/pipe.jpg") center center / cover no-repeat;
+}
+
 /* Removed dark overlay to keep image undimmed */
 /* If readability issues arise, consider a subtle text-shadow (already present) or gradient behind text only. */
 

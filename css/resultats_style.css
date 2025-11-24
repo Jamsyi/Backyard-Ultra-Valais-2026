@@ -1,0 +1,197 @@
+/* Design de tableau mode sombre avec lueur orange */
+.results-table {
+  margin: 2rem 0;
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 40px rgba(241, 132, 40, 0.15);
+  background: #1a1a1a;
+  border: 1px solid rgba(241, 132, 40, 0.2);
+}
+
+.results-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+.results-table thead {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--primary-color) 70%, black),
+    var(--primary-color),
+    color-mix(in srgb, var(--primary-color) 85%, white)
+  );
+  background-size: 200% 200%;
+  animation: gradientMove 4s ease infinite;
+  box-shadow: 0 2px 20px rgba(241, 132, 40, 0.3);
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.results-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.results-table th[style*="center"] {
+  text-align: center;
+}
+
+.results-table tbody tr {
+  border-bottom: 1px solid rgba(241, 132, 40, 0.1);
+  transition: all 0.3s ease;
+  background: rgba(26, 26, 26, 0.8);
+}
+
+.results-table tbody tr:hover {
+  background: rgba(241, 132, 40, 0.1);
+  box-shadow: 0 0 20px rgba(241, 132, 40, 0.2);
+  border-bottom-color: rgba(241, 132, 40, 0.3);
+}
+
+.results-table td {
+  padding: 0.9rem 1rem;
+  color: #e0e0e0;
+}
+
+.results-table tbody tr:hover td {
+  color: #fff;
+}
+
+.results-table .rank {
+  font-weight: 700;
+  text-align: center;
+  color: #f18428;
+  text-shadow: 0 0 10px rgba(241, 132, 40, 0.5);
+}
+
+/* Podium */
+.results-table .rank-1 {
+  background: rgba(255, 215, 0, 0.08);
+  border-bottom-color: rgba(255, 215, 0, 0.2);
+}
+
+.results-table .rank-1:hover {
+  background: rgba(255, 215, 0, 0.15);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+}
+
+.results-table .rank-1 .rank {
+  color: #ffd700;
+  font-size: 1.2rem;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+.results-table .rank-2 {
+  background: rgba(192, 192, 192, 0.08);
+  border-bottom-color: rgba(192, 192, 192, 0.2);
+}
+
+.results-table .rank-2:hover {
+  background: rgba(192, 192, 192, 0.15);
+  box-shadow: 0 0 25px rgba(192, 192, 192, 0.3);
+}
+
+.results-table .rank-2 .rank {
+  color: #c0c0c0;
+  font-size: 1.1rem;
+  text-shadow: 0 0 15px rgba(192, 192, 192, 0.6);
+}
+
+.results-table .rank-3 {
+  background: rgba(205, 127, 50, 0.08);
+  border-bottom-color: rgba(205, 127, 50, 0.2);
+}
+
+.results-table .rank-3:hover {
+  background: rgba(205, 127, 50, 0.15);
+  box-shadow: 0 0 25px rgba(205, 127, 50, 0.3);
+}
+
+.results-table .rank-3 .rank {
+  color: #cd7f32;
+  font-size: 1.1rem;
+  text-shadow: 0 0 15px rgba(205, 127, 50, 0.6);
+}
+
+/* Badges de sexe */
+.gender-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  min-width: 40px;
+  text-align: center;
+}
+
+.gender-m {
+  background: linear-gradient(135deg, #1976d2, #1565c0);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.gender-f {
+  background: linear-gradient(135deg, #c2185b, #ad1457);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .results-table {
+    border-radius: 8px;
+  }
+
+  .results-table th,
+  .results-table td {
+    padding: 0.7rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .results-table th {
+    font-size: 0.8rem;
+  }
+}
+
+/* Styles pour le graphique */
+.chart-container {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 40px rgba(241, 132, 40, 0.15);
+  border: 1px solid rgba(241, 132, 40, 0.2);
+  max-width: 100%;
+}
+
+.section-subtitle {
+  color: #f18428;
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    padding: 1rem;
+  }
+}
