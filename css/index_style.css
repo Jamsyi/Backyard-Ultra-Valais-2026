@@ -1,3 +1,16 @@
+/* Ensure navbar social icons turn primary color on hover, regardless of parent color rules */
+.navbar .social-icon:hover,
+.social-nav .social-icon:hover {
+  color: var(--primary-color) !important;
+  transform: translateY(-2px) scale(1.07);
+}
+
+/* Ensure mobile menu social icons turn primary color on hover */
+.mobile-menu .social-icon:hover,
+.social-mobile .social-icon:hover {
+  color: var(--primary-color) !important;
+  transform: translateY(-2px) scale(1.07);
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -198,11 +211,12 @@ body.has-header:not(.scrolled) .navbar ul li a:hover {
 
 .social-nav .social-icon {
   font-size: 1.5rem;
-  transition: color 0.3s ease;
+  transition: color 0.2s, transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .social-nav .social-icon:hover {
-  color: var(--primary-color);
+  color: #f18428 !important;
+  transform: translateY(-2px) scale(1.07);
 }
 
 /*Hamburger Button*/
@@ -329,11 +343,12 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 .social-mobile .social-icon {
   font-size: 1.8rem;
   color: #fff;
-  transition: color 0.3s ease;
+  transition: color 0.2s, transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .social-mobile .social-icon:hover {
-  color: var(--primary-color);
+  color: #f18428 !important;
+  transform: translateY(-2px) scale(1.07);
 }
 
 /* Hero */
