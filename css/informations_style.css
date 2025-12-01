@@ -126,6 +126,148 @@ body.results-page .page-header {
   font-weight: 500;
 }
 
+/* About page futuristic enhancements */
+.about-page .team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.about-page .team-card {
+  position: relative;
+  background: radial-gradient(
+      1200px 600px at 0% 0%,
+      rgba(241, 132, 40, 0.08) 0%,
+      rgba(26, 26, 26, 0.9) 35%,
+      rgba(26, 26, 26, 0.9) 100%
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.2));
+  border-radius: 16px;
+  padding: 22px;
+  border: 1px solid rgba(241, 132, 40, 0.18);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 32px rgba(241, 132, 40, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  overflow: hidden;
+}
+
+.about-page .team-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(241, 132, 40, 0.15),
+    rgba(255, 255, 255, 0)
+  );
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.about-page .team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), 0 0 48px rgba(241, 132, 40, 0.14);
+  border-color: rgba(241, 132, 40, 0.35);
+}
+
+.about-page .team-card h3 {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.about-page .team-card .role {
+  color: #f18428;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin-bottom: 10px;
+}
+
+.about-page .team-card .bio {
+  color: #cfcfcf;
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+.about-page .info-grid .info-card img {
+  filter: saturate(1.1) contrast(1.05) brightness(0.95);
+}
+
+@media (max-width: 768px) {
+  .about-page .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* About page intro overlay section */
+.about-page .intro-overlay {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  min-height: 360px;
+  border: none;
+  box-shadow: none;
+}
+
+.about-page .intro-overlay-bg {
+  position: absolute;
+  inset: 0;
+  background: url("../images/ardon2.jpg") center / cover no-repeat;
+  filter: contrast(1.05) saturate(1.1) brightness(0.9);
+}
+
+.about-page .intro-content-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 40px;
+  min-height: 360px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.25) 40%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+.about-page .intro-card {
+  max-width: 620px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(26, 26, 26, 0.55);
+  border: 1px solid rgba(241, 132, 40, 0.25);
+  border-radius: 16px;
+  padding: 22px 26px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 24px rgba(241, 132, 40, 0.08);
+}
+
+.about-page .intro-card .section-title {
+  margin-bottom: 10px;
+}
+
+.about-page .intro-card .section-text {
+  margin-bottom: 12px;
+}
+
+.about-page .intro-card p {
+  color: #e6e6e6;
+}
+
+@media (max-width: 768px) {
+  .about-page .intro-content-wrap {
+    justify-content: center;
+    padding: 20px;
+  }
+  .about-page .intro-card {
+    max-width: none;
+    width: 100%;
+  }
+}
+
 .rules-list {
   list-style: none;
   padding: 0;
@@ -208,6 +350,64 @@ body.results-page .page-header {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   background: #e07520;
+}
+
+/* Modal reused styles for Informations page */
+.modal-overlay[aria-hidden="true"] {
+  display: none !important;
+}
+.modal-overlay[aria-hidden="false"] {
+  display: flex;
+}
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.modal-dialog {
+  width: min(1100px, 96vw);
+  background: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(241, 132, 40, 0.25);
+  border: 1px solid rgba(241, 132, 40, 0.25);
+  overflow: hidden;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #2a2a2a, #333);
+}
+.modal-header h3 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin: 0;
+}
+.modal-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+.modal-body {
+  padding: 0;
+}
+.modal-body iframe {
+  width: 100%;
+  height: 85vh;
+  display: block;
+  background: #000;
+}
+@media (max-width: 640px) {
+  .modal-body iframe {
+    height: 75vh;
+  }
 }
 
 /* Mobile Responsive */

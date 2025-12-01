@@ -857,7 +857,52 @@
 
         <div class="info-section">
           <h2 class="section-title">Règlement et conditions générales</h2>
-          <p class="section-text">À venir</p>
+          <p class="section-text">
+            Consultez le règlement avant l'inscription.
+          </p>
+          <div class="cta-container">
+            <button class="btn-primary" data-open-rules>
+              Ouvrir le règlement (PDF)
+            </button>
+          </div>
+        </div>
+
+        <!-- Règlement Modal Preview (Informations) -->
+        <div class="modal-overlay" id="rules-modal-info" aria-hidden="true">
+          <div
+            class="modal-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="rules-title-info"
+          >
+            <div class="modal-header">
+              <h3 id="rules-title-info">Règlement – Aperçu PDF</h3>
+              <button type="button" class="modal-close" aria-label="Fermer">
+                &times;
+              </button>
+            </div>
+            <div class="modal-body">
+              <iframe
+                src="../Règlement%20édition%202026.PDF.pdf"
+                title="Règlement PDF"
+                frameborder="0"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulaire (moved to end) -->
+        <div class="info-section">
+          <h2 class="section-title">Formulaire</h2>
+          <div class="cta-container">
+            <a
+              class="btn-primary"
+              href="../Lettre%20d%27autorisation%20parental.pdf"
+              download
+            >
+              Téléchargez le formulaire d'autorisation parentale (PDF)
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -904,5 +949,44 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+      // Lightweight modal opener for Informations page
+      (function () {
+        const openBtn = document.querySelector("[data-open-rules]");
+        const modal = document.getElementById("rules-modal-info");
+        if (!openBtn || !modal) return;
+        const closeBtn = modal.querySelector(".modal-close");
+        const dialog = modal.querySelector(".modal-dialog");
+        const overlayClickToClose = (e) => {
+          if (e.target === modal) hide();
+        };
+        function show() {
+          modal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+          modal.addEventListener("click", overlayClickToClose);
+          if (dialog)
+            dialog.addEventListener("click", (e) => e.stopPropagation());
+          if (closeBtn) closeBtn.focus();
+        }
+        function hide() {
+          modal.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+          modal.removeEventListener("click", overlayClickToClose);
+        }
+        openBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          show();
+        });
+        if (closeBtn)
+          closeBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            hide();
+          });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") hide();
+        });
+      })();
+    </script>
   </body>
 </html>

@@ -291,16 +291,8 @@
               />
             </div>
             <div class="form-row">
-              <label for="annee">Année de naissance *</label>
-              <input
-                id="annee"
-                name="annee"
-                type="number"
-                min="1920"
-                max="2025"
-                required
-                placeholder="1990"
-              />
+              <label for="birthdate">Date de naissance *</label>
+              <input id="birthdate" name="birthdate" type="date" required />
             </div>
             <fieldset class="form-row">
               <legend>Genre *</legend>
@@ -330,6 +322,40 @@
               </select>
             </div>
             <div class="form-actions">
+              <div class="form-row" style="margin-bottom: 12px">
+                <label>
+                  <input
+                    type="checkbox"
+                    id="agree-rules"
+                    name="agree_rules"
+                    required
+                  />
+                  J'ai lu le
+                  <a href="#" class="rule-link" data-open-rules>règlement</a>
+                  <span class="open-note">(aperçu PDF)</span>
+                </label>
+              </div>
+              <!-- Upload parental authorization (shown if < 18 years) -->
+              <div class="form-row" id="parental-upload-row" hidden>
+                <label for="parental_doc"
+                  >Autorisation parentale (PDF, JPG, PNG) *</label
+                >
+                <input
+                  id="parental_doc"
+                  name="parental_doc"
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                />
+                <p class="form-hint">
+                  Téléchargez l'autorisation parentale signée.
+                  <a
+                    href="../Lettre%20d%27autorisation%20parental.pdf"
+                    target="_blank"
+                    rel="noopener"
+                    >Télécharger le modèle</a
+                  >.
+                </p>
+              </div>
               <button type="button" id="go-payment-btn" class="submit-btn">
                 Passer au paiement
                 <span class="price-tag" id="payment-price"></span>
@@ -419,6 +445,82 @@
         </div>
       </div>
     </main>
+
+    <!-- Règlement Modal Preview -->
+    <div class="modal-overlay" id="rules-modal" aria-hidden="true">
+      <div
+        class="modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="rules-title"
+      >
+        <div class="modal-header">
+          <h3 id="rules-title">Règlement – Aperçu PDF</h3>
+          <button type="button" class="modal-close" aria-label="Fermer">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe
+            src="../Règlement%20édition%202026.PDF.pdf"
+            title="Règlement PDF"
+            frameborder="0"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Simple modal logic for règlement preview
+      (function () {
+        const openLinks = document.querySelectorAll("[data-open-rules]");
+        const modal = document.getElementById("rules-modal");
+        if (!modal) return;
+        const closeBtn = modal.querySelector(".modal-close");
+        const dialog = modal.querySelector(".modal-dialog");
+        const overlayClickToClose = (e) => {
+          if (e.target === modal) {
+            hideModal();
+          }
+        };
+        function showModal() {
+          modal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+          modal.addEventListener("click", overlayClickToClose);
+          if (dialog) {
+            dialog.addEventListener("click", function dialogStop(e) {
+              e.stopPropagation();
+            });
+          }
+          // Focus the close button for accessibility
+          if (closeBtn) {
+            closeBtn.focus();
+          }
+        }
+        function hideModal() {
+          modal.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+          modal.removeEventListener("click", overlayClickToClose);
+        }
+        openLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            showModal();
+          });
+        });
+        if (closeBtn) {
+          closeBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            hideModal();
+          });
+        }
+        // Escape key to close
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") hideModal();
+        });
+      })();
+    </script>
 
     <!-- Footer (same as homepage) -->
     <footer class="footer bg-black">
@@ -543,10 +645,22 @@
           const originalText = goPaymentBtn.textContent;
           goPaymentBtn.disabled = true;
           goPaymentBtn.textContent = "Envoi…";
-
+          // Construire les données à envoyer (JSON). Si un fichier est présent, on l'encode en base64.
           const fd = new FormData(form);
-          const data = new URLSearchParams();
-          for (const [k, v] of fd.entries()) data.append(k, String(v));
+          const consent = form.querySelector("#agree-rules")?.checked
+            ? "yes"
+            : "no";
+          const payload = {};
+          for (const [k, v] of fd.entries()) {
+            if (k === "parental_doc") continue;
+            payload[k] = typeof v === "string" ? v : String(v);
+          }
+          payload["agree_rules"] = consent;
+          const fileInput = form.querySelector("#parental_doc");
+          const file =
+            fileInput && fileInput.files && fileInput.files[0]
+              ? fileInput.files[0]
+              : null;
 
           // Fallback si URL non configurée
           const url =
@@ -574,20 +688,47 @@
             return;
           }
 
-          fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: data.toString(),
-            mode: "no-cors",
-          })
-            .then(() => {
-              // Impossible de vérifier la réponse en no-cors, on continue
-              proceedToPayment();
+          const sendPayload = (pl) => {
+            fetch(url, {
+              method: "POST",
+              headers: { "Content-Type": "text/plain;charset=UTF-8" }, // CORS-safelisted; le serveur parse JSON même en text/plain
+              body: JSON.stringify(pl),
+              mode: "no-cors",
             })
-            .catch((err) => {
-              console.warn("Erreur envoi formulaire", err);
-              proceedToPayment(); // On autorise quand même le paiement
-            });
+              .then(() => {
+                proceedToPayment();
+              })
+              .catch((err) => {
+                console.warn("Erreur envoi formulaire", err);
+                proceedToPayment();
+              });
+          };
+
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+              try {
+                const result = String(reader.result || "");
+                const comma = result.indexOf(",");
+                const base64 = comma >= 0 ? result.slice(comma + 1) : result;
+                payload.parental_doc = {
+                  filename: file.name,
+                  contentType: file.type || "application/octet-stream",
+                  base64: base64,
+                };
+              } catch (e) {
+                console.warn("Lecture fichier échouée", e);
+              }
+              sendPayload(payload);
+            };
+            reader.onerror = () => {
+              console.warn("Impossible de lire le fichier parental_doc");
+              sendPayload(payload);
+            };
+            reader.readAsDataURL(file);
+          } else {
+            sendPayload(payload);
+          }
         });
         // Sécurité: forcer masquage initial
         paymentSection.hidden = true;

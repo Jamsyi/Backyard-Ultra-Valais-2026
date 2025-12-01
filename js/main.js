@@ -2,7 +2,7 @@ console.log("JavaScript file is loaded correctly.")
 
 // CONFIG: Set your deployed Google Apps Script Web App URL here
 // Example: const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx.../exec';
-const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz0uP0jjOtkn_IM2w7HcGt6_PnpVcTz3PrZC-HpdP08mTxWp960bM6JgtnrSNks9MA5/exec';
+const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby3MvEKMPdH2f0r-WZ7mkndA0PhyKU2xs9GLNVu0PEIXjNmicb06DOPBCWEUT05yg7oGA/exec';
 
 // Detect header ASAP to prevent navbar flash
 const pageHeader = document.querySelector('.page-header');
@@ -276,6 +276,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const formatLabelSpan = document.querySelector('.selected-format-label');
         const hiddenFormatInput = document.getElementById('selected-format-input');
         const backBtn = document.querySelector('.back-to-formats');
+            const parentalRow = document.getElementById('parental-upload-row');
+            const parentalInput = document.getElementById('parental_doc');
 
         function showForm(formatName) {
             if (!formWrapper || !formatsWrapper) return;
@@ -310,12 +312,54 @@ document.addEventListener('DOMContentLoaded', () => {
         // Basic client validation (still passive since form inactive)
         const form = document.getElementById('inscription-form');
         if (form) {
+                // Birthdate minor detection
+                const birthdateInput = form.querySelector('#birthdate');
+                function updateMinorState() {
+                    if (!birthdateInput || !parentalRow || !parentalInput) return;
+                    const val = birthdateInput.value;
+                    if (!val) {
+                        parentalRow.hidden = true;
+                        parentalInput.removeAttribute('required');
+                        return;
+                    }
+                    const dob = new Date(val);
+                    const now = new Date();
+                    let age = now.getFullYear() - dob.getFullYear();
+                    const m = now.getMonth() - dob.getMonth();
+                    if (m < 0 || (m === 0 && now.getDate() < dob.getDate())) {
+                        age--;
+                    }
+                    const isMinor = age < 18;
+                    parentalRow.hidden = !isMinor;
+                    if (isMinor) {
+                        parentalInput.setAttribute('required','');
+                    } else {
+                        parentalInput.removeAttribute('required');
+                    }
+                }
+                birthdateInput && birthdateInput.addEventListener('change', updateMinorState);
+                birthdateInput && birthdateInput.addEventListener('input', updateMinorState);
+                // Initialize once in case of prefilled values
+                updateMinorState();
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const requiredFields = form.querySelectorAll('[required]');
                 let valid = true;
                 requiredFields.forEach(f => {
-                    if ((f.type === 'radio' && !form.querySelector('input[name="genre"]:checked')) || (!f.value && f.type !== 'radio')) {
+                    let fieldValid = true;
+                    if (f.type === 'radio') {
+                        // At least one radio in the group must be checked
+                        const groupName = f.name;
+                        fieldValid = !!form.querySelector(`input[name="${groupName}"]:checked`);
+                    } else if (f.type === 'checkbox') {
+                        fieldValid = !!f.checked;
+                        } else if (f.type === 'file') {
+                            fieldValid = f.files && f.files.length > 0;
+                    } else {
+                        fieldValid = !!f.value;
+                    }
+
+                    if (!fieldValid) {
                         valid = false;
                         f.classList.add('invalid');
                     } else {
@@ -345,23 +389,60 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                // Build x-www-form-urlencoded body (simple request avoids complex CORS)
+                // Build multipart FormData to allow file upload to GAS
                 const fd = new FormData(form);
-                const data = new URLSearchParams();
-                for (const [k, v] of fd.entries()) data.append(k, String(v));
+                // Add explicit consent flag
+                const consent = form.querySelector('#agree-rules')?.checked ? 'yes' : 'no';
+                fd.set('agree_rules', consent);
 
-                fetch(GOOGLE_SHEETS_WEB_APP_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: data.toString(),
-                    mode: 'no-cors'
-                }).then(() => {
-                    showFakeSuccess();
-                }).catch(() => {
-                    alert('Impossible d\'envoyer pour le moment. Réessayez plus tard.');
-                }).finally(() => {
+                // Also compose an email for buv.inscription@gmail.com (client-side mailto fallback)
+                try {
+                    const fields = {
+                        format: fd.get('format') || '',
+                        prenom: fd.get('prenom') || '',
+                        nom: fd.get('nom') || '',
+                        email: fd.get('email') || '',
+                        birthdate: fd.get('birthdate') || '',
+                        genre: fd.get('genre') || '',
+                        tshirt: fd.get('tshirt') || '',
+                    };
+                    const subject = `Inscription Backyard Ultra Valais - ${fields.format || 'Format'}`;
+                    const lines = [
+                        `Format: ${fields.format}`,
+                        `Prénom: ${fields.prenom}`,
+                        `Nom: ${fields.nom}`,
+                        `Email: ${fields.email}`,
+                        `Date de naissance: ${fields.birthdate}`,
+                        `Genre: ${fields.genre}`,
+                        `T-shirt: ${fields.tshirt}`,
+                        '',
+                        `Règlement lu: ${form.querySelector('#agree-rules')?.checked ? 'Oui' : 'Non'}`,
+                    ];
+                    const body = encodeURIComponent(lines.join('\n'));
+                    const mailto = `mailto:buv.inscription@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+                    // Open email client for sending (attachments cannot be added via mailto)
+                    window.location.href = mailto;
+                } catch (e) {
+                    console.warn('Could not construct mailto', e);
+                }
+
+                // If GAS URL configured, also post data for server-side email/record (handles attachment)
+                if (GOOGLE_SHEETS_WEB_APP_URL) {
+                    fetch(GOOGLE_SHEETS_WEB_APP_URL, {
+                        method: 'POST',
+                        // Do NOT set Content-Type; let browser set multipart boundary
+                        body: fd,
+                        mode: 'no-cors'
+                    }).then(() => {
+                        showFakeSuccess();
+                    }).catch(() => {
+                        console.warn('GAS submission failed');
+                    }).finally(() => {
+                        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = prevText; }
+                    });
+                } else {
                     if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = prevText; }
-                });
+                }
 
                 function showFakeSuccess() {
                     const wrapper = document.querySelector('.registration-form-wrapper');

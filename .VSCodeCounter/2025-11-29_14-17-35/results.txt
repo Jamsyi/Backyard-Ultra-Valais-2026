@@ -1,0 +1,53 @@
+Date : 2025-11-29 14:17:35
+Directory : c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026
+Total : 15 files,  6126 codes, 269 comments, 606 blanks, all 7001 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| HTML       |          8 |      3,558 |        133 |        151 |      3,842 |
+| PostCSS    |          4 |      2,004 |         82 |        305 |      2,391 |
+| JavaScript |          2 |        450 |         54 |         77 |        581 |
+| Markdown   |          1 |        114 |          0 |         73 |        187 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                         | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                            |         15 |      6,126 |        269 |        606 |      7,001 |
+| . (Files)                                                                                                    |          2 |        500 |         92 |         99 |        691 |
+| about-us                                                                                                     |          1 |          0 |          0 |          1 |          1 |
+| css                                                                                                          |          4 |      2,004 |         82 |        305 |      2,391 |
+| informations                                                                                                 |          1 |        860 |         17 |         32 |        909 |
+| inscriptions                                                                                                 |          1 |        576 |          6 |         17 |        599 |
+| js                                                                                                           |          2 |        450 |         54 |         77 |        581 |
+| resultats                                                                                                    |          4 |      1,736 |         18 |         75 |      1,829 |
+| resultats (Files)                                                                                            |          1 |         14 |          0 |          1 |         15 |
+| resultats\2025                                                                                               |          1 |        805 |          5 |         13 |        823 |
+| resultats\2026                                                                                               |          1 |        413 |          6 |         36 |        455 |
+| resultats\2026-live-do-not-access                                                                            |          1 |        504 |          7 |         25 |        536 |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                     | language   | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\GUIDE_RESULTATS_LIVE.md                      | Markdown   |        114 |          0 |         73 |        187 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\about-us\index.html                          | HTML       |          0 |          0 |          1 |          1 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\css\index_style.css                          | PostCSS    |        881 |         48 |        159 |      1,088 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\css\informations_style.css                   | PostCSS    |        582 |         20 |        108 |        710 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\css\inscriptions_style.css                   | PostCSS    |        377 |          9 |          9 |        395 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\css\resultats_style.css                      | PostCSS    |        164 |          5 |         29 |        198 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\index.html                                   | HTML       |        386 |         92 |         26 |        504 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\informations\index.html                      | HTML       |        860 |         17 |         32 |        909 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\inscriptions\index.html                      | HTML       |        576 |          6 |         17 |        599 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\js\live-results.js                           | JavaScript |        129 |         34 |         33 |        196 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\js\main.js                                   | JavaScript |        321 |         20 |         44 |        385 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\resultats\2025\index.html                    | HTML       |        805 |          5 |         13 |        823 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\resultats\2026-live-do-not-access\index.html | HTML       |        504 |          7 |         25 |        536 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\resultats\2026\index.html                    | HTML       |        413 |          6 |         36 |        455 |
+| c:\Users\LiYi\Documents\backyard_git\Backyard-Ultra-Valais-2026\resultats\index.html                         | HTML       |         14 |          0 |          1 |         15 |
+| Total                                                                                                        |            |      6,126 |        269 |        606 |      7,001 |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
