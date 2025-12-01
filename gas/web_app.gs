@@ -155,14 +155,18 @@ function doPost(e) {
       "Nom",
       "Email",
       "Date de naissance",
+      "Age au 03/04/2026",
       "Genre",
       "T-shirt",
       "Règlement lu",
+      "Paiement",
+      "Lettre de confirmation",
       "Pièce jointe",
       "Drive URL",
       "Drive File ID",
     ]);
 
+    var ageAtRef = calcAgeAt_(birthdate, new Date(2026, 3, 3)); // 03 April 2026 (month is 0-based)
     sheet.appendRow([
       new Date(),
       format,
@@ -170,9 +174,12 @@ function doPost(e) {
       nom,
       email,
       birthdate,
+      ageAtRef,
       genre,
       tshirt,
       consentFr,
+      "", // Paiement (à cocher manuellement)
+      "", // Lettre de confirmation (à cocher manuellement)
       attachmentName,
       driveFileUrl,
       driveFileId,
@@ -251,6 +258,38 @@ function ensureHeader_(sheet, header) {
   }
   if (needs) {
     sheet.getRange(1, 1, 1, header.length).setValues([header]);
+  }
+}
+
+/**
+ * Calculate age at a given reference date from a birthdate string (YYYY-MM-DD preferred).
+ */
+function calcAgeAt_(birthdateStr, refDate) {
+  try {
+    if (!birthdateStr) return "";
+    var y, m, d;
+    var parts = String(birthdateStr).split("-");
+    if (parts.length === 3) {
+      y = parseInt(parts[0], 10);
+      m = parseInt(parts[1], 10) - 1; // 0-based
+      d = parseInt(parts[2], 10);
+    } else {
+      var tmp = new Date(birthdateStr);
+      if (isNaN(tmp.getTime())) return "";
+      y = tmp.getFullYear();
+      m = tmp.getMonth();
+      d = tmp.getDate();
+    }
+    var dob = new Date(y, m, d);
+    if (!(refDate instanceof Date)) refDate = new Date();
+    var age = refDate.getFullYear() - dob.getFullYear();
+    var mm = refDate.getMonth() - dob.getMonth();
+    if (mm < 0 || (mm === 0 && refDate.getDate() < dob.getDate())) {
+      age--;
+    }
+    return age;
+  } catch (e) {
+    return "";
   }
 }
 

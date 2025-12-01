@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <script>
+      document.documentElement.classList.add("has-header-page");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Devenir bénévole - Backyard Ultra Valais</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Rubik+Dirt&family=Russo+One&family=Shippori+Antique&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../css/index_style.css" />
+    <link rel="stylesheet" href="../css/informations_style.css" />
+    <link rel="stylesheet" href="../css/benevoles_style.css" />
+    <link
+      rel="shortcut icon"
+      href="../images/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
+  <body class="has-header benevoles-page">
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <a href="/">
+            <img src="../images/buv.png" alt="logo" />
+          </a>
+        </div>
+
+        <button id="hamburger-button" class="hamburger-button">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+
+        <div class="main-menu">
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/informations">Informations</a></li>
+            <li class="has-submenu">
+              <a
+                href="#"
+                class="parent-link"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Résultats</a
+              >
+              <ul class="dropdown-menu">
+                <li><a href="/resultats/2025">2025</a></li>
+                <li><a href="/resultats/2026">2026</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a
+                href="#"
+                class="parent-link"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Photos</a
+              >
+              <ul class="dropdown-menu">
+                <li><a href="/photos/2025">2025</a></li>
+                <li><a href="/photos/2026">2026</a></li>
+              </ul>
+            </li>
+            <li><a href="/about-us">Notre Equipe</a></li>
+            <li><a href="/partenaires">Partenaires</a></li>
+            <li class="social-nav">
+              <a
+                href="https://www.instagram.com/backyard.ultra.valais/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-icon"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61566704801123"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-icon"
+              >
+                <i class="fab fa-facebook"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="mobile-menu">
+      <button class="close-menu-button">&times;</button>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/informations">Informations</a></li>
+        <li class="has-submenu">
+          <a
+            href="#"
+            class="parent-link"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >Résultats</a
+          >
+          <ul class="dropdown-menu">
+            <li><a href="/resultats/2025">2025</a></li>
+            <li><a href="/resultats/2026">2026</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a
+            href="#"
+            class="parent-link"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >Photos</a
+          >
+          <ul class="dropdown-menu">
+            <li><a href="/photos/2025">2025</a></li>
+            <li><a href="/photos/2026">2026</a></li>
+          </ul>
+        </li>
+        <li><a href="/about-us">Notre Equipe</a></li>
+        <li><a href="/partenaires">Partenaires</a></li>
+        <li class="social-mobile">
+          <a
+            href="https://www.instagram.com/backyard.ultra.valais/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/profile.php?id=61566704801123"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+          >
+            <i class="fab fa-facebook"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <main class="benevoles-fullscreen" role="main">
+      <div class="blur-shell" aria-labelledby="benevoles-title">
+        <h1 id="benevoles-title" class="page-head">🧡 Devenir bénévole</h1>
+        <p class="sub-head">
+          Rejoins l'équipe et vie l'événement de l'intérieur
+        </p>
+
+        <section class="volunteer-intro">
+          <h2 class="section-title">Aides recherchées</h2>
+          <p>
+            Nous recherchons des bénévoles pour la Backyard Ultra Valais 2026,
+            qui se tiendra à Ardon du 3 au 5 avril 2026. Si tu souhaites vivre
+            l’événement de l’intérieur et contribuer à son bon déroulement,
+            rejoins notre équipe ! Nous te remercions d’avance pour ton
+            engagement — ta participation est essentielle, et elle sera bien sûr
+            reconnue et récompensée.
+          </p>
+          <p>
+            Pour toute question, tu peux nous écrire à :
+            <strong>
+              <a href="mailto:backyardultravalais@gmail.com"
+                >backyardultravalais@gmail.com</a
+              ></strong
+            >
+          </p>
+        </section>
+
+        <section class="volunteer-roles">
+          <h2 class="section-title">Rôles possibles</h2>
+          <ul class="roles-list">
+            <li>
+              <strong>Accueil</strong> — inscriptions, dossards, infos coureurs
+            </li>
+            <li>
+              <strong>Ravitaillement</strong> — aide sur les points de ravito et
+              en cuisine
+            </li>
+            <li>
+              <strong>Signalisation</strong> — orientation, sécurité, parcours
+            </li>
+            <li>
+              <strong>Logistique</strong> — installation, démontage, transports,
+              matériel
+            </li>
+          </ul>
+        </section>
+
+        <section
+          class="volunteer-form-section"
+          aria-labelledby="benevole-form-title"
+        >
+          <div class="volunteer-notes">
+            <h3 class="section-title">Remarques</h3>
+            <ul>
+              <li>
+                🧢 Une collation et un T-shirt souvenir sont offerts à chaque
+                bénévole.
+              </li>
+              <li>
+                💬 Une réunion d’information aura lieu avant l’événement pour
+                présenter les rôles et répartir les équipes.
+              </li>
+            </ul>
+          </div>
+
+          <h2 id="benevole-form-title" class="section-title">
+            Formulaire d’inscription bénévole
+          </h2>
+          <p class="form-intro">Merci de remplir le formulaire ci-dessous :</p>
+
+          <form id="benevole-form" action="#" method="post" novalidate>
+            <div
+              style="
+                position: absolute;
+                left: -10000px;
+                top: auto;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+              "
+            >
+              <label for="hp">Ne pas remplir ce champ</label>
+              <input
+                id="hp"
+                name="website"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="form-grid">
+              <div class="form-row">
+                <label for="prenom">Prénom *</label>
+                <input
+                  id="prenom"
+                  name="prenom"
+                  type="text"
+                  required
+                  autocomplete="given-name"
+                />
+              </div>
+              <div class="form-row">
+                <label for="nom">Nom *</label>
+                <input
+                  id="nom"
+                  name="nom"
+                  type="text"
+                  required
+                  autocomplete="family-name"
+                />
+              </div>
+              <div class="form-row">
+                <label for="birthdate">Date de naissance *</label>
+                <input id="birthdate" name="birthdate" type="date" required />
+              </div>
+              <div class="form-row">
+                <label for="email">E-mail *</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+              <div class="form-row">
+                <label for="phone">Téléphone *</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  autocomplete="tel"
+                />
+              </div>
+              <div class="form-row">
+                <label for="tshirt">Taille T-shirt souvenir *</label>
+                <select id="tshirt" name="tshirt" required>
+                  <option value="" disabled selected>Choisir...</option>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="XXL">XXL</option>
+                </select>
+              </div>
+              <div class="form-row form-row-full">
+                <label for="comment"
+                  >Commentaire (facultatif) — préférences de rôles</label
+                >
+                <textarea
+                  id="comment"
+                  name="comment"
+                  rows="4"
+                  placeholder="Ex: préférence accueil/logistique; disponibilités spécifiques, etc."
+                ></textarea>
+              </div>
+            </div>
+
+            <fieldset class="shift-fieldset">
+              <legend>Proposition de shifts</legend>
+              <p class="shift-note">
+                (à adapter selon le programme définitif de l’événement) — Coche
+                les créneaux souhaités :
+              </p>
+
+              <div class="shifts-grid">
+                <div class="shift-group">
+                  <h3 class="shift-title">🧱 Montage : jeudi 3 avril</h3>
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Montage jeudi 3 avril – 08:00-12:00"
+                    />
+                    08:00 – 12:00</label
+                  >
+                </div>
+
+                <div class="shift-group">
+                  <h3 class="shift-title">🎽 Jour 1 – vendredi 4 avril</h3>
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 1 vendredi 4 avril – 08:00-12:30"
+                    />
+                    1. 08:00 – 12:30</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 1 vendredi 4 avril – 12:30-16:30"
+                    />
+                    2. 12:30 – 16:30</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 1 vendredi 4 avril – 16:30-20:30"
+                    />
+                    3. 16:30 – 20:30</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 1 vendredi 4 avril – 20:30-00:30"
+                    />
+                    4. 20:30 – 00:30</label
+                  >
+                </div>
+
+                <div class="shift-group">
+                  <h3 class="shift-title">🌙 Jour 2 – samedi 5 avril</h3>
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 2 samedi 5 avril – 00:30-04:30"
+                    />
+                    5. 00:30 – 04:30</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 2 samedi 5 avril – 04:30-08:30"
+                    />
+                    6. 04:30 – 08:30</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 2 samedi 5 avril – 08:30-12:30"
+                    />
+                    7. 08:30 – 12:30</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 2 samedi 5 avril – 12:30-16:30"
+                    />
+                    8. 12:30 – 16:30</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 2 samedi 5 avril – 16:30-20:30"
+                    />
+                    9. 16:30 – 20:30</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 2 samedi 5 avril – 20:30-00:30"
+                    />
+                    10. 20:30 – 00:30</label
+                  >
+                </div>
+
+                <div class="shift-group">
+                  <h3 class="shift-title">🌄 Jour 3 – dimanche 6 avril</h3>
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 3 dimanche 6 avril – 00:30-04:30"
+                    />
+                    11. 00:30 – 04:30</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 3 dimanche 6 avril – 04:30-08:30"
+                    />
+                    12. 04:30 – 08:30</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 3 dimanche 6 avril – 08:30-12:30"
+                    />
+                    13. 08:30 – 12:30</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 3 dimanche 6 avril – 12:30-16:30"
+                    />
+                    14. 12:30 – 16:30</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 3 dimanche 6 avril – 16:30-20:30"
+                    />
+                    15. 16:30 – 20:30</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Jour 3 dimanche 6 avril – Démontage 20:30-22:00"
+                    />
+                    16. Démontage et rangement : 20:30 – 22:00</label
+                  >
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="form-actions">
+              <button type="button" id="submit-benevole" class="submit-btn">
+                Envoyer ma disponibilité
+              </button>
+              <p class="form-hint">* Champs obligatoires</p>
+            </div>
+          </form>
+
+          <div id="benevole-success" class="success-box" hidden>
+            <h3>Merci pour ta disponibilité !</h3>
+            <p>
+              Nous avons bien reçu tes informations. Nous reviendrons vers toi
+              par e-mail pour confirmer les rôles et les créneaux.
+            </p>
+          </div>
+
+          
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer bg-black">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a href="/">
+              <img src="../images/buv.png" alt="logo" />
+            </a>
+            <d class="copyright text-sm"
+              >© Backyard Ultra Valais 2026 - Suisse<br
+            /></d>
+          </div>
+          <div>
+            <h4 class="contact-headline">Contacts</h4>
+            <b class="contact text-md"
+              ><i class="fa fa-envelope"></i> backyardultravalais@gmail.com</b
+            >
+          </div>
+          <div></div>
+          <div>
+            <a
+              href="https://www.instagram.com/backyard.ultra.valais/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61566704801123"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              <i class="fab fa-facebook"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/benevoles.js"></script>
+  </body>
+</html>

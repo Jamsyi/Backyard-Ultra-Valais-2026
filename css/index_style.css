@@ -508,12 +508,33 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   line-height: 1.5;
 }
 
+/* Hero actions under inscription text */
+.hero-actions {
+  margin-top: 14px;
+}
+.benevole-btn {
+  background: var(--primary-color);
+  font-size: 1.3rem;
+  padding: 22px 22px;
+  border: 4px solid rgba(255, 255, 255, 0.15);
+}
+.benevole-btn i {
+  margin-right: 22px;
+}
+
 @media (max-width: 640px) {
   .inscription-text {
     padding: 15px 20px;
     font-size: 1.1rem;
     border-radius: 8px;
     line-height: 1.8;
+  }
+  .hero-actions {
+    margin-top: 10px;
+  }
+  .benevole-btn {
+    font-size: 1rem;
+    padding: 11px 16px;
   }
 }
 
