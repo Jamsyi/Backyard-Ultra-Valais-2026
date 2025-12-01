@@ -193,8 +193,11 @@
               <strong>Accueil</strong> — inscriptions, dossards, infos coureurs
             </li>
             <li>
-              <strong>Ravitaillement</strong> — aide sur les points de ravito et
-              en cuisine
+              <strong>Arrivé et Chronométrage</strong> — Compter et noté les
+              participants sur la ligne d'arrivée
+            </li>
+            <li>
+              <strong>Ravitaillement</strong> — aide en cuisine pour les ravitos
             </li>
             <li>
               <strong>Signalisation</strong> — orientation, sécurité, parcours
@@ -216,10 +219,6 @@
               <li>
                 🧢 Une collation et un T-shirt souvenir sont offerts à chaque
                 bénévole.
-              </li>
-              <li>
-                💬 Une réunion d’information aura lieu avant l’événement pour
-                présenter les rôles et répartir les équipes.
               </li>
             </ul>
           </div>
@@ -324,7 +323,7 @@
               <legend>Proposition de shifts</legend>
               <p class="shift-note">
                 (à adapter selon le programme définitif de l’événement) — Coche
-                les créneaux souhaités :
+                tout les créneaux où tu es disponible pour nous aider :
               </p>
 
               <div class="shifts-grid">
@@ -338,6 +337,22 @@
                     />
                     08:00 – 12:00</label
                   >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Montage jeudi 3 avril – 12:30-16:00"
+                    />
+                    12:00 – 16:00</label
+                  >
+                  <label class="shift-item"
+                    ><input
+                      type="checkbox"
+                      name="shifts[]"
+                      value="Montage jeudi 3 avril – 16:00–21:00"
+                    />
+                    16:00 – 21:00</label
+                  >
                 </div>
 
                 <div class="shift-group">
@@ -348,7 +363,7 @@
                       name="shifts[]"
                       value="Jour 1 vendredi 4 avril – 08:00-12:30"
                     />
-                    1. 08:00 – 12:30</label
+                    08:00 – 12:30</label
                   >
                   <label class="shift-item"
                     ><input
@@ -356,7 +371,7 @@
                       name="shifts[]"
                       value="Jour 1 vendredi 4 avril – 12:30-16:30"
                     />
-                    2. 12:30 – 16:30</label
+                    12:30 – 16:30</label
                   >
                   <label class="shift-item"
                     ><input
@@ -364,7 +379,7 @@
                       name="shifts[]"
                       value="Jour 1 vendredi 4 avril – 16:30-20:30"
                     />
-                    3. 16:30 – 20:30</label
+                    16:30 – 20:30</label
                   >
                   <label class="shift-item"
                     ><input
@@ -372,7 +387,7 @@
                       name="shifts[]"
                       value="Jour 1 vendredi 4 avril – 20:30-00:30"
                     />
-                    4. 20:30 – 00:30</label
+                    20:30 – 00:30</label
                   >
                 </div>
 
@@ -384,7 +399,7 @@
                       name="shifts[]"
                       value="Jour 2 samedi 5 avril – 00:30-04:30"
                     />
-                    5. 00:30 – 04:30</label
+                    00:30 – 04:30</label
                   >
                   <label class="shift-item"
                     ><input
@@ -392,7 +407,7 @@
                       name="shifts[]"
                       value="Jour 2 samedi 5 avril – 04:30-08:30"
                     />
-                    6. 04:30 – 08:30</label
+                    04:30 – 08:30</label
                   >
                   <label class="shift-item"
                     ><input
@@ -400,7 +415,7 @@
                       name="shifts[]"
                       value="Jour 2 samedi 5 avril – 08:30-12:30"
                     />
-                    7. 08:30 – 12:30</label
+                    08:30 – 12:30</label
                   >
                   <label class="shift-item"
                     ><input
@@ -408,7 +423,7 @@
                       name="shifts[]"
                       value="Jour 2 samedi 5 avril – 12:30-16:30"
                     />
-                    8. 12:30 – 16:30</label
+                    12:30 – 16:30</label
                   >
                   <label class="shift-item"
                     ><input
@@ -416,7 +431,7 @@
                       name="shifts[]"
                       value="Jour 2 samedi 5 avril – 16:30-20:30"
                     />
-                    9. 16:30 – 20:30</label
+                    16:30 – 20:30</label
                   >
                   <label class="shift-item"
                     ><input
@@ -424,7 +439,7 @@
                       name="shifts[]"
                       value="Jour 2 samedi 5 avril – 20:30-00:30"
                     />
-                    10. 20:30 – 00:30</label
+                    20:30 – 00:30</label
                   >
                 </div>
 
@@ -436,7 +451,7 @@
                       name="shifts[]"
                       value="Jour 3 dimanche 6 avril – 00:30-04:30"
                     />
-                    11. 00:30 – 04:30</label
+                    00:30 – 04:30</label
                   >
                   <label class="shift-item"
                     ><input
@@ -444,7 +459,7 @@
                       name="shifts[]"
                       value="Jour 3 dimanche 6 avril – 04:30-08:30"
                     />
-                    12. 04:30 – 08:30</label
+                    04:30 – 08:30</label
                   >
                   <label class="shift-item"
                     ><input
@@ -452,7 +467,7 @@
                       name="shifts[]"
                       value="Jour 3 dimanche 6 avril – 08:30-12:30"
                     />
-                    13. 08:30 – 12:30</label
+                    08:30 – 12:30</label
                   >
                   <label class="shift-item"
                     ><input
@@ -460,7 +475,7 @@
                       name="shifts[]"
                       value="Jour 3 dimanche 6 avril – 12:30-16:30"
                     />
-                    14. 12:30 – 16:30</label
+                    12:30 – 16:30</label
                   >
                   <label class="shift-item"
                     ><input
@@ -468,7 +483,7 @@
                       name="shifts[]"
                       value="Jour 3 dimanche 6 avril – 16:30-20:30"
                     />
-                    15. 16:30 – 20:30</label
+                    16:30 – 20:30</label
                   >
                   <label class="shift-item"
                     ><input
@@ -476,7 +491,7 @@
                       name="shifts[]"
                       value="Jour 3 dimanche 6 avril – Démontage 20:30-22:00"
                     />
-                    16. Démontage et rangement : 20:30 – 22:00</label
+                    Démontage et rangement : 20:30 – 22:00</label
                   >
                 </div>
               </div>
