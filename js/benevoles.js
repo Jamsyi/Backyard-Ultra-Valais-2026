@@ -48,6 +48,8 @@
       phone: fd.get('phone'),
       tshirt: fd.get('tshirt'),
       comment: fd.get('comment') || '',
+      raclette: fd.get('raclette') || '',
+      photo_arrivee: fd.get('photo_arrivee') || '',
       shifts: shifts,
       submitted_at: new Date().toISOString(),
     };

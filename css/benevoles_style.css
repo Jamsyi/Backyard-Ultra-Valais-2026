@@ -16,14 +16,12 @@
   background-size: cover;
   background-attachment: fixed;
   position: relative;
-  ;
 }
 
 .benevoles-fullscreen::before {
   content: "";
   position: absolute;
-  margin: 10px 10px
-  inset: 0;
+  margin: 10px 10px inset 0;
   /* Overlay tuned for readability over background image */
   background: linear-gradient(
     to bottom,
@@ -217,6 +215,50 @@
   color: #ff7a00;
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+/* Inline choices (Oui/Non) styled as pills */
+fieldset.form-row {
+  border: none;
+  padding: 0;
+  margin: 4px 0 8px;
+}
+fieldset.form-row legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.choices-inline {
+  display: flex;
+  gap: 10px;
+}
+.choices-inline label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  user-select: none;
+}
+.choices-inline input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 25px;
+  border-radius: 80%;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: transparent;
+  display: inline-block;
+  position: relative;
+}
+.choices-inline input[type="radio"]:checked {
+  border-color: #ff7a00;
+  background: radial-gradient(circle at center, #ff7a00 0 45%, transparent 46%);
+}
+.choices-inline label:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 .benevoles-page a[href^="mailto:"]:hover {
   color: #ffa24d;

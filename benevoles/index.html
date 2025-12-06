@@ -163,7 +163,7 @@
       <div class="blur-shell" aria-labelledby="benevoles-title">
         <h1 id="benevoles-title" class="page-head">🧡 Devenir bénévole</h1>
         <p class="sub-head">
-          Rejoins l'équipe et vie l'événement de l'intérieur
+          Rejoins l'équipe et vis l'événement de l'intérieur
         </p>
 
         <section class="volunteer-intro">
@@ -317,13 +317,52 @@
                   placeholder="Ex: préférence accueil/logistique; disponibilités spécifiques, etc."
                 ></textarea>
               </div>
+              <fieldset class="form-row form-row-full">
+                <legend>Sais-tu servir la raclette ? *</legend>
+                <div class="choices-inline">
+                  <label
+                    ><input type="radio" name="raclette" value="Oui" required />
+                    Oui</label
+                  >
+                  <label
+                    ><input type="radio" name="raclette" value="Non" />
+                    Non</label
+                  >
+                </div>
+              </fieldset>
+              <fieldset class="form-row form-row-full">
+                <legend>
+                  As-tu les connaissances et le matériel pour photographier les
+                  participants à l'arrivée? *
+                </legend>
+                <div class="choices-inline">
+                  <label
+                    ><input
+                      type="radio"
+                      name="photo_arrivee"
+                      value="Oui"
+                      required
+                    />
+                    Oui</label
+                  >
+                  <label
+                    ><input type="radio" name="photo_arrivee" value="Non" />
+                    Non</label
+                  >
+                </div>
+              </fieldset>
             </div>
 
             <fieldset class="shift-fieldset">
               <legend>Proposition de shifts</legend>
               <p class="shift-note">
-                (à adapter selon le programme définitif de l’événement) — Coche
-                tout les créneaux où tu es disponible pour nous aider :
+                (à adapter selon le programme définitif de l’événement) <br />
+                Coche tous les créneaux où tu es disponible. <br />👉 Si tu
+                coches plus de deux créneaux d’affilée, nous sélectionnerons les
+                deux créneaux consécutifs qui conviennent le mieux à
+                l’organisation. <br />👉 Nous veillerons également à ce que
+                chaque bénévole dispose de suffisamment de repos, surtout si tu
+                viens plusieurs jours.
               </p>
 
               <div class="shifts-grid">
@@ -491,7 +530,7 @@
                       name="shifts[]"
                       value="Jour 3 dimanche 6 avril – Démontage 20:30-22:00"
                     />
-                    Démontage et rangement : 20:30 – 22:00</label
+                    20:30 – 22:00</label
                   >
                 </div>
               </div>
@@ -508,8 +547,9 @@
           <div id="benevole-success" class="success-box" hidden>
             <h3>Merci pour ta disponibilité !</h3>
             <p>
-              Nous avons bien reçu tes informations. Nous reviendrons vers toi
-              par e-mail pour confirmer les rôles et les créneaux.
+              Nous avons bien reçu tes informations. Ton horaire détaillé et tes
+              tâches précises te seront communiquées suffisamment en avance à
+              l’approche de la course.
             </p>
           </div>
         </section>
