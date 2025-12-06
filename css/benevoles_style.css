@@ -118,6 +118,11 @@
   padding: 10px 12px;
   border-radius: 10px;
 }
+.form-row select,
+.form-row select option {
+  color: #111;
+  background: #fff;
+}
 .form-row textarea {
   resize: vertical;
 }
