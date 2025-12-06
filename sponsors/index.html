@@ -2,12 +2,11 @@
 <html lang="fr">
   <head>
     <script>
-      // Prevent navbar flash by setting class before render
       document.documentElement.classList.add("has-header-page");
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Notre Équipe - Backyard Ultra Valais</title>
+    <title>Sponsors & Partenaires</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,19 +22,19 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="../css/index_style.css" />
     <link rel="stylesheet" href="../css/informations_style.css" />
+    <link rel="stylesheet" href="../css/sponsor_style.css" />
     <link
       rel="shortcut icon"
       href="../images/favicon.ico"
       type="image/x-icon"
     />
   </head>
-  <body class="has-header about-page">
+  <body class="has-header sponsors-page">
     <nav class="navbar">
       <div class="container">
         <div class="logo">
@@ -44,7 +43,6 @@
           </a>
         </div>
 
-        <!--Hamburger button-->
         <button id="hamburger-button" class="hamburger-button">
           <div class="hamburger-line"></div>
           <div class="hamburger-line"></div>
@@ -53,12 +51,8 @@
 
         <div class="main-menu">
           <ul>
-            <li>
-              <a href="/">Accueil</a>
-            </li>
-            <li>
-              <a href="/informations">Informations</a>
-            </li>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/informations">Informations</a></li>
             <li class="has-submenu">
               <a
                 href="#"
@@ -85,45 +79,35 @@
                 <li><a href="/photos/2026">2026</a></li>
               </ul>
             </li>
-            <li>
-              <a href="/about-us">Notre Equipe</a>
-            </li>
-            <li>
-              <a href="/sponsors">Partenaires</a>
-            </li>
+            <li><a href="/about-us">Notre Equipe</a></li>
+            <li><a href="/sponsors">Partenaires</a></li>
             <li class="social-nav">
               <a
                 href="https://www.instagram.com/backyard.ultra.valais/"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="social-icon"
-              >
-                <i class="fab fa-instagram"></i>
-              </a>
+                ><i class="fab fa-instagram"></i
+              ></a>
               <a
                 href="https://www.facebook.com/profile.php?id=61566704801123"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="social-icon"
-              >
-                <i class="fab fa-facebook"></i>
-              </a>
+                ><i class="fab fa-facebook"></i
+              ></a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <!-- Mobile menu - outside navbar to avoid transparency inheritance -->
+    <!-- Mobile menu -->
     <div class="mobile-menu">
       <button class="close-menu-button">&times;</button>
       <ul>
-        <li>
-          <a href="/">Accueil</a>
-        </li>
-        <li>
-          <a href="/informations">Informations</a>
-        </li>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/informations">Informations</a></li>
         <li class="has-submenu">
           <a
             href="#"
@@ -150,109 +134,93 @@
             <li><a href="/photos/2026">2026</a></li>
           </ul>
         </li>
-        <li>
-          <a href="/about-us">Notre Equipe</a>
-        </li>
-        <li>
-          <a href="/sponsors">Partenaires</a>
-        </li>
+        <li><a href="/about-us">Notre Equipe</a></li>
+        <li><a href="/sponsors">Partenaires</a></li>
         <li class="social-mobile">
           <a
             href="https://www.instagram.com/backyard.ultra.valais/"
             target="_blank"
             rel="noopener noreferrer"
             class="social-icon"
-          >
-            <i class="fab fa-instagram"></i>
-          </a>
+            ><i class="fab fa-instagram"></i
+          ></a>
           <a
             href="https://www.facebook.com/profile.php?id=61566704801123"
             target="_blank"
             rel="noopener noreferrer"
             class="social-icon"
-          >
-            <i class="fab fa-facebook"></i>
-          </a>
+            ><i class="fab fa-facebook"></i
+          ></a>
         </li>
       </ul>
     </div>
 
-    <!-- Page Header -->
+    <!-- Header image like results page -->
     <section class="page-header">
       <div class="container">
-        <h1 class="page-title">Notre Équipe</h1>
+        <h1 class="page-title">Sponsors & Partenaires</h1>
       </div>
     </section>
 
-    <!-- Main Content -->
+    <!-- Content sections -->
     <section class="info-content">
       <div class="container">
-        <div class="info-section intro-overlay">
-          <div class="intro-overlay-bg"></div>
-          <div class="intro-content-wrap">
-            <div class="intro-card">
-              <h2 class="section-title">Qui sommes-nous ?</h2>
-              <p class="section-text">L’association Backyard Ultra Valais</p>
-              <p class="section-text">
-                Fin 2024, dans une salle du Lycée-Collège de la Planta à Sion, une classe d’étudiants en Économie et Droit devait créer un projet de A à Z. Après de longues discussions entre idées folles et raisonnables, quelqu’un a évoqué l’ultra-endurance, discipline où l’effort se mesure en heures, voir en jours. L’idée d’une Backyard Ultra est née.
-              </p>
-              <p class="section-text">
-                Ce format de course créé par l’Américain Lazarus Lake séduit par son mélange d’endurance, de stratégie, de camaraderie et de dépassement de soi. Portés par leur passion pour le sport et leur canton, les jeunes fondateurs créent l’Association Backyard Ultra Valais, avec pour mission d’allier performance, esprit communautaire et valorisation du terroir valaisan.
-              </p>
-              <p class="section-text">
-                La première édition, en mars 2025 à Ardon, a réuni cinquante participants et conquis le public. Neuf des dix-neuf membres initiaux, dont leur professeur, décident de continuer l’aventure.
-              </p>
-              <p class="section-text">
-                Objectif: pérenniser cette course, la faire grandir et en faire un rendez-vous incontournable pour les passionnés d’endurance, tout en conservant l’esprit convivial de sa création.
-              </p>
-            </div>
+        <div class="info-section">
+          <h2 class="section-title">Devenir partenaire</h2>
+          <p class="section-text">
+            Rejoignez l'aventure Backyard Ultra Valais 2026.
+          </p>
+          <div class="cta-container">
+            <a
+              class="btn-primary"
+              href="../BUV_DossierSponsoring_251103_VF.pdf"
+              target="_blank"
+              rel="noopener"
+              >Dossier sponsoring</a
+            >
+            <a class="btn-primary" href="mailto:backyardultravalais@gmail.com"
+              >Nous contacter</a
+            >
           </div>
         </div>
 
-          <h2 class="section-title">Le comité</h2>
-          <div class="team-grid">
-            <div class="team-card">
-              <h3>Gabriel Penedo Martins</h3>
-              <p class="role">Président & responsable animation</p>
+        <div class="info-section">
+          <h2 class="section-title">Sponsors et soutiens</h2>
+          <p class="section-text">
+            Les logos et liens seront ajoutés prochainement. Tu pourras aussi
+            ajouter d'autres catégories.
+          </p>
+
+          <div class="sponsor-category-block">
+            <h3 class="sponsor-card-title">
+              <i class="fa-solid fa-star"></i> Sponsor Silver
+            </h3>
+            <div class="sponsor-card-content">
+              <!-- Ajouter ici les logos + liens du Sponsor Silver -->
             </div>
-            <div class="team-card">
-              <h3>Loïc Bender</h3>
-              <p class="role">Secrétaire & responsable communication</p>
+          </div>
+
+          <div class="sponsor-category-block">
+            <h3 class="sponsor-card-title">
+              <i class="fa-solid fa-landmark"></i> Partenaires institutionnels
+            </h3>
+            <div class="sponsor-card-content">
+              <!-- Ajouter ici les logos + liens des partenaires institutionnels -->
             </div>
-            <div class="team-card">
-              <h3>Romain Lambiel</h3>
-              <p class="role">Trésorier & responsable parcours</p>
-            </div>
-            <div class="team-card">
-              <h3>Yi Li</h3>
-              <p class="role">Responsable web & inscriptions</p>
-            </div>
-            <div class="team-card">
-              <h3>Julie De Palma</h3>
-              <p class="role">Responsable logistique & sécurité</p>
-            </div>
-            <div class="team-card">
-              <h3>Camille Jordan</h3>
-              <p class="role">Responsable sponsoring</p>
-            </div>
-            <div class="team-card">
-              <h3>Romain Gaspoz</h3>
-              <p class="role">Responsable bénévoles</p>
-            </div>
-            <div class="team-card">
-              <h3>Firmin Thurre</h3>
-              <p class="role">Responsable photographie</p>
-            </div>
-            <div class="team-card">
-              <h3>Henri Deridder</h3>
-              <p class="role">Responsable construction</p>
+          </div>
+
+          <div class="sponsor-category-block">
+            <h3 class="sponsor-card-title">
+              <i class="fa-solid fa-gift"></i> Partenaires lots
+            </h3>
+            <div class="sponsor-card-content">
+              <!-- Ajouter ici les logos + liens des partenaires lots -->
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!--Footer (copied style from home page) -->
     <footer class="footer bg-black">
       <div class="container">
         <div class="footer-grid">
@@ -277,17 +245,15 @@
               target="_blank"
               rel="noopener noreferrer"
               class="social-icon"
-            >
-              <i class="fab fa-instagram"></i>
-            </a>
+              ><i class="fab fa-instagram"></i
+            ></a>
             <a
               href="https://www.facebook.com/profile.php?id=61566704801123"
               target="_blank"
               rel="noopener noreferrer"
               class="social-icon"
-            >
-              <i class="fab fa-facebook"></i>
-            </a>
+              ><i class="fab fa-facebook"></i
+            ></a>
           </div>
         </div>
       </div>

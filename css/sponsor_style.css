@@ -1,0 +1,90 @@
+/* Sponsors page overrides to match site style */
+.sponsors-page .page-header {
+	background: url("../images/rive2.jpg") center center / cover no-repeat;
+	padding-top: 60px;
+	margin-top: 0;
+	min-height: 45vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.sponsors-page .info-content {
+	background: #121212;
+	padding: 60px 0;
+}
+
+.sponsors-page .info-section {
+	background: #1e1e1e;
+	border-radius: 10px;
+	padding: 40px;
+	margin-bottom: 30px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 30px rgba(241, 132, 40, 0.08);
+}
+
+.sponsor-category-block {
+	background: #222;
+	border-radius: 12px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+	border: 1px solid rgba(241, 132, 40, 0.15);
+	overflow: hidden;
+	margin-bottom: 24px;
+}
+
+.sponsor-card-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0;
+	padding: 14px 16px;
+	background: linear-gradient(
+		135deg,
+		color-mix(in srgb, var(--primary-color) 70%, black),
+		var(--primary-color),
+		color-mix(in srgb, var(--primary-color) 85%, white)
+	);
+	background-size: 200% 200%;
+	animation: gradientMove 4s ease infinite;
+	color: #fff;
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+
+.sponsor-card-content {
+	padding: 16px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+}
+
+.sponsor-logo {
+	display: inline-block;
+	background: #1a1a1a;
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 10px;
+	padding: 10px 12px;
+	transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.sponsor-logo:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 0 20px rgba(241, 132, 40, 0.25);
+	border-color: rgba(241, 132, 40, 0.35);
+}
+
+.sponsor-logo img {
+	max-width: 160px;
+	max-height: 90px;
+	filter: drop-shadow(0 0 6px rgba(0,0,0,0.5));
+}
+
+@media (max-width: 768px) {
+	.sponsor-card-title {
+		font-size: 1rem;
+		padding: 12px 14px;
+	}
+	.sponsor-logo img {
+		max-width: 130px;
+		max-height: 70px;
+	}
+}
