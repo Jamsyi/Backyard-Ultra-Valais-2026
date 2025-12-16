@@ -463,4 +463,60 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
         console.warn('Could not initialize format->form swap', err);
     }
+
+    // Formats toggle (Infinity / Explorer)
+    try {
+        const tabInfinity = document.getElementById('tab-infinity');
+        const tabExplorer = document.getElementById('tab-explorer');
+        const panelInfinity = document.getElementById('format-infinity');
+        const panelExplorer = document.getElementById('format-explorer');
+        const tabsContainer = document.querySelector('.format-tabs');
+
+        function activateTab(target) {
+            const isInfinity = target === 'infinity';
+            if (!tabInfinity || !tabExplorer || !panelInfinity || !panelExplorer) return;
+            tabInfinity.classList.toggle('active', isInfinity);
+            tabExplorer.classList.toggle('active', !isInfinity);
+            tabInfinity.setAttribute('aria-selected', String(isInfinity));
+            tabExplorer.setAttribute('aria-selected', String(!isInfinity));
+            panelInfinity.classList.toggle('active', isInfinity);
+            panelExplorer.classList.toggle('active', !isInfinity);
+            if (tabsContainer) {
+                tabsContainer.classList.toggle('infinity-active', isInfinity);
+                tabsContainer.classList.toggle('explorer-active', !isInfinity);
+            }
+        }
+
+        if (tabInfinity && tabExplorer) {
+            tabInfinity.addEventListener('click', () => activateTab('infinity'));
+            tabExplorer.addEventListener('click', () => activateTab('explorer'));
+            // Initialize theme on load based on default active state
+            const defaultIsInfinity = tabInfinity.classList.contains('active');
+            if (tabsContainer) {
+                tabsContainer.classList.toggle('infinity-active', defaultIsInfinity);
+                tabsContainer.classList.toggle('explorer-active', !defaultIsInfinity);
+            }
+        }
+    } catch (err) {
+        console.warn('Formats toggle init failed', err);
+    }
+
+    // Fully disable inscription buttons in Formats section
+    try {
+        const disabledButtons = document.querySelectorAll('.formats .format-panel .btn, .formats .inscription-link');
+        disabledButtons.forEach(btn => {
+            // Visual disabled class (optional if CSS targets .disabled)
+            btn.classList.add('disabled');
+            // Remove from tab order
+            btn.setAttribute('tabindex', '-1');
+            // Block clicks
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            });
+        });
+    } catch (err) {
+        console.warn('Could not disable inscription buttons', err);
+    }
 });

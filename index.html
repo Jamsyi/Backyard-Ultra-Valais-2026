@@ -259,36 +259,127 @@
     <section class="formats">
       <div class="container">
         <h2 class="text-xxl">Formats</h2>
-        <div class="formats-grid">
-          <div class="format-card">
-            <img src="../images/infinity.png" alt="Infinity Format" />
 
-            <p class="format-description">
-              Format phare de l'événement, celui-ci se range parfaitement dans
-              les codes du concept de la Backyard Ultra créé par Lazarus
-              Lake.<br /><br />
-              Le but : compléter une boucle de 6,7 km chaque heure, en moins
-              d'une heure, jusqu'à ce qu'il ne reste plus qu'un seul participant
-              en lice.<br /><br />
-              Ainsi, tant qu'au moins deux coureurs sont toujours en course,
-              l'épreuve est infinie, sa fin totalement imprévisible.
-            </p>
+        <!-- Toggle Tabs -->
+        <div class="format-tabs" role="tablist" aria-label="Choix du format">
+          <button class="format-tab active" role="tab" aria-selected="true" aria-controls="format-infinity" id="tab-infinity">
+            <span>INFINITY</span>
+          </button>
+          <button class="format-tab" role="tab" aria-selected="false" aria-controls="format-explorer" id="tab-explorer">
+            <span>EXPLORER</span>
+          </button>
+        </div>
+
+        <!-- Panels -->
+        <div class="format-panels">
+          <div id="format-infinity" class="format-panel active variant-infinity" role="tabpanel" aria-labelledby="tab-infinity">
+            <div class="format-layout">
+              <div class="format-media">
+                <img src="images/infinity.png" alt="Infinity" class="format-image" />
+              </div>
+              <div class="format-content">
+                <h3 class="format-title">INFINITY</h3>
+                <p class="format-description">
+                  Format phare de l'événement, celui-ci se range parfaitement dans
+                  les codes du concept de la Backyard Ultra créé par Lazarus
+                  Lake.<br />
+                  Le but : compléter une boucle de 6,7 km chaque heure, en moins
+                  d'une heure, jusqu'à ce qu'il ne reste plus qu'un seul participant
+                  en lice.<br />
+                  Ainsi, tant qu'au moins deux coureurs sont toujours en course,
+                  l'épreuve est infinie, sa fin totalement imprévisible.
+                </p>
+                <div class="format-metrics">
+                  <div class="metric"><span class="label">Départ</span><span class="value">3 Avril 12:00</span></div>
+                  <div class="metric"><span class="label">Limite</span><span class="value">Aucune</span></div>
+                  <div class="metric"><span class="label">Participants</span><span class="value">Max 50</span></div>
+                  <div class="metric"><span class="label">Prix (actuel)</span><span class="value">60 CHF</span></div>
+                </div>
+                <div class="tariff-card">
+                  <div class="tariff-title">Tarifs progressifs</div>
+                  <div class="tariff-bar">
+                    <div class="tariff-fill" style="width: 18%"></div>
+                    <div class="tariff-marker"></div>
+                  </div>
+                  <div class="tariff-grid">
+                    <div class="tariff-col">
+                      <div class="tier-name">Early Bird</div>
+                      <div class="tier-price">60 CHF</div>
+                      <div class="tier-dates">29.11 - 31.12</div>
+                    </div>
+                    <div class="tariff-col">
+                      <div class="tier-name">Standard</div>
+                      <div class="tier-price">65 CHF</div>
+                      <div class="tier-dates">01.01 - 15.02</div>
+                    </div>
+                    <div class="tariff-col">
+                      <div class="tier-name">Last Chance</div>
+                      <div class="tier-price">70 CHF</div>
+                      <div class="tier-dates">16.02 - 30.03</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="btn-container text-center">
+                  <a class="btn btn-light inscription-link" href="/inscriptions">S'inscrire au format INFINITY</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="format-card">
-            <img src="../images/explorer.png" alt="Explorer Format" />
 
-            <p class="format-description">
-              Comme notre format INFINITY est limité à seulement 50 participants
-              cette année encore, nous nous sommes demandé comment nous
-              pourrions accueillir plus de monde. C'est comme ça qu'est né le
-              format EXPLORER : une course pour découvrir l'ultra-endurance et
-              la Backyard Ultra, ou tout simplement pour sortir de ses sentiers
-              battus le temps d'une journée.<br /><br />
-              Les règles sont les mêmes que pour le format INFINITY. Seule
-              différence : vous vous inscrivez ici pour, au maximum, 7 boucles,
-              ce qui fait tout de même plus de 46 km. De plus, vous n'aurez
-              accès qu'à la zone de repos extérieure et non la zone intérieure.
-            </p>
+          <div id="format-explorer" class="format-panel variant-explorer" role="tabpanel" aria-labelledby="tab-explorer">
+            <div class="format-layout">
+              <div class="format-media">
+                <img src="images/explorer.png" alt="Explorer" class="format-image" />
+              </div>
+              <div class="format-content">
+                <h3 class="format-title">EXPLORER</h3>
+                <p class="format-description">
+                  Comme notre format INFINITY est limité à seulement 50 participants
+                  cette année encore, nous nous sommes demandé comment nous
+                  pourrions accueillir plus de monde. C'est comme ça qu'est né le
+                  format EXPLORER : une course pour découvrir l'ultra-endurance et
+                  la Backyard Ultra, ou tout simplement pour sortir de ses sentiers
+                  battus le temps d'une journée.<br />
+                  Les règles sont les mêmes que pour le format INFINITY. Seule
+                  différence : vous vous inscrivez ici pour, au maximum, 7 boucles,
+                  ce qui fait tout de même plus de 46 km. De plus, vous n'aurez
+                  accès qu'à la zone de repos extérieure et non la zone intérieure.
+                </p>
+                <div class="format-metrics">
+                  <div class="metric"><span class="label">Départ</span><span class="value">4 Avril 11:20</span></div>
+                  <div class="metric"><span class="label">Limite</span><span class="value">7 Boucles</span></div>
+                  <div class="metric"><span class="label">Participants</span><span class="value">Max 50</span></div>
+                  <div class="metric"><span class="label">Prix (actuel)</span><span class="value">35 CHF</span></div>
+                </div>
+                <div class="tariff-card">
+                  <div class="tariff-title">Tarifs progressifs</div>
+                  <div class="tariff-bar">
+                    <div class="tariff-fill" style="width: 22%"></div>
+                    <div class="tariff-marker"></div>
+                  </div>
+                  <div class="tariff-grid">
+                    <div class="tariff-col">
+                      <div class="tier-name">Early Bird</div>
+                      <div class="tier-price">35 CHF</div>
+                      <div class="tier-dates">29.11 - 31.12</div>
+                    </div>
+                    <div class="tariff-col">
+                      <div class="tier-name">Standard</div>
+                      <div class="tier-price">40 CHF</div>
+                      <div class="tier-dates">01.01 - 15.02</div>
+                    </div>
+                    <div class="tariff-col">
+                      <div class="tier-name">Last Chance</div>
+                      <div class="tier-price">45 CHF</div>
+                      <div class="tier-dates">16.02 - 30.03</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="btn-container text-center">
+                  <a class="btn btn-light inscription-link" href="/inscriptions">S'inscrire au format EXPLORER</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

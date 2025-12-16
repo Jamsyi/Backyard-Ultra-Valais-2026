@@ -1,3 +1,18 @@
+/* Force gray buttons only within Formats section */
+.formats .format-panel .btn,
+.formats .format-content .btn,
+.formats .inscription-link {
+  background: #3a3a3a !important;
+  color: #cfcfcf !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+}
+.formats .format-panel .btn:hover,
+.formats .format-content .btn:hover,
+.formats .inscription-link:hover {
+  opacity: 0.9;
+}
 /* Ensure navbar social icons turn primary color on hover, regardless of parent color rules */
 .navbar .social-icon:hover,
 .social-nav .social-icon:hover {
@@ -463,15 +478,26 @@ body:not(.has-header) .hamburger-button .hamburger-line {
     gap: 1rem;
   }
 
-  .inscription-btn {
-    padding: 20px 35px !important;
-    font-size: 1.2rem !important;
+  /* Force gray-out state, override generic .btn styles */
+  .format-panel .inscription-link,
+  .format-content .inscription-link,
+  .inscription-link {
+    background: #3a3a3a !important; /* gray background */
+    color: #cfcfcf !important; /* light gray text */
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+  }
+  .format-panel .inscription-link:hover,
+  .format-content .inscription-link:hover,
+  .inscription-link:hover {
+    opacity: 0.9;
   }
 
-  .hero {
-    height: 80vh !important;
-    background-position: center 65% !important;
-    background-size: 200% !important;
+  /* Optional: fully disable interaction when gray */
+  .inscription-link.disabled {
+    pointer-events: none;
+  }
   }
 }
 
@@ -596,43 +622,211 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   margin-bottom: 40px;
 }
 
-.formats-grid {
-  display: flex;
+/* Center the tabs and shrink format logos/images */
+.format-tabs {
+  display: inline-flex; /* shrink to content */
+  gap: 10px;
+  background: transparent !important; /* remove wide back frame */
+  padding: 0; /* no outer padding so width = tabs only */
+  border-radius: 12px;
+  margin: 0 auto 16px auto; /* center block, tighter spacing */
   justify-content: center;
-  align-items: stretch;
-  gap: 40px;
-  flex-wrap: wrap;
-  max-width: 900px;
+  width: fit-content; /* ensure content width only */
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Kill any decorative pseudo-elements that could render a wide frame */
+.format-tabs::before,
+.format-tabs::after {
+  content: none !important;
+  display: none !important;
+}
+
+.format-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+}
+
+.format-panels {
+  max-width: 1200px; /* widen overall embed width */
   margin: 0 auto;
 }
 
-.format-card {
-  flex: 1;
-  min-width: 300px;
-  background-color: rgba(255, 255, 255, 0.05);
+.format-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.format-media {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* keep image top-centered */
+  /* Constrain the media box so pasted images don't overflow */
+  max-width: 240px;
+  margin: 0 auto;
+  align-self: start; /* pin to top of panel */
+}
+
+/* Shrink format logos (images in panels) */
+.format-image {
+  width: 100%;
+  max-width: 220px;
+  max-height: 220px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 0; /* remove frame rounding */
+  box-shadow: none; /* remove any frame shadow */
+  border: none; /* ensure no border/frame */
+}
+
+.format-panel .btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 960px) {
+  .format-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tabs */
+.format-tabs {
+  display: flex;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 8px;
+  border-radius: 12px;
+  margin: 0 auto 24px auto;
+  width: 100%;
+  justify-content: center;
+}
+.format-content .btn-container,
+.format-panel .btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.format-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px; /* slightly smaller buttons */
   border-radius: 10px;
-  padding: 25px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: auto; /* allow the card to size to its content (Explorer will determine height) */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.format-tab:hover {
+  transform: translateY(-1px);
+  border-colodr: rgba(255, 255, 255, 0.35);
+}
+
+.format-tab.active {
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Active tab color themes */
+.format-tabs.infinity-active .format-tab.active {
+  background: #ff5a1f;
+  border-color: #ff5a1f;
+}
+.format-tabs.explorer-active .format-tab.active {
+  background: #f59e0b;
+  border-color: #f59e0b;
+}
+
+/* Panel accent frames per theme (subtle) */
+.variant-infinity.format-panel {
+  border-color: rgba(255, 90, 31, 0.35);
+}
+.variant-explorer.format-panel {
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+.format-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+
+/* Panels */
+.format-panels {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.format-panel {
+  display: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 26px;
+}
+
+.format-panel.active {
+  display: block;
+}
+
+/* Centered layout with image + content */
+.format-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr; /* image narrower, text wider */
+  gap: 28px;
+  align-items: start; /* pin children to top */
+}
+
+.format-media {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* top center */
+  max-width: 240px; /* keep image side compact */
+  margin: 0 auto;
+  background: transparent;
+  box-shadow: none;
+}
+
+.format-image {
+  width: 100%;
+  max-width: 220px;
+  max-height: 220px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+}
+
+.format-content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  overflow: visible;
-}
-
-.format-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-.format-card img {
-  width: 200px;
-  height: auto;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  object-fit: contain;
+  gap: 18px;
 }
 
 .format-title {
@@ -647,6 +841,133 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   line-height: 1.8;
   color: #f4f4f6;
   text-align: left;
+}
+
+/* Metrics grid */
+.format-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 20px;
+  margin-top: 6px;
+}
+.metric {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.metric:nth-child(odd) {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+.metric .label {
+  color: #9aa5b1;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-size: 0.85rem;
+}
+.metric .value {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+/* Tariff card */
+.tariff-card {
+  background: #0b1220;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.tariff-title {
+  color: #cbd5e1;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+.tariff-bar {
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  background: #2b3446;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.tariff-fill {
+  height: 100%;
+  background: #ff5a1f;
+}
+.tariff-marker {
+  position: absolute;
+  left: 18%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 8px;
+  border-radius: 3px;
+  background: #fecdd3;
+}
+.tariff-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+.tariff-col {
+  color: #cbd5e1;
+}
+.tariff-col .tier-name {
+  font-weight: 700;
+}
+.tariff-col .tier-price {
+  color: #fff;
+  font-weight: 700;
+}
+.tariff-col .tier-dates {
+  color: #9aa5b1;
+  font-size: 0.85rem;
+}
+
+.inscription-link {
+  background: #3a3a3a; /* gray background */
+  color: #cfcfcf; /* light gray text */
+  border: 1px solid rgba(255,255,255,0.15);
+  cursor: not-allowed;
+}
+
+.inscription-link:hover {
+  opacity: 0.9;
+}
+
+/* Variants */
+.variant-infinity .format-title {
+  color: #ff5a1f;
+}
+.variant-explorer .format-title {
+  color: #f59e0b;
+}
+.variant-infinity .tariff-fill {
+  background: #ff5a1f;
+}
+.variant-infinity .tariff-marker {
+  background: #fecaca;
+}
+.variant-explorer .tariff-fill {
+  background: #f59e0b;
+}
+.variant-explorer .tariff-marker {
+  background: #fde68a;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .format-layout {
+    grid-template-columns: 1fr;
+  }
+  .format-media {
+    order: 1;
+  }
+  .format-content {
+    order: 2;
+  }
 }
 
 /* Infos */
