@@ -856,14 +856,15 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   filter: grayscale(100%);
   /* Fade the image alpha to reveal card background on the right */
   /* delay fade so the right-framed subject remains visible; fade starts at 82% */
-  -webkit-mask-image: linear-gradient(
+
+  mask-image: linear-gradient(
     90deg,
     #000 0%,
-    #000 80%,
-    rgba(0, 0, 0, 0) 100%
+    rgba(0, 0, 0, 0.1) 70%,
+    rgba(0, 0, 0, 0) 80%
   );
-  mask-image: linear-gradient(90deg, #000 0%, #000 30%, rgba(0, 0, 0, 0) 80%);
 }
+
 /* Remove on-image dark overlay; fade happens via mask to pure #222 */
 .format-photo-wrap::after {
   display: none;
@@ -876,11 +877,10 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 }
 .format-icon {
   position: absolute;
-  top: 12px;
-  left: 10px; /* overlap image but keep inside card */
-  width: 84px;
-  height: 84px;
-  object-fit: contain;
+  top: 18px;
+  left: 25px; /* overlap image but keep inside card */
+  width: 140px;
+
   background: transparent; /* keep the logo's original background */
   padding: 0;
   border-radius: 10px;
