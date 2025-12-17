@@ -996,7 +996,7 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 }
 .tariff-marker {
   position: absolute;
-  left: 18%;
+  left: 2%;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 12px;
@@ -1076,6 +1076,9 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   .format-photo {
     height: auto;
     aspect-ratio: 4 / 3; /* revert to fixed ratio on small screens */
+    /* Remove image fade on mobile */
+    -webkit-mask-image: none;
+    mask-image: none;
   }
   .format-media {
     order: 1;
