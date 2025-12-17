@@ -4,7 +4,7 @@
 .formats .inscription-link {
   background: #3a3a3a !important;
   color: #cfcfcf !important;
-  border: 1px solid rgba(255,255,255,0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
   cursor: not-allowed !important;
   box-shadow: none !important;
 }
@@ -37,6 +37,10 @@
   --secondary-color: #bec92b;
   --light-color: #f4f4f6;
   --dark-color: #111;
+  /* Fine-tune padding to balance panel heights */
+  --format-infinity-bottom-pad: 0px; /* no bottom pad by default */
+  --infinity-gap-before-tariff: 0px; /* disable tariff gap */
+  --infinity-gap-after-description: 115px; /* space after paragraph before infos */
 }
 
 body {
@@ -484,7 +488,7 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   .inscription-link {
     background: #3a3a3a !important; /* gray background */
     color: #cfcfcf !important; /* light gray text */
-    border: 1px solid rgba(255,255,255,0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
     cursor: not-allowed !important;
     box-shadow: none !important;
   }
@@ -497,7 +501,6 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   /* Optional: fully disable interaction when gray */
   .inscription-link.disabled {
     pointer-events: none;
-  }
   }
 }
 
@@ -698,6 +701,9 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 }
 
 @media (max-width: 960px) {
+  :root {
+    --format-infinity-bottom-pad: 0px;
+  }
   .format-layout {
     grid-template-columns: 1fr;
   }
@@ -738,7 +744,7 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 
 .format-tab:hover {
   transform: translateY(-1px);
-  border-colodr: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
 .format-tab.active {
@@ -779,14 +785,16 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 
 .format-panel {
   display: none;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.06) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
+  background: #222; /* solid card bg so image fades into #222 */
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 18px;
   padding: 26px;
+  overflow: hidden; /* allow media to touch the panel border */
+  position: relative; /* for overlay gradient */
+  min-height: var(
+    --format-panel-height,
+    560px
+  ); /* keep both boxes same height */
 }
 
 .format-panel.active {
@@ -796,19 +804,25 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 /* Centered layout with image + content */
 .format-layout {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr; /* image narrower, text wider */
+  grid-template-columns: 1.25fr 1.35fr; /* widen media column */
   gap: 28px;
-  align-items: start; /* pin children to top */
+  align-items: stretch; /* let media match content height */
 }
 
 .format-media {
   display: flex;
   justify-content: center;
   align-items: flex-start; /* top center */
-  max-width: 240px; /* keep image side compact */
-  margin: 0 auto;
+  max-width: clamp(420px, 44vw, 700px); /* wider photo area */
+  /* Pull image to the panel edges so its border = card border,
+     and overlap into the text column for a merged look */
+  margin: -26px -220px -26px -26px; /* push image further under text */
   background: transparent;
   box-shadow: none;
+  position: relative; /* enable overlay positioning */
+  overflow: visible; /* let the icon protrude on the left */
+  align-self: stretch; /* fill grid row height */
+  z-index: 0; /* sit behind the text column */
 }
 
 .format-image {
@@ -823,12 +837,96 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   border: none;
 }
 
+/* Photo + icon overlay inside format media */
+.format-photo-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.format-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto; /* follow container height */
+  object-fit: cover;
+  object-position: 70% center; /* reframe photo to the right */
+  border-radius: 18px 0 0 18px; /* match card rounding on left side */
+  border: none; /* use the card border only */
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  filter: grayscale(100%);
+  /* Fade the image alpha to reveal card background on the right */
+  /* delay fade so the right-framed subject remains visible; fade starts at 82% */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(90deg, #000 0%, #000 30%, rgba(0, 0, 0, 0) 80%);
+}
+/* Remove on-image dark overlay; fade happens via mask to pure #222 */
+.format-photo-wrap::after {
+  display: none;
+}
+
+/* Extend gradient a bit into the text column to merge visually */
+/* No extra panel overlap gradient; keep pure background visible */
+.format-media::after {
+  display: none;
+}
+.format-icon {
+  position: absolute;
+  top: 12px;
+  left: 10px; /* overlap image but keep inside card */
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  background: transparent; /* keep the logo's original background */
+  padding: 0;
+  border-radius: 10px;
+  border: none;
+  filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.5));
+}
+
+@media (max-width: 640px) {
+  .format-icon {
+    top: 8px;
+    left: -14px;
+    width: 64px;
+    height: 64px;
+  }
+  .format-photo {
+    border-radius: 10px;
+  }
+}
+
 .format-content {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  position: relative; /* create stacking context */
 }
 
+/* Add a little bottom padding to INFINITY text block
+   so both format panels end at the same height visually */
+.variant-infinity .format-content {
+  padding-bottom: var(--format-infinity-bottom-pad);
+}
+/* Place extra space immediately after main paragraph, before infos */
+.variant-infinity .format-description {
+  margin-bottom: var(--infinity-gap-after-description);
+}
+/* Ensure no extra gap before tariff */
+.variant-infinity .tariff-card {
+  margin-top: var(--infinity-gap-before-tariff);
+}
+
+/* Panel-level overlay disabled; rely on mask to reveal solid #222 */
+.format-panel::before {
+  display: none;
+}
+
+/* Title */
 .format-title {
   font-size: 1.8rem;
   font-weight: 600;
@@ -929,7 +1027,7 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 .inscription-link {
   background: #3a3a3a; /* gray background */
   color: #cfcfcf; /* light gray text */
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: not-allowed;
 }
 
@@ -961,6 +1059,23 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 @media (max-width: 960px) {
   .format-layout {
     grid-template-columns: 1fr;
+  }
+  .format-media {
+    margin: 0; /* reset pull and overlap on small screens */
+    max-width: 100%;
+  }
+  .format-panel {
+    min-height: 0; /* let boxes auto-size on mobile */
+  }
+  .format-media::after {
+    display: none; /* no cross-column overlap on stacked layout */
+  }
+  .format-photo-wrap {
+    height: auto;
+  }
+  .format-photo {
+    height: auto;
+    aspect-ratio: 4 / 3; /* revert to fixed ratio on small screens */
   }
   .format-media {
     order: 1;

@@ -519,4 +519,80 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
         console.warn('Could not disable inscription buttons', err);
     }
+
+    // Auto-update tariff progress bars based on current date
+    try {
+        const panels = document.querySelectorAll('.format-panels .format-panel');
+        if (panels && panels.length) {
+            const now = new Date();
+
+            // Try to infer event year from global countdown if available
+            const countdownTs = (typeof window !== 'undefined' && typeof window.countDownDate === 'number') ? window.countDownDate : null;
+            const eventYearFromCountdown = countdownTs ? new Date(countdownTs).getFullYear() : null;
+
+            panels.forEach(panel => {
+                const card = panel.querySelector('.tariff-card');
+                const fill = card ? card.querySelector('.tariff-fill') : null;
+                const marker = card ? card.querySelector('.tariff-marker') : null;
+                const dateEls = card ? card.querySelectorAll('.tier-dates') : [];
+                if (!card || !fill || !marker || !dateEls || !dateEls.length) return;
+
+                // Parse tier date ranges like "29.11 - 31.12"
+                const ranges = [];
+                let lastEndMonth = null;
+                dateEls.forEach((el) => {
+                    const txt = (el.textContent || '').trim();
+                    const m = txt.match(/(\d{1,2})\.(\d{1,2})\s*-\s*(\d{1,2})\.(\d{1,2})/);
+                    if (!m) return;
+                    const sDay = parseInt(m[1], 10);
+                    const sMonth = parseInt(m[2], 10);
+                    const eDay = parseInt(m[3], 10);
+                    const eMonth = parseInt(m[4], 10);
+                    lastEndMonth = eMonth;
+                    ranges.push({ sDay, sMonth, eDay, eMonth });
+                });
+                if (!ranges.length) return;
+
+                // Decide endYear: prefer countdown year, else infer relative to current date and last end month
+                let endYear = eventYearFromCountdown;
+                if (!endYear) {
+                    const currentMonth = now.getMonth() + 1;
+                    // If we're past the last end month in the calendar, assume next year season; otherwise current year
+                    endYear = currentMonth > (lastEndMonth || currentMonth) ? now.getFullYear() + 1 : now.getFullYear();
+                }
+
+                // Build absolute date objects, handling year wrap (e.g., 11->12 previous year, 01->03 current endYear)
+                const absoluteRanges = ranges.map(r => {
+                    const sameYear = r.sMonth <= r.eMonth; // typical within-year tier
+                    const startYear = sameYear ? endYear : (endYear - 1);
+                    const endYearForRange = endYear;
+                    const start = new Date(startYear, r.sMonth - 1, r.sDay, 0, 0, 0, 0);
+                    const end = new Date(endYearForRange, r.eMonth - 1, r.eDay, 23, 59, 59, 999);
+                    return { start, end };
+                });
+
+                const globalStart = absoluteRanges[0].start;
+                const globalEnd = absoluteRanges[absoluteRanges.length - 1].end;
+
+                let pct = 0;
+                if (now <= globalStart) {
+                    pct = 0;
+                } else if (now >= globalEnd) {
+                    pct = 100;
+                } else {
+                    pct = ((now - globalStart) / (globalEnd - globalStart)) * 100;
+                }
+                // Clamp and format
+                pct = Math.max(0, Math.min(100, pct));
+                const pctStr = pct.toFixed(1) + '%';
+
+                fill.style.width = pctStr;
+                marker.style.left = pctStr;
+                marker.setAttribute('aria-label', `Progression des tarifs: ${pct.toFixed(0)}%`);
+                marker.setAttribute('role', 'img');
+            });
+        }
+    } catch (err) {
+        console.warn('Tariff progress auto-update failed', err);
+    }
 });
