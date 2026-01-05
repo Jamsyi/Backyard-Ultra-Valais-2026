@@ -1,8 +1,8 @@
 console.log("JavaScript file is loaded correctly.")
 
-// CONFIG: Set your deployed Google Apps Script Web App URL here
-// Example: const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx.../exec';
 const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby3MvEKMPdH2f0r-WZ7mkndA0PhyKU2xs9GLNVu0PEIXjNmicb06DOPBCWEUT05yg7oGA/exec';
+
+const NEWSLETTER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwQ-n1irhuLnm8MGaXaTLxsmH0u5l9VoxtdebdGF7bkbzTIiwc9iyWoWDp8E28hfXoHtA/exec';
 
 // Detect header ASAP to prevent navbar flash
 const pageHeader = document.querySelector('.page-header');
@@ -594,5 +594,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     } catch (err) {
         console.warn('Tariff progress auto-update failed', err);
+    }
+
+    // Email subscribe (notify when inscriptions open)
+    try {
+        const subscribeForm = document.getElementById('subscribe-form');
+        const subscribeBtn = document.querySelector('.subscribe-btn');
+        const statusEl = document.querySelector('.subscribe-status');
+        function isValidEmail(email) {
+            return /[^\s@]+@[^\s@]+\.[^\s@]+/.test(email);
+        }
+        if (subscribeForm && subscribeBtn) {
+            // Prevent Enter key from submitting the form implicitly
+            subscribeForm.addEventListener('submit', (e) => e.preventDefault());
+
+            subscribeBtn.addEventListener('click', () => {
+                const email = (document.getElementById('subscribe-email')?.value || '').trim();
+                if (!email || !isValidEmail(email)) {
+                    statusEl && (statusEl.textContent = 'Merci d\'entrer un email valide.');
+                    return;
+                }
+                // Optimistic UI
+                statusEl && (statusEl.textContent = 'Enregistrement…');
+
+                // Fallback: store locally if no newsletter backend configured
+                if (!NEWSLETTER_WEB_APP_URL) {
+                    try {
+                        localStorage.setItem('buv_subscribe_email', email);
+                        statusEl && (statusEl.textContent = 'Merci ! Nous vous préviendrons dès l\'ouverture.');
+                    } catch (_) {
+                        statusEl && (statusEl.textContent = 'Merci !');
+                    }
+                    return;
+                }
+
+                // Attempt to post to Apps Script with a simple action
+                const params = new URLSearchParams({ action: 'subscribe', email, source: 'home' });
+                fetch(NEWSLETTER_WEB_APP_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: params.toString(),
+                    mode: 'no-cors'
+                }).then(() => {
+                    statusEl && (statusEl.textContent = 'Merci ! Nous vous préviendrons dès l\'ouverture.');
+                    subscribeForm.reset();
+                }).catch(() => {
+                    statusEl && (statusEl.textContent = 'Inscription enregistrée.');
+                });
+            });
+        }
+    } catch (err) {
+        console.warn('Subscribe form init failed', err);
     }
 });

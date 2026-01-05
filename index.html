@@ -187,10 +187,21 @@
             <span class="title-top">BACKYARD ULTRA</span>
             <span class="title-bottom">VALAIS</span>
           </h1>
-          <p class="inscription-text">
-            Annonce des inscriptions pour la 2ème édition à venir
-          </p>
           <div class="hero-actions">
+            <form id="subscribe-form" class="subscribe-form" novalidate>
+              <label for="subscribe-email" class="sr-only">Votre email</label>
+              <input
+                type="email"
+                id="subscribe-email"
+                name="email"
+                placeholder="Votre email"
+                required
+              />
+              <button type="button" class="btn subscribe-btn">
+                Être informé des inscriptions
+              </button>
+              <div class="subscribe-status" aria-live="polite"></div>
+            </form>
             <a href="/benevoles" class="btn benevole-btn">
               Devenir bénévole
             </a>

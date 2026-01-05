@@ -540,6 +540,64 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 /* Hero actions under inscription text */
 .hero-actions {
   margin-top: 14px;
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+.hero-actions .subscribe-form {
+  order: 1;
+}
+.hero-actions .benevole-btn {
+  order: 2;
+}
+.subscribe-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.subscribe-form input[type="email"] {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-width: 240px;
+  outline: none;
+}
+.subscribe-form input[type="email"]:focus {
+  border-color: var(--secondary-color);
+}
+.subscribe-btn {
+  background: var(--secondary-color);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.subscribe-btn:hover {
+  filter: brightness(1.05);
+}
+.subscribe-status {
+  color: #fff;
+  font-size: 0.95rem;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 .benevole-btn {
   background: var(--primary-color);
@@ -560,6 +618,8 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   }
   .hero-actions {
     margin-top: 10px;
+    justify-content: center;
+    flex-direction: column; /* ensure vertical stack on mobile */
   }
   .benevole-btn {
     font-size: 1rem;

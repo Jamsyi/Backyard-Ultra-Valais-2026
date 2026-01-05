@@ -109,6 +109,12 @@ function doPost(e) {
     var genre = safe_(fields.genre);
     var tshirt = safe_(fields.tshirt);
 
+    // Newsletter subscribe routing
+    var action = String(fields.action || "").toLowerCase();
+    if (action === "subscribe") {
+      return handleNewsletterSubscribe_(fields);
+    }
+
     var consentRaw = String(fields.agree_rules || "").toLowerCase();
     var consentFr = consentRaw === "yes" ? "Oui" : "Non";
 
