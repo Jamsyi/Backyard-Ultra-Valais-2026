@@ -36,7 +36,10 @@ function handleNewsletterSubscribe_(fields) {
 
     return json_({ ok: true });
   } catch (err) {
-    return json_({ ok: false, error: String(err && err.message ? err.message : err) });
+    return json_({
+      ok: false,
+      error: String(err && err.message ? err.message : err),
+    });
   }
 }
 
@@ -49,21 +52,31 @@ function isValidEmail_(email) {
  */
 function doPost(e) {
   try {
-    var fields = (e && e.parameter) ? e.parameter : {};
+    var fields = e && e.parameter ? e.parameter : {};
     // Also support JSON payloads (optional)
-    if (e && e.postData && /application\/json/i.test(String(e.postData.type||''))) {
-      try { fields = JSON.parse(String(e.postData.contents||'')||'{}'); } catch (_) {}
+    if (
+      e &&
+      e.postData &&
+      /application\/json/i.test(String(e.postData.type || ""))
+    ) {
+      try {
+        fields = JSON.parse(String(e.postData.contents || "") || "{}");
+      } catch (_) {}
     }
     return handleNewsletterSubscribe_(fields);
   } catch (err) {
-    return json_({ ok: false, error: String(err && err.message ? err.message : err) });
+    return json_({
+      ok: false,
+      error: String(err && err.message ? err.message : err),
+    });
   }
 }
 
 // ---- Minimal helpers (duplicated for standalone deployment) ----
 function json_(obj) {
-  return ContentService.createTextOutput(JSON.stringify(obj))
-    .setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(
+    ContentService.MimeType.JSON
+  );
 }
 
 function safe_(v) {
@@ -84,7 +97,10 @@ function ensureHeader_(sheet, header) {
   var values = range.getValues()[0];
   var needs = false;
   for (var i = 0; i < header.length; i++) {
-    if (values[i] !== header[i]) { needs = true; break; }
+    if (values[i] !== header[i]) {
+      needs = true;
+      break;
+    }
   }
   if (needs) {
     sheet.getRange(1, 1, 1, header.length).setValues([header]);
