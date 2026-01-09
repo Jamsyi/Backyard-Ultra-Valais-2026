@@ -332,6 +332,14 @@ fieldset.form-row {
 .payment-summary .summary-sep {
   opacity: 0.6;
 }
+.waitlist-note {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  color: var(--secondary-color);
+  font-weight: 700;
+}
 .payment-choices-wrapper {
   display: grid;
   gap: 1.6rem;
@@ -340,6 +348,7 @@ fieldset.form-row {
 }
 .payment-choice-card {
   /* Reuse inscription-format card styling via class composition */
+  display: block;
 }
 .payment-choice-card .format-content {
   display: flex;

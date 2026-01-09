@@ -500,6 +500,9 @@
             <strong id="payment-summary-price"></strong>
             <span>CHF</span>
           </div>
+          <p class="waitlist-note" id="waitlist-note" hidden>
+            LISTE D'ATTENTE ACTIVé
+          </p>
           <div class="payment-choices-wrapper">
             <a
               href="#"
@@ -730,9 +733,25 @@
         const summaryFormat = document.getElementById("summary-format");
         const summaryPrice = document.getElementById("summary-price");
         const backBtn = document.querySelector(".back-to-formats");
+        const waitlistNote = document.getElementById("waitlist-note");
         // Persist selected format & price across steps (incl. dev button)
         let currentFormatName = "";
         let currentBasePrice = 0;
+
+        function showWaitlistOnly() {
+          const choiceWrapper = document.querySelector(
+            ".payment-choices-wrapper"
+          );
+          const detailsWrapper = document.querySelector(
+            ".payment-details-wrapper"
+          );
+          if (choiceWrapper) choiceWrapper.hidden = true;
+          if (detailsWrapper) detailsWrapper.hidden = true;
+          if (waitlistNote) {
+            waitlistNote.hidden = false;
+            waitlistNote.style.display = "";
+          }
+        }
 
         // Dynamic pricing by date (inclusive ranges)
         function makeLocalDate(y, m, d) {
@@ -824,6 +843,22 @@
           if (soonNote) soonNote.style.display = "none";
           twintDetails && (twintDetails.hidden = true);
           bankDetails && (bankDetails.hidden = true);
+          if (waitlistNote) {
+            waitlistNote.hidden = true;
+            waitlistNote.style.display = "none";
+          }
+
+          // If INFINITY format selected, only show waitlist note
+          try {
+            const fmt =
+              currentFormatName ||
+              (summaryFormat && summaryFormat.textContent) ||
+              "";
+            if (resolveFormatKey(fmt) === "INFINITY") {
+              showWaitlistOnly();
+              return;
+            }
+          } catch (_) {}
           function showDetails(method) {
             choiceWrapper.hidden = true;
             detailsWrapper.hidden = false;
@@ -831,6 +866,10 @@
             if (formWrapper) formWrapper.style.display = "none";
             if (formatsWrapper) formatsWrapper.style.display = "none";
             if (soonNote) soonNote.style.display = "none";
+            if (waitlistNote) {
+              waitlistNote.hidden = true;
+              waitlistNote.style.display = "none";
+            }
             // Compute and display totals and format labels
             const fmt =
               currentFormatName ||
@@ -1172,9 +1211,21 @@
             if (psFmt) psFmt.textContent = fmt;
             if (psPrice) psPrice.textContent = String(base);
           } catch (_) {}
+          // If INFINITY format selected, show waitlist and skip methods
           try {
-            initPaymentCards();
-          } catch (_) {}
+            const fmt = currentFormatName || summaryFormat?.textContent || "";
+            if (resolveFormatKey(fmt) === "INFINITY") {
+              showWaitlistOnly();
+            } else {
+              try {
+                initPaymentCards();
+              } catch (_) {}
+            }
+          } catch (_) {
+            try {
+              initPaymentCards();
+            } catch (_) {}
+          }
           window.scrollTo({
             top: paymentSection.offsetTop - 80,
             behavior: "smooth",
