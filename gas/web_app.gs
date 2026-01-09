@@ -108,6 +108,17 @@ function doPost(e) {
     var birthdate = safe_(fields.birthdate);
     var genre = safe_(fields.genre);
     var tshirt = safe_(fields.tshirt);
+    var pays = safe_(fields.pays);
+    var canton = safe_(fields.canton);
+    var commune = safe_(fields.commune);
+    var club = safe_(fields.club);
+    var phone = safe_(fields.phone);
+    var emergency_name = safe_(fields.emergency_name);
+    var emergency_phone = safe_(fields.emergency_phone);
+    var display_location = safe_(fields.display_location);
+    var poke_bowl = safe_(fields.poke_bowl);
+    var poke_bowl_wants = safe_(fields.poke_bowl_wants);
+    var bowlWantsIsYes = String(poke_bowl_wants).toLowerCase() === "oui";
 
     // Newsletter subscribe routing
     var action = String(fields.action || "").toLowerCase();
@@ -159,36 +170,58 @@ function doPost(e) {
       "Format",
       "Prénom",
       "Nom",
-      "Email",
-      "Date de naissance",
-      "Age au 03/04/2026",
       "Genre",
+      "Date de naissance",
+      "Âge au 03/04/2026",
+      "Téléphone",
+      "Email",
+      "Pays",
+      "Canton",
+      "Commune",
+      "Club / Entreprise / Groupe",
       "T-shirt",
       "Règlement lu",
       "Paiement",
       "Lettre de confirmation",
+      "",
+      "Contact d'urgence - Nom",
+      "Contact d'urgence - Téléphone",
+      "Afficher localisation",
       "Pièce jointe",
       "Drive URL",
       "Drive File ID",
+      "Poké Bowl souhaité",
+      "Type de Poké Bowl",
     ]);
 
     var ageAtRef = calcAgeAt_(birthdate, new Date(2026, 3, 3)); // 03 April 2026 (month is 0-based)
     sheet.appendRow([
-      new Date(),
-      format,
-      prenom,
-      nom,
-      email,
-      birthdate,
-      ageAtRef,
-      genre,
-      tshirt,
-      consentFr,
+      new Date(), // Timestamp
+      format, // Format
+      prenom, // Prénom
+      nom, // Nom
+      genre, // Genre
+      birthdate, // Date de naissance
+      ageAtRef, // Âge au 03/04/2026
+      "'" + phone, // Téléphone (force text in Sheet)
+      email, // Email
+      pays, // Pays
+      canton, // Canton
+      commune, // Commune
+      club, // Club / Entreprise / Groupe
+      tshirt, // T-shirt
+      consentFr, // Règlement lu
       "", // Paiement (à cocher manuellement)
       "", // Lettre de confirmation (à cocher manuellement)
-      attachmentName,
-      driveFileUrl,
-      driveFileId,
+      "", // Colonne vide avant contact d'urgence
+      emergency_name, // Contact d'urgence - Nom
+      "'" + emergency_phone, // Contact d'urgence - Téléphone (force text in Sheet)
+      display_location, // Afficher localisation
+      attachmentName, // Pièce jointe
+      driveFileUrl, // Drive URL
+      driveFileId, // Drive File ID
+      bowlWantsIsYes ? poke_bowl_wants : "", // Poké Bowl souhaité
+      bowlWantsIsYes ? poke_bowl : "", // Type de Poké Bowl
     ]);
 
     // Send email to organizer
@@ -204,12 +237,32 @@ function doPost(e) {
       "Genre: " + genre,
       "T-shirt: " + tshirt,
       "",
+      "Pays: " + pays,
+      "Canton: " + canton,
+      "Commune: " + commune,
+      club
+        ? "Club/Entreprise/Groupe: " + club
+        : "Club/Entreprise/Groupe: (non indiqué)",
+      "Téléphone: " + phone,
+      "Contact d'urgence: " + emergency_name + " (" + emergency_phone + ")",
+      "Afficher localisation: " + (display_location || "(non précisé)"),
+      "",
       "Règlement lu: " + consentFr,
       attachmentName
         ? "Pièce jointe: " + attachmentName
         : "Pièce jointe: (aucune)",
       driveFileUrl ? "Lien Drive: " + driveFileUrl : "Lien Drive: (aucun)",
     ];
+
+    // Add Poké Bowl lines only if explicitly chosen "Oui"
+    if (bowlWantsIsYes) {
+      bodyLines.splice(
+        17,
+        0,
+        poke_bowl ? "Poké Bowl: " + poke_bowl : "Poké Bowl: (non choisi)",
+        "Poké Bowl souhaité: Oui"
+      );
+    }
 
     if (attachment) {
       MailApp.sendEmail({

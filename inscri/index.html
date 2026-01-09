@@ -197,7 +197,7 @@
                 alt="Format Infinity"
                 class="format-logo"
               />
-              <h2>INFINITY</h2>
+              <h2>INFINITY <span class="format-by">by Happy Bowl</span></h2>
               <p>Boucles illimitées. Solo. Dernier debout.</p>
               <span class="status-tag">Bientôt</span>
             </div>
@@ -260,35 +260,95 @@
                 autocomplete="off"
               />
             </div>
-            <div class="form-row">
-              <label for="prenom">Prénom *</label>
-              <input
-                id="prenom"
-                name="prenom"
-                type="text"
-                required
-                autocomplete="given-name"
-              />
+            <div class="form-row two-cols">
+              <div class="col">
+                <label for="prenom">Prénom *</label>
+                <input
+                  id="prenom"
+                  name="prenom"
+                  type="text"
+                  required
+                  autocomplete="given-name"
+                />
+              </div>
+              <div class="col">
+                <label for="nom">Nom *</label>
+                <input
+                  id="nom"
+                  name="nom"
+                  type="text"
+                  required
+                  autocomplete="family-name"
+                />
+              </div>
             </div>
-            <div class="form-row">
-              <label for="nom">Nom *</label>
-              <input
-                id="nom"
-                name="nom"
-                type="text"
-                required
-                autocomplete="family-name"
-              />
+            <div class="form-row two-cols">
+              <div class="col">
+                <label for="email">Email *</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+              <div class="col">
+                <label for="phone">Numéro de téléphone *</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  autocomplete="tel"
+                  inputmode="tel"
+                  placeholder="ex: +41 79 123 45 67"
+                  pattern="^\+?[0-9\s\-()]{7,20}$"
+                  title="Format attendu: +41 79 123 45 67 ou 079 123 45 67"
+                />
+              </div>
             </div>
+            <fieldset class="form-row">
+              <legend>Localisation</legend>
+              <div class="form-row">
+                <label for="pays">Pays *</label>
+                <input id="pays" name="pays" type="text" required />
+              </div>
+              <div class="form-row two-cols">
+                <div class="col">
+                  <label for="canton">Canton</label>
+                  <input id="canton" name="canton" type="text" />
+                </div>
+                <div class="col">
+                  <label for="commune">Commune</label>
+                  <input id="commune" name="commune" type="text" />
+                </div>
+              </div>
+              <div class="form-row">
+                <label
+                  >Souhaites-tu afficher ton canton ou ta commune dans le
+                  classement ? *</label
+                >
+                <div class="choices-inline">
+                  <label
+                    ><input
+                      type="radio"
+                      name="display_location"
+                      value="Oui"
+                      required
+                    />
+                    Oui</label
+                  >
+                  <label
+                    ><input type="radio" name="display_location" value="Non" />
+                    Non</label
+                  >
+                </div>
+              </div>
+            </fieldset>
             <div class="form-row">
-              <label for="email">Email *</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                autocomplete="email"
-              />
+              <label for="club">Club / Entreprise / Groupe (optionnel)</label>
+              <input id="club" name="club" type="text" />
             </div>
             <div class="form-row">
               <label for="birthdate">Date de naissance *</label>
@@ -321,7 +381,76 @@
                 <option value="XL">XL</option>
               </select>
             </div>
+            <fieldset class="form-row">
+              <legend>Contact d'urgence</legend>
+              <div class="form-row two-cols">
+                <div class="col">
+                  <label for="emergency_name">Nom et prénom *</label>
+                  <input
+                    id="emergency_name"
+                    name="emergency_name"
+                    type="text"
+                    required
+                  />
+                </div>
+                <div class="col">
+                  <label for="emergency_phone">Numéro de téléphone *</label>
+                  <input
+                    id="emergency_phone"
+                    name="emergency_phone"
+                    type="tel"
+                    required
+                    autocomplete="tel"
+                    inputmode="tel"
+                    placeholder="ex: +41 79 123 45 67"
+                    pattern="^\+?[0-9\s\-()]{7,20}$"
+                    title="Format attendu: +41 79 123 45 67 ou 079 123 45 67"
+                  />
+                </div>
+              </div>
+            </fieldset>
             <div class="form-actions">
+              <!-- Infinity-only optional Poké Bowl: single embedded box with toggle + conditional options -->
+              <div class="form-row" id="poke-bowl-box" hidden>
+                <label
+                  >Souhaites-tu profiter d'un Poké Bowl cuisiné par Happy Bowl
+                  (Sion) ?</label
+                >
+                <div class="choices-inline">
+                  <label
+                    ><input type="radio" name="poke_bowl_wants" value="Oui" />
+                    Oui</label
+                  >
+                  <label
+                    ><input type="radio" name="poke_bowl_wants" value="Non" />
+                    Non</label
+                  >
+                </div>
+                <p class="form-hint">
+                  Optionnel – <span class="bowl-price">15 CHF</span>, servi le
+                  jour de la course à Ardon.
+                </p>
+                <div class="form-row" id="poke-bowl-options" hidden>
+                  <label>Choix du Poké Bowl</label>
+                  <div class="choices-inline">
+                    <label>
+                      <input type="radio" name="poke_bowl" value="Poulet" />
+                      Poulet : Riz basmati, poulet, mangue, concombre, carottes
+                      et oignon frit
+                    </label>
+                    <label>
+                      <input type="radio" name="poke_bowl" value="Poisson" />
+                      Poisson : Riz basmati, saumon, avocat, chou blanc, oignon
+                      rouge, ciboulette
+                    </label>
+                    <label>
+                      <input type="radio" name="poke_bowl" value="Végé" />
+                      Végé : Quinoa, falafel, chou rouge, radis, edamame, graine
+                      de sésame
+                    </label>
+                  </div>
+                </div>
+              </div>
               <div class="form-row" style="margin-bottom: 12px">
                 <label>
                   <input
@@ -602,6 +731,49 @@
           formWrapper.hidden = false;
           formatsWrapper.style.display = "none";
           soonNote.style.display = "none";
+          // Show Poké Bowl section only for Infinity
+          // Infinity-only Poké Bowl: single embedded box + conditional options
+          const bowlBox = document.getElementById("poke-bowl-box");
+          const optionsRow = document.getElementById("poke-bowl-options");
+          const isInfinity = /infinity\.png$/i.test(link.dataset.img || "");
+          if (bowlBox && optionsRow) {
+            // Show only for Infinity
+            bowlBox.hidden = !isInfinity;
+            optionsRow.hidden = true;
+            // Reset and wire radios
+            const wantsRadios = bowlBox.querySelectorAll(
+              'input[name="poke_bowl_wants"]'
+            );
+            const dishRadios = optionsRow.querySelectorAll(
+              'input[name="poke_bowl"]'
+            );
+            wantsRadios.forEach((r) => {
+              r.checked = false;
+              r.disabled = !isInfinity;
+              r.required = isInfinity;
+            });
+            dishRadios.forEach((r) => {
+              r.checked = false;
+              r.required = false;
+              r.disabled = !isInfinity;
+            });
+            function updateOptionsVisibility() {
+              const wants = bowlBox.querySelector(
+                'input[name="poke_bowl_wants"]:checked'
+              )?.value;
+              const show = wants === "Oui";
+              optionsRow.hidden = !show;
+              dishRadios.forEach((r) => {
+                r.required = show;
+                if (!show) r.checked = false;
+              });
+            }
+            if (isInfinity) {
+              wantsRadios.forEach((r) =>
+                r.addEventListener("change", updateOptionsVisibility)
+              );
+            }
+          }
           window.scrollTo({
             top: formWrapper.offsetTop - 80,
             behavior: "smooth",
@@ -628,6 +800,28 @@
           formatsWrapper.style.display = "";
           soonNote.style.display = "";
           summary.hidden = true;
+          const bowlBox = document.getElementById("poke-bowl-box");
+          const optionsRow = document.getElementById("poke-bowl-options");
+          if (bowlBox && optionsRow) {
+            bowlBox.hidden = true;
+            optionsRow.hidden = true;
+            const wantsRadios = bowlBox.querySelectorAll(
+              'input[name="poke_bowl_wants"]'
+            );
+            const dishRadios = optionsRow.querySelectorAll(
+              'input[name="poke_bowl"]'
+            );
+            wantsRadios.forEach((r) => {
+              r.checked = false;
+              r.disabled = false;
+              r.required = false;
+            });
+            dishRadios.forEach((r) => {
+              r.checked = false;
+              r.required = false;
+              r.disabled = false;
+            });
+          }
           window.scrollTo({
             top: formatsWrapper.offsetTop - 80,
             behavior: "smooth",
@@ -727,6 +921,16 @@
             };
             reader.readAsDataURL(file);
           } else {
+            // Remove Poké Bowl fields unless INFINITY and 'Oui'
+            try {
+              const fmt = (payload.format || "").toUpperCase();
+              const wants = payload.poke_bowl_wants || "";
+              const isInfinity = /INFINITY/.test(fmt);
+              if (!isInfinity || wants !== "Oui") {
+                delete payload.poke_bowl_wants;
+                delete payload.poke_bowl;
+              }
+            } catch (_) {}
             sendPayload(payload);
           }
         });

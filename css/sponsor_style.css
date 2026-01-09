@@ -31,6 +31,13 @@
   margin-bottom: 24px;
 }
 
+/* White background variant for Partenaires institutionnels */
+.sponsor-category-block.institutionnels {
+  background: #ffffff;
+  border: 1px solid #000000; /* solid black outline */
+  box-shadow: none; /* remove dark shadow */
+}
+
 .sponsor-card-title {
   display: flex;
   align-items: center;
@@ -54,29 +61,31 @@
   padding: 16px;
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 20px;
+  align-items: center; /* Center logos vertically within each row */
 }
 
 .sponsor-logo {
   display: inline-block;
-  background: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 10px 12px;
-  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0 12px; /* add horizontal padding for consistent spacing */
+  text-decoration: none;
+  transition: opacity 0.2s ease;
 }
 
 .sponsor-logo:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(241, 132, 40, 0.25);
-  border-color: rgba(241, 132, 40, 0.35);
+  opacity: 0.9;
 }
 
 .sponsor-logo img {
-  max-width: 160px;
-  max-height: 90px;
-  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));
+  height: auto; /* respect HTML width attribute and keep aspect ratio */
+  max-width: 100%; /* prevent overflow of the container */
+  filter: none; /* no shadow on logos */
 }
+
+/* Removed group-based sizing; per-image width is controlled via HTML attributes */
 
 @media (max-width: 768px) {
   .sponsor-card-title {
@@ -84,7 +93,10 @@
     padding: 12px 14px;
   }
   .sponsor-logo img {
-    max-width: 130px;
-    max-height: 70px;
+    height: auto;
+    max-width: 100%;
+  }
+  .sponsor-logo {
+    padding: 0 8px; /* slightly smaller padding on mobile */
   }
 }

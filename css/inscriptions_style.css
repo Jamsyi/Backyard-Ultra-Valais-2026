@@ -148,6 +148,17 @@ form#inscription-form {
   flex-direction: column;
   gap: 0.5rem;
 }
+/* Two-column row for placing fields side-by-side */
+.form-row.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.form-row.two-cols > .col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 .form-row label,
 fieldset legend {
   font-size: 0.85rem;
@@ -158,6 +169,7 @@ fieldset legend {
 input[type="text"],
 input[type="email"],
 input[type="number"],
+input[type="tel"],
 select {
   background: #161616;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -166,6 +178,12 @@ select {
   border-radius: 10px;
   font-size: 0.95rem;
   font-family: inherit;
+}
+/* Placeholder styling for inputs */
+.form-row input::placeholder {
+  color: #bbbbbb;
+  opacity: 0.85;
+  font-weight: 300;
 }
 input:focus,
 select:focus {
@@ -236,6 +254,10 @@ fieldset.form-row {
   }
   .choices-inline {
     gap: 0.8rem;
+  }
+  /* Stack two-column rows on small screens */
+  .form-row.two-cols {
+    grid-template-columns: 1fr;
   }
 }
 @keyframes fadeIn {
@@ -452,6 +474,37 @@ fieldset.form-row {
 /* Parental authorization upload row */
 #parental-upload-row[hidden] {
   display: none !important;
+}
+
+/* Force-hide Infinity-only section when hidden */
+/* Infinity Poké Bowl rows: hidden by default */
+#poke-bowl-toggle-row[hidden],
+#poke-bowl-options-row[hidden] {
+  display: none !important;
+}
+/* Infinity Poké Bowl embedded box styling */
+#poke-bowl-box {
+  background: #222;
+  border: 1px solid rgba(241, 132, 40, 0.25);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(241, 132, 40, 0.12);
+}
+#poke-bowl-box[hidden],
+#poke-bowl-options[hidden] {
+  display: none !important;
+}
+#poke-bowl-box > label {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+/* Highlighted price inside the Poké Bowl box */
+.bowl-price {
+  color: var(--secondary-color);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
 }
 
 #parental-upload-row {

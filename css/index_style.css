@@ -1,3 +1,18 @@
+/* Small gray sponsor note next to format titles */
+.format-title .format-by {
+  color: #8a8a8a;
+  font-weight: 300;
+  margin-left: 8px;
+  letter-spacing: 0.2px;
+  font-size: 24px;
+}
+
+.format-by {
+  color: #8a8a8a;
+  font-weight: 300;
+  margin-left: 8px;
+  font-size: 24px;
+}
 /* Force gray buttons only within Formats section */
 .formats .format-panel .btn,
 .formats .format-content .btn,
