@@ -858,8 +858,10 @@
             const wantsBowl =
               (document.querySelector('input[name="poke_bowl_wants"]:checked')
                 ?.value || "") === "Oui";
-            const isInfinity = /INFINITY/.test(String(fmt).toUpperCase());
-            const bowlFee = isInfinity && wantsBowl ? 15 : 0;
+            const allowsBowl = /(INFINITY|EXPLORER)/.test(
+              String(fmt).toUpperCase()
+            );
+            const bowlFee = allowsBowl && wantsBowl ? 15 : 0;
             const twTotalEl = document.getElementById("twint-total");
             const bkTotalEl = document.getElementById("bank-total");
             const twFmtEl = document.getElementById("twint-format");
@@ -877,7 +879,7 @@
             if (bkFmtEl) bkFmtEl.textContent = fmt;
             // Extras line for Poké Bowl under total price
             let extrasText = "";
-            if (isInfinity && wantsBowl) {
+            if (allowsBowl && wantsBowl) {
               const dish = (
                 document.querySelector('input[name="poke_bowl"]:checked')
                   ?.value || ""
@@ -1016,15 +1018,17 @@
           }
           formatsWrapper.style.display = "none";
           soonNote.style.display = "none";
-          // Show Poké Bowl section only for Infinity
-          // Infinity-only Poké Bowl: single embedded box + conditional options
+          // Show Poké Bowl section for Infinity and Explorer
+          // Poké Bowl: single embedded box + conditional options
           const bowlBox = document.getElementById("poke-bowl-box");
           const optionsRow = document.getElementById("poke-bowl-options");
-          // More robust Infinity detection: use selected format name
-          const isInfinity = /INFINITY/.test(formatName.toUpperCase());
+          // Allow Poké Bowl for both INFINITY and EXPLORER
+          const allowsBowl = /(INFINITY|EXPLORER)/.test(
+            formatName.toUpperCase()
+          );
           if (bowlBox && optionsRow) {
-            // Show only for Infinity
-            if (isInfinity) {
+            // Show only for allowed formats
+            if (allowsBowl) {
               bowlBox.hidden = false;
               bowlBox.style.display = "";
               try {
@@ -1051,13 +1055,13 @@
             );
             wantsRadios.forEach((r) => {
               r.checked = false;
-              r.disabled = !isInfinity;
-              r.required = isInfinity;
+              r.disabled = !allowsBowl;
+              r.required = allowsBowl;
             });
             dishRadios.forEach((r) => {
               r.checked = false;
               r.required = false;
-              r.disabled = !isInfinity;
+              r.disabled = !allowsBowl;
             });
             function updateOptionsVisibility() {
               const wants = bowlBox.querySelector(
@@ -1075,7 +1079,7 @@
                 if (!show) r.checked = false;
               });
             }
-            if (isInfinity) {
+            if (allowsBowl) {
               wantsRadios.forEach((r) =>
                 r.addEventListener("change", updateOptionsVisibility)
               );
@@ -1268,8 +1272,8 @@
             try {
               const fmt = (payload.format || "").toUpperCase();
               const wants = payload.poke_bowl_wants || "";
-              const isInfinity = /INFINITY/.test(fmt);
-              if (!isInfinity || wants !== "Oui") {
+              const allowsBowl = /(INFINITY|EXPLORER)/.test(fmt);
+              if (!allowsBowl || wants !== "Oui") {
                 delete payload.poke_bowl_wants;
                 delete payload.poke_bowl;
               }
