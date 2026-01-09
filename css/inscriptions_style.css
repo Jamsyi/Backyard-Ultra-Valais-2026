@@ -319,6 +319,52 @@ fieldset.form-row {
   flex-direction: column;
   gap: 2rem;
 }
+.payment-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+.payment-summary .summary-label {
+  opacity: 0.85;
+}
+.payment-summary .summary-sep {
+  opacity: 0.6;
+}
+.payment-choices-wrapper {
+  display: grid;
+  gap: 1.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: stretch;
+}
+.payment-choice-card {
+  /* Reuse inscription-format card styling via class composition */
+}
+.payment-choice-card .format-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.payment-choice-card .fee-tag {
+  position: absolute;
+  bottom: 0.9rem;
+  right: 1rem;
+  background: var(--secondary-color);
+  color: #111;
+  font-weight: 700;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+}
+.inscription-format .format-logo.icon {
+  width: auto;
+  height: auto;
+  font-size: 32px;
+  margin: 0 0 1rem;
+}
 .payment-intro {
   font-size: 0.9rem;
   line-height: 1.5;
@@ -396,6 +442,63 @@ fieldset.form-row {
 }
 .payment-footer a {
   color: var(--secondary-color);
+}
+
+/* Payment totals highlight */
+.payment-total-highlight {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0.4rem 0 0.6rem;
+  font-family: "Russo One", sans-serif;
+  font-size: 1.6rem;
+  color: var(--secondary-color);
+}
+.payment-total-highlight .fee-note {
+  font-size: 0.9rem;
+  color: #bbb;
+  font-weight: 600;
+}
+.payment-format {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  margin: 0 0 0.6rem;
+}
+.payment-actions {
+  margin-top: 0.8rem;
+}
+
+/* Bank details emphasis */
+#payment-details-bank h3 {
+  font-size: 1.25rem;
+}
+#payment-details-bank .payment-details {
+  font-size: 1rem;
+  line-height: 1.6;
+  gap: 0.5rem;
+  opacity: 1;
+}
+#payment-details-bank .payment-details li strong {
+  font-weight: 700;
+}
+/* Box styling for bank details */
+#payment-details-bank .bank-info-box {
+  background: rgba(0, 0, 0, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.6);
+}
+#payment-details-bank .payment-details li {
+  list-style: none;
+  margin: 0.4rem 0;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.14);
+}
+#payment-details-bank .payment-details li strong {
+  display: block;
+  color: var(--secondary-color);
+  margin-bottom: 0.15rem;
 }
 
 /* Règlement link highlight */

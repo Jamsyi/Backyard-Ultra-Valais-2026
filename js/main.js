@@ -502,23 +502,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Fully disable inscription buttons in Formats section
-    try {
-        const disabledButtons = document.querySelectorAll('.formats .format-panel .btn, .formats .inscription-link');
-        disabledButtons.forEach(btn => {
-            // Visual disabled class (optional if CSS targets .disabled)
-            btn.classList.add('disabled');
-            // Remove from tab order
-            btn.setAttribute('tabindex', '-1');
-            // Block clicks
+        // Allow inscription buttons in Formats section to function normally
+        // Previously these were deliberately disabled; removing that behavior so links navigate.
+        const enabledButtons = document.querySelectorAll('.formats .format-panel .btn, .formats .inscription-link');
+        enabledButtons.forEach(btn => {
+            btn.removeAttribute('tabindex'); // Allow tab order
+            btn.classList.remove('disabled'); // Remove visual disabled class
             btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                return false;
+                // Allow default action
+                window.location.href = '/inscriptions'; // Navigate to inscriptions
             });
         });
-    } catch (err) {
-        console.warn('Could not disable inscription buttons', err);
-    }
 
     // Auto-update tariff progress bars based on current date
     try {

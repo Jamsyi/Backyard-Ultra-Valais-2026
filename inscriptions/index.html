@@ -197,9 +197,8 @@
                 alt="Format Infinity"
                 class="format-logo"
               />
-              <h2>INFINITY <span class="format-by">by Happy Bowl</span></h2>
+              <h2>INFINITY <span class="format-by">by Baobab Energy</span></h2>
               <p>Boucles illimitées. Solo. Dernier debout.</p>
-              <span class="status-tag">Bientôt</span>
             </div>
           </a>
           <a
@@ -218,7 +217,6 @@
               />
               <h2>EXPLORER</h2>
               <p>Format découverte sur nombre de boucles limité.</p>
-              <span class="status-tag">Bientôt</span>
             </div>
           </a>
         </div>
@@ -497,80 +495,90 @@
         <!-- Section Paiement (masquée au départ) -->
         <div class="payment-section" aria-labelledby="paiement-title" hidden>
           <h2 id="paiement-title" class="form-title">Paiement</h2>
-          <p class="payment-intro">
-            Le paiement est requis pour valider définitivement votre inscription
-            une fois le formulaire ouvert. Deux méthodes seront proposées :
-            TWINT (préféré) ou virement bancaire.
-          </p>
-          <p class="selected-summary" id="selected-summary" hidden>
-            Format choisi : <strong id="summary-format"></strong> —
-            <strong id="summary-price"></strong> CHF
-          </p>
-          <div class="payment-methods">
-            <div class="payment-card twint">
-              <h3 class="payment-heading">
-                <i class="fa-brands fa-twint"></i> Paiement TWINT
-              </h3>
-              <p>
-                Scannez le QR code ci-dessous avec votre application TWINT et
-                indiquez en remarque :
-                <strong>"Nom Prénom - Format"</strong> (ex:
-                <em>Durand Marie - Infinity</em>).
-              </p>
-              <div class="twint-qr-wrapper">
+          <div class="payment-summary">
+            <span class="summary-label">Format:</span>
+            <strong id="payment-summary-format"></strong>
+            <span class="summary-sep">•</span>
+            <span class="summary-label">Prix:</span>
+            <strong id="payment-summary-price"></strong>
+            <span>CHF</span>
+          </div>
+          <div class="payment-choices-wrapper">
+            <a
+              href="#"
+              class="inscription-format payment-choice-card"
+              data-method="twint"
+              tabindex="0"
+            >
+              <div class="format-content">
                 <img
-                  src="../images/twintbtn.jpg"
-                  alt="QR Code TWINT"
-                  class="twint-qr"
+                  src="../images/twintlogo.png"
+                  alt="TWINT"
+                  class="format-logo"
                 />
+                <h2>TWINT</h2>
+
+                <span class="fee-tag">+1 CHF frais</span>
               </div>
-              <ul class="payment-details">
-                <li>
-                  <strong>Montant:</strong>
-                  <span id="payment-section-price">(à définir)</span> CHF
-                </li>
-                <li>
-                  <strong>Remarque:</strong> Nom Prénom - Infinity / Explorer
-                </li>
-              </ul>
-              <p class="payment-note">
-                Validation quasi immédiate. Merci de privilégier cette méthode.
+            </a>
+            <a
+              href="#"
+              class="inscription-format payment-choice-card"
+              data-method="bank"
+              tabindex="0"
+            >
+              <div class="format-content">
+                <i
+                  class="fa-solid fa-building-columns format-logo icon"
+                  aria-hidden="true"
+                ></i>
+                <h2>Virement bancaire</h2>
+              </div>
+            </a>
+          </div>
+          <div class="payment-details-wrapper" hidden>
+            <div id="payment-details-twint" hidden>
+              <h3>Paiement TWINT</h3>
+              <div class="payment-total-highlight">
+                <span id="twint-total">0</span>
+                <span>CHF</span>
+                <span class="fee-note">(+1 CHF frais inclus)</span>
+              </div>
+              <p class="payment-extras" id="twint-extras" hidden></p>
+              <p class="payment-format">
+                <strong id="twint-format"></strong>
               </p>
+              <div class="payment-actions">
+                <a
+                  class="submit-btn"
+                  id="twint-pay-link"
+                  href="https://go.twint.ch/1/e/tw?tw=acq.zXMzIZp8TpOTjIqBPeO4PxTBKDjflBHOH9oLJo-qPOmf0Kwo0vt3nOo4FbL_Fx0u"
+                  rel="noopener"
+                >
+                  Payer via TWINT
+                </a>
+              </div>
             </div>
-            <div class="payment-card bank">
-              <h3 class="payment-heading">
-                <i class="fa-solid fa-building-columns"></i> Virement bancaire
-              </h3>
-              <p>
-                Si vous ne pouvez pas utiliser TWINT, effectuez un virement
-                bancaire avec les informations ci-dessous. Le traitement peut
-                prendre quelques jours.
+            <div id="payment-details-bank" hidden>
+              <h3>Virement bancaire</h3>
+              <div class="payment-total-highlight">
+                <span id="bank-total">0</span>
+                <span>CHF</span>
+              </div>
+              <p class="payment-extras" id="bank-extras" hidden></p>
+              <p class="payment-format">
+                <strong id="bank-format"></strong>
               </p>
-              <ul class="payment-details">
-                <li><strong>Bénéficiaire:</strong> Backyard Ultra Valais</li>
-                <li>
-                  <strong>IBAN:</strong> CH00 0000 0000 0000 0000 0 (exemple)
-                </li>
-                <li><strong>Banque:</strong> (à confirmer)</li>
-                <li><strong>SWIFT / BIC:</strong> (si nécessaire)</li>
-                <li>
-                  <strong>Communication:</strong> Nom Prénom - Infinity /
-                  Explorer
-                </li>
-              </ul>
-              <p class="payment-note">
-                Veuillez vérifier que toutes les informations sont correctes.
-                Remplacez les champs <em>(exemple)</em> par les données
-                officielles lorsque disponibles.
-              </p>
+              <div class="bank-info-box">
+                <ul class="payment-details">
+                  <li><strong>Bénéficiaire:</strong> Backyard Ultra Valais</li>
+                  <li><strong>Adresse:</strong> 1912 Leytron</li>
+                  <li><strong>IBAN:</strong> CH06 8080 8007 9890 2427 1</li>
+                  <li><strong>SWIFT-BIC:</strong> RAIFCH22</li>
+                </ul>
+              </div>
             </div>
           </div>
-          <p class="payment-footer">
-            En cas de question paiement:
-            <a href="mailto:backyardultravalais@gmail.com"
-              >backyardultravalais@gmail.com</a
-            >
-          </p>
         </div>
       </div>
     </main>
@@ -695,14 +703,22 @@
     <script src="../js/main.js"></script>
     <script>
       (function () {
-        const formatLinks = document.querySelectorAll(".inscription-format");
+        // Scope to format cards only (avoid payment cards)
+        const formatLinks = document.querySelectorAll(
+          ".formats-wrapper .inscription-format"
+        );
         const formatsWrapper = document.querySelector(".formats-wrapper");
         const soonNote = document.querySelector(".soon-note");
+        const pageHead = document.getElementById("inscriptions-title");
+        const subHeadEl = document.querySelector(".sub-head");
         const formWrapper = document.querySelector(
           ".registration-form-wrapper"
         );
         const paymentSection = document.querySelector(".payment-section");
         const goPaymentBtn = document.getElementById("go-payment-btn");
+        const defaultGoPaymentText = goPaymentBtn
+          ? goPaymentBtn.textContent
+          : "Passer au paiement";
         const selectedFormatInput = document.getElementById(
           "selected-format-input"
         );
@@ -717,29 +733,318 @@
         const summaryFormat = document.getElementById("summary-format");
         const summaryPrice = document.getElementById("summary-price");
         const backBtn = document.querySelector(".back-to-formats");
+        // Persist selected format & price across steps (incl. dev button)
+        let currentFormatName = "";
+        let currentBasePrice = 0;
+
+        // Dynamic pricing by date (inclusive ranges)
+        function makeLocalDate(y, m, d) {
+          // Use local noon to avoid DST midnight edge-cases
+          return new Date(y, m - 1, d, 12, 0, 0, 0);
+        }
+
+        const PRICING = {
+          INFINITY: [
+            {
+              label: "Early Bird",
+              price: 60,
+              start: makeLocalDate(2026, 1, 9),
+              end: makeLocalDate(2026, 1, 31),
+            },
+            {
+              label: "Standard",
+              price: 65,
+              start: makeLocalDate(2026, 2, 1),
+              end: makeLocalDate(2026, 3, 7),
+            },
+            {
+              label: "Last Chance",
+              price: 70,
+              start: makeLocalDate(2026, 3, 8),
+              end: makeLocalDate(2026, 4, 2),
+            },
+          ],
+          EXPLORER: [
+            {
+              label: "Early Bird",
+              price: 35,
+              start: makeLocalDate(2026, 1, 9),
+              end: makeLocalDate(2026, 1, 31),
+            },
+            {
+              label: "Standard",
+              price: 40,
+              start: makeLocalDate(2026, 2, 1),
+              end: makeLocalDate(2026, 3, 7),
+            },
+            {
+              label: "Last Chance",
+              price: 45,
+              start: makeLocalDate(2026, 3, 8),
+              end: makeLocalDate(2026, 4, 2),
+            },
+          ],
+        };
+
+        function resolveFormatKey(name) {
+          const n = String(name || "").toUpperCase();
+          if (n.includes("INFINITY")) return "INFINITY";
+          if (n.includes("EXPLORER")) return "EXPLORER";
+          return "";
+        }
+
+        function getPriceInfo(formatName, now = new Date()) {
+          const key = resolveFormatKey(formatName);
+          const tiers = PRICING[key] || [];
+          if (!tiers.length) return { label: "", price: 0 };
+          for (const t of tiers) {
+            if (now >= t.start && now <= t.end) return t;
+          }
+          // Fallbacks: before first → first tier; after last → last tier
+          if (now < tiers[0].start) return tiers[0];
+          return tiers[tiers.length - 1];
+        }
+
+        function initPaymentCards() {
+          const choiceWrapper = document.querySelector(
+            ".payment-choices-wrapper"
+          );
+          const detailsWrapper = document.querySelector(
+            ".payment-details-wrapper"
+          );
+          const twintDetails = document.getElementById("payment-details-twint");
+          const bankDetails = document.getElementById("payment-details-bank");
+          const cards = document.querySelectorAll(
+            ".payment-choice-card.inscription-format"
+          );
+          if (!choiceWrapper || !detailsWrapper || !cards.length) return;
+          // Reset view
+          detailsWrapper.hidden = true;
+          choiceWrapper.hidden = false;
+          if (formWrapper) formWrapper.hidden = true;
+          if (formWrapper) formWrapper.style.display = "none";
+          if (formatsWrapper) formatsWrapper.style.display = "none";
+          if (soonNote) soonNote.style.display = "none";
+          twintDetails && (twintDetails.hidden = true);
+          bankDetails && (bankDetails.hidden = true);
+          function showDetails(method) {
+            choiceWrapper.hidden = true;
+            detailsWrapper.hidden = false;
+            if (formWrapper) formWrapper.hidden = true;
+            if (formWrapper) formWrapper.style.display = "none";
+            if (formatsWrapper) formatsWrapper.style.display = "none";
+            if (soonNote) soonNote.style.display = "none";
+            // Compute and display totals and format labels
+            const fmt =
+              currentFormatName ||
+              (summaryFormat && summaryFormat.textContent) ||
+              "";
+            const paySummaryPriceEl = document.getElementById(
+              "payment-summary-price"
+            );
+            const base =
+              parseFloat(
+                String(paySummaryPriceEl?.textContent || "").replace(
+                  /[^0-9.]/g,
+                  ""
+                )
+              ) ||
+              0 ||
+              currentBasePrice ||
+              parseFloat(
+                String(
+                  (summaryPrice && summaryPrice.textContent) || "0"
+                ).replace(/[^0-9.]/g, "")
+              ) ||
+              0;
+            // Add Poké Bowl fee (+15 CHF) only if INFINITY and user selected "Oui"
+            const wantsBowl =
+              (document.querySelector('input[name="poke_bowl_wants"]:checked')
+                ?.value || "") === "Oui";
+            const isInfinity = /INFINITY/.test(String(fmt).toUpperCase());
+            const bowlFee = isInfinity && wantsBowl ? 15 : 0;
+            const twTotalEl = document.getElementById("twint-total");
+            const bkTotalEl = document.getElementById("bank-total");
+            const twFmtEl = document.getElementById("twint-format");
+            const bkFmtEl = document.getElementById("bank-format");
+            const twExtrasEl = document.getElementById("twint-extras");
+            const bkExtrasEl = document.getElementById("bank-extras");
+            const feeTwint = 1;
+            const feeBank = 0;
+            // Always compute both totals to avoid any 0 display
+            const twTotal = Math.round(base + bowlFee + feeTwint);
+            const bkTotal = Math.round(base + bowlFee + feeBank);
+            if (twTotalEl) twTotalEl.textContent = String(twTotal);
+            if (bkTotalEl) bkTotalEl.textContent = String(bkTotal);
+            if (twFmtEl) twFmtEl.textContent = fmt;
+            if (bkFmtEl) bkFmtEl.textContent = fmt;
+            // Extras line for Poké Bowl under total price
+            let extrasText = "";
+            if (isInfinity && wantsBowl) {
+              const dish = (
+                document.querySelector('input[name="poke_bowl"]:checked')
+                  ?.value || ""
+              ).trim();
+              extrasText = `Poké Bowl${dish ? ` – ${dish}` : ""} (+15 CHF)`;
+            }
+            if (twExtrasEl) {
+              if (extrasText) {
+                twExtrasEl.textContent = extrasText;
+                twExtrasEl.hidden = false;
+              } else {
+                twExtrasEl.hidden = true;
+              }
+            }
+            if (bkExtrasEl) {
+              if (extrasText) {
+                bkExtrasEl.textContent = extrasText;
+                bkExtrasEl.hidden = false;
+              } else {
+                bkExtrasEl.hidden = true;
+              }
+            }
+            if (method === "twint") {
+              if (twintDetails) twintDetails.hidden = false;
+              if (bankDetails) bankDetails.hidden = true;
+              // Bind popup window for TWINT payment
+              const twLink = document.getElementById("twint-pay-link");
+              if (twLink && !twLink.dataset.popupBound) {
+                twLink.addEventListener("click", (e) => {
+                  e.preventDefault();
+                  const url = twLink.href;
+                  // Compute a smaller popup anchored to the right side
+                  const winX =
+                    typeof window.screenX === "number" ? window.screenX : 0;
+                  const winY =
+                    typeof window.screenY === "number" ? window.screenY : 0;
+                  const outerW =
+                    typeof window.outerWidth === "number"
+                      ? window.outerWidth
+                      : window.innerWidth;
+                  const outerH =
+                    typeof window.outerHeight === "number"
+                      ? window.outerHeight
+                      : window.innerHeight;
+                  const margin = 16;
+                  const popupW = Math.max(
+                    360,
+                    Math.min(520, Math.floor(window.innerWidth * 0.35))
+                  );
+                  const popupH = Math.max(
+                    480,
+                    Math.min(720, Math.floor(window.innerHeight * 0.85))
+                  );
+                  let left = winX + outerW - popupW - margin;
+                  let top = winY + margin;
+                  // Fallbacks to keep on screen
+                  if (left < 0) left = margin;
+                  if (top < 0) top = margin;
+                  const features = [
+                    "toolbar=no",
+                    "location=no",
+                    "status=no",
+                    "menubar=no",
+                    "scrollbars=yes",
+                    "resizable=yes",
+                    `width=${popupW}`,
+                    `height=${popupH}`,
+                    `left=${left}`,
+                    `top=${top}`,
+                  ].join(",");
+                  const w = window.open(url, "twintPayment", features);
+                  if (w) {
+                    try {
+                      w.focus();
+                    } catch (_) {}
+                  }
+                });
+                twLink.dataset.popupBound = "1";
+              }
+            } else {
+              if (twintDetails) twintDetails.hidden = true;
+              if (bankDetails) bankDetails.hidden = false;
+            }
+            window.scrollTo({
+              top: detailsWrapper.offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+          cards.forEach((card) => {
+            const method = card.getAttribute("data-method") || "";
+            card.addEventListener("click", (e) => {
+              e.preventDefault();
+              showDetails(method);
+            });
+            card.addEventListener("keypress", (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                showDetails(method);
+              }
+            });
+          });
+          // Back button removed per request; payment step remains focused
+        }
 
         function selectFormat(link) {
           const formatName = link.querySelector("h2").textContent.trim();
-          const price = link.dataset.price || "??";
+          // Dynamic date-based price with fallback to data-price
+          const tier = getPriceInfo(formatName);
+          const fallbackPrice =
+            parseFloat(
+              String(link.dataset.price || "").replace(/[^0-9.]/g, "")
+            ) || 0;
+          const priceNum =
+            typeof tier.price === "number" && tier.price > 0
+              ? tier.price
+              : fallbackPrice;
+          const priceStr = String(priceNum);
+          // Update state for later steps
+          currentFormatName = formatName;
+          currentBasePrice = priceNum;
           selectedFormatInput.value = formatName;
           selectedFormatLabel.textContent = formatName;
-          paymentPriceSpan.textContent = price + " CHF";
-          paymentSectionPrice.textContent = price;
-          summaryFormat.textContent = formatName;
-          summaryPrice.textContent = price;
-          summary.hidden = false;
+          paymentPriceSpan.textContent = priceStr + " CHF";
+          if (paymentSectionPrice) paymentSectionPrice.textContent = priceStr;
+          // Guard summary elements (they may be absent), avoid runtime errors
+          if (summaryFormat) summaryFormat.textContent = formatName;
+          if (summaryPrice) summaryPrice.textContent = priceStr;
+          if (summary) summary.hidden = false;
+          // Show the form: remove both hidden attribute and any inline display:none
           formWrapper.hidden = false;
+          if (formWrapper) {
+            try {
+              formWrapper.removeAttribute("hidden");
+            } catch (_) {}
+            formWrapper.style.display = "";
+          }
           formatsWrapper.style.display = "none";
           soonNote.style.display = "none";
           // Show Poké Bowl section only for Infinity
           // Infinity-only Poké Bowl: single embedded box + conditional options
           const bowlBox = document.getElementById("poke-bowl-box");
           const optionsRow = document.getElementById("poke-bowl-options");
-          const isInfinity = /infinity\.png$/i.test(link.dataset.img || "");
+          // More robust Infinity detection: use selected format name
+          const isInfinity = /INFINITY/.test(formatName.toUpperCase());
           if (bowlBox && optionsRow) {
             // Show only for Infinity
-            bowlBox.hidden = !isInfinity;
+            if (isInfinity) {
+              bowlBox.hidden = false;
+              bowlBox.style.display = "";
+              try {
+                bowlBox.removeAttribute("hidden");
+              } catch (_) {}
+            } else {
+              bowlBox.hidden = true;
+              bowlBox.style.display = "none";
+              try {
+                bowlBox.setAttribute("hidden", "");
+              } catch (_) {}
+            }
             optionsRow.hidden = true;
+            optionsRow.style.display = "none";
+            try {
+              optionsRow.setAttribute("hidden", "");
+            } catch (_) {}
             // Reset and wire radios
             const wantsRadios = bowlBox.querySelectorAll(
               'input[name="poke_bowl_wants"]'
@@ -763,6 +1068,11 @@
               )?.value;
               const show = wants === "Oui";
               optionsRow.hidden = !show;
+              optionsRow.style.display = show ? "" : "none";
+              try {
+                if (show) optionsRow.removeAttribute("hidden");
+                else optionsRow.setAttribute("hidden", "");
+              } catch (_) {}
               dishRadios.forEach((r) => {
                 r.required = show;
                 if (!show) r.checked = false;
@@ -796,9 +1106,13 @@
 
         backBtn.addEventListener("click", () => {
           formWrapper.hidden = true;
+          if (formWrapper) formWrapper.style.display = "none";
           paymentSection.hidden = true;
+          if (paymentSection) paymentSection.style.display = "none";
           formatsWrapper.style.display = "";
           soonNote.style.display = "";
+          if (pageHead) pageHead.style.display = "";
+          if (subHeadEl) subHeadEl.style.display = "";
           summary.hidden = true;
           const bowlBox = document.getElementById("poke-bowl-box");
           const optionsRow = document.getElementById("poke-bowl-options");
@@ -828,6 +1142,46 @@
           });
         });
 
+        function showPaymentSection() {
+          if (goPaymentBtn) {
+            goPaymentBtn.disabled = false;
+            goPaymentBtn.textContent = defaultGoPaymentText;
+          }
+          // Clear other steps: hide formats and form, hide soon note and summary
+          if (formatsWrapper) formatsWrapper.style.display = "none";
+          if (soonNote) soonNote.style.display = "none";
+          if (summary) summary.hidden = true;
+          formWrapper.hidden = true;
+          if (formWrapper) formWrapper.style.display = "none";
+          if (pageHead) pageHead.style.display = "none";
+          if (subHeadEl) subHeadEl.style.display = "none";
+          paymentSection.hidden = false;
+          if (paymentSection) paymentSection.style.display = "";
+          // Populate payment summary with selected format and base price
+          try {
+            const psFmt = document.getElementById("payment-summary-format");
+            const psPrice = document.getElementById("payment-summary-price");
+            const fmt = currentFormatName || summaryFormat?.textContent || "";
+            const base =
+              currentBasePrice ||
+              parseFloat(
+                String(summaryPrice?.textContent || "0").replace(/[^0-9.]/g, "")
+              ) ||
+              0;
+            if (psFmt) psFmt.textContent = fmt;
+            if (psPrice) psPrice.textContent = String(base);
+          } catch (_) {}
+          try {
+            initPaymentCards();
+          } catch (_) {}
+          window.scrollTo({
+            top: paymentSection.offsetTop - 80,
+            behavior: "smooth",
+          });
+        }
+
+        // Dev payment button removed
+
         goPaymentBtn.addEventListener("click", () => {
           const form = document.getElementById("inscription-form");
           // Valider le formulaire avant de passer au paiement
@@ -836,7 +1190,6 @@
             return;
           }
           // Envoi au Google Apps Script avant affichage paiement
-          const originalText = goPaymentBtn.textContent;
           goPaymentBtn.disabled = true;
           goPaymentBtn.textContent = "Envoi…";
           // Construire les données à envoyer (JSON). Si un fichier est présent, on l'encode en base64.
@@ -864,14 +1217,7 @@
               : "";
 
           const proceedToPayment = () => {
-            goPaymentBtn.disabled = false;
-            goPaymentBtn.textContent = originalText;
-            formWrapper.hidden = true;
-            paymentSection.hidden = false;
-            window.scrollTo({
-              top: paymentSection.offsetTop - 80,
-              behavior: "smooth",
-            });
+            showPaymentSection();
           };
 
           if (!url) {

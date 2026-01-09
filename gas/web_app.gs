@@ -182,7 +182,9 @@ function doPost(e) {
       "T-shirt",
       "Règlement lu",
       "Paiement",
-      "Lettre de confirmation",
+      "confirmation reception",
+      "",
+      "confirmation Inscription",
       "",
       "Contact d'urgence - Nom",
       "Contact d'urgence - Téléphone",
@@ -213,6 +215,8 @@ function doPost(e) {
       consentFr, // Règlement lu
       "", // Paiement (à cocher manuellement)
       "", // Lettre de confirmation (à cocher manuellement)
+      "",
+      "",
       "", // Colonne vide avant contact d'urgence
       emergency_name, // Contact d'urgence - Nom
       "'" + emergency_phone, // Contact d'urgence - Téléphone (force text in Sheet)

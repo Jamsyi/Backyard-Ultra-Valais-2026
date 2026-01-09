@@ -13,25 +13,26 @@
   margin-left: 8px;
   font-size: 24px;
 }
-/* Force gray buttons only within Formats section */
-.formats .format-panel .btn,
-.formats .format-content .btn,
-.formats .inscription-link {
-  background: #3a3a3a !important;
-  color: #cfcfcf !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  cursor: not-allowed !important;
-  box-shadow: none !important;
+/* Format inscription buttons: color-coded per format */
+.formats .variant-infinity .inscription-link {
+  background: #ff5a1f !important;
+  border-color: #ff5a1f !important;
+  color: #ffffff !important;
+  cursor: pointer !important;
 }
-.formats .format-panel .btn:hover,
-.formats .format-content .btn:hover,
+.formats .variant-explorer .inscription-link {
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #ffffff;
+  cursor: pointer;
+}
 .formats .inscription-link:hover {
-  opacity: 0.9;
+  filter: brightness(1.05);
 }
 /* Ensure navbar social icons turn primary color on hover, regardless of parent color rules */
 .navbar .social-icon:hover,
 .social-nav .social-icon:hover {
-  color: var(--primary-color) !important;
+  color: var(--primary-color);
   transform: translateY(-2px) scale(1.07);
 }
 
@@ -497,25 +498,9 @@ body:not(.has-header) .hamburger-button .hamburger-line {
     gap: 1rem;
   }
 
-  /* Force gray-out state, override generic .btn styles */
-  .format-panel .inscription-link,
-  .format-content .inscription-link,
+  /* Mobile: keep clickable state for inscription buttons; variants handle colors */
   .inscription-link {
-    background: #3a3a3a !important; /* gray background */
-    color: #cfcfcf !important; /* light gray text */
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    cursor: not-allowed !important;
-    box-shadow: none !important;
-  }
-  .format-panel .inscription-link:hover,
-  .format-content .inscription-link:hover,
-  .inscription-link:hover {
-    opacity: 0.9;
-  }
-
-  /* Optional: fully disable interaction when gray */
-  .inscription-link.disabled {
-    pointer-events: none;
+    cursor: pointer !important;
   }
 }
 
@@ -556,7 +541,7 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 .hero-actions {
   margin-top: 14px;
   display: flex;
-  flex-direction: column; /* stack vertically */
+  flex-direction: row; /* show buttons on the same line */
   gap: 14px;
   align-items: center;
   justify-content: center;
@@ -615,10 +600,22 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   border: 0;
 }
 .benevole-btn {
+  display: inline-block;
   background: var(--primary-color);
-  font-size: 1.3rem;
-  padding: 22px 22px;
-  border: 4px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 30px 30px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  /* strong orange outline + subtle glow to make the edge visible */
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 0 6px rgba(241, 132, 40, 0.08);
+}
+.benevole-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 .benevole-btn i {
   margin-right: 22px;
@@ -637,6 +634,10 @@ body:not(.has-header) .hamburger-button .hamburger-line {
     flex-direction: column; /* ensure vertical stack on mobile */
   }
   .benevole-btn {
+    font-size: 1rem;
+    padding: 11px 16px;
+  }
+  .inscription-btn {
     font-size: 1rem;
     padding: 11px 16px;
   }
@@ -773,6 +774,8 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 .format-panel .btn-container {
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: 4; /* ensure above any overlapping media/masks */
 }
 
 @media (max-width: 960px) {
@@ -898,6 +901,8 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   overflow: visible; /* let the icon protrude on the left */
   align-self: stretch; /* fill grid row height */
   z-index: 0; /* sit behind the text column */
+  /* Ensure media never blocks clicks on content/buttons */
+  pointer-events: none;
 }
 
 .format-image {
@@ -980,6 +985,7 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   flex-direction: column;
   gap: 18px;
   position: relative; /* create stacking context */
+  z-index: 2; /* sit above overlapping media mask */
 }
 
 /* Add a little bottom padding to INFINITY text block
@@ -1099,15 +1105,19 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   font-size: 0.85rem;
 }
 
+/* Base inscription link (allow clickable state; variants override colors) */
 .inscription-link {
-  background: #3a3a3a; /* gray background */
-  color: #cfcfcf; /* light gray text */
+  background: var(--secondary-color);
+  color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  cursor: not-allowed;
+  cursor: pointer;
+  position: relative;
+  z-index: 3; /* ensure above any overlapping elements */
+  pointer-events: auto; /* explicitly allow clicks */
 }
 
 .inscription-link:hover {
-  opacity: 0.9;
+  filter: brightness(1.05);
 }
 
 /* Variants */
@@ -1180,6 +1190,53 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 .info-item {
   flex: 1;
   padding: 20px;
+}
+
+/* Recreated external CTA buttons for formats (always clickable) */
+.format-cta {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  margin: 16px auto 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 5; /* ensure above any overlapping media */
+}
+
+.cta-format-btn {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, filter 0.2s ease;
+  pointer-events: auto; /* force clickable */
+}
+.cta-format-btn:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+.cta-format-btn.infinity {
+  background: #ff5a1f;
+  border-color: #ff5a1f;
+}
+.cta-format-btn.explorer {
+  background: #f59e0b;
+  border-color: #f59e0b;
+}
+
+@media (max-width: 640px) {
+  .format-cta {
+    flex-direction: column;
+  }
+  .cta-format-btn {
+    width: 92%;
+    text-align: center;
+  }
 }
 
 .info-item:not(:last-child) {
