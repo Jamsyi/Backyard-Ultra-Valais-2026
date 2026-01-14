@@ -1143,7 +1143,9 @@
             // Visual: grey out the Infinity card
             link.classList.add("infinity-closed");
             // Reinstate disabled semantics if removed elsewhere
-            try { link.setAttribute("aria-disabled", "true"); } catch (_) {}
+            try {
+              link.setAttribute("aria-disabled", "true");
+            } catch (_) {}
           }
           function showClosedMessage() {
             if (soonNote) {
@@ -1154,18 +1156,26 @@
             }
           }
           // Use capture to intercept before global handlers in main.js
-          link.addEventListener("click", (e) => {
-            e.preventDefault();
-            if (isInfinity) {
-              // Block other click handlers from running
-              try { e.stopImmediatePropagation(); } catch (_) {}
-              try { e.stopPropagation(); } catch (_) {}
-              showClosedMessage();
-              return; // Block selection
-            }
-            // Permettre l'ouverture même si aria-disabled = true
-            selectFormat(link);
-          }, true);
+          link.addEventListener(
+            "click",
+            (e) => {
+              e.preventDefault();
+              if (isInfinity) {
+                // Block other click handlers from running
+                try {
+                  e.stopImmediatePropagation();
+                } catch (_) {}
+                try {
+                  e.stopPropagation();
+                } catch (_) {}
+                showClosedMessage();
+                return; // Block selection
+              }
+              // Permettre l'ouverture même si aria-disabled = true
+              selectFormat(link);
+            },
+            true
+          );
           link.addEventListener("keypress", (e) => {
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
