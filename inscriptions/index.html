@@ -856,7 +856,7 @@
               currentFormatName ||
               (summaryFormat && summaryFormat.textContent) ||
               "";
-            if (resolveFormatKey(fmt) === "INFINITY") {
+            if (["INFINITY", "EXPLORER"].includes(resolveFormatKey(fmt))) {
               showWaitlistOnly();
               return;
             }
@@ -1258,7 +1258,7 @@
           // If INFINITY format selected, show waitlist and skip methods
           try {
             const fmt = currentFormatName || summaryFormat?.textContent || "";
-            if (resolveFormatKey(fmt) === "INFINITY") {
+            if (["INFINITY", "EXPLORER"].includes(resolveFormatKey(fmt))) {
               showWaitlistOnly();
             } else {
               try {
