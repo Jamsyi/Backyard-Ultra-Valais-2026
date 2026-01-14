@@ -65,6 +65,18 @@
 .inscription-format[aria-disabled="true"] {
   cursor: not-allowed;
 }
+.inscription-format.infinity-closed {
+  filter: grayscale(100%);
+  opacity: 0.55;
+  border-color: #777;
+  cursor: not-allowed;
+}
+.inscription-format.infinity-closed:hover,
+.inscription-format.infinity-closed:focus {
+  transform: none;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.35);
+  outline: none;
+}
 .inscription-format:hover {
   transform: translateY(-7px);
   box-shadow: 0 14px 32px -8px rgba(0, 0, 0, 0.75), 0 0 0 4px var(--accent);
