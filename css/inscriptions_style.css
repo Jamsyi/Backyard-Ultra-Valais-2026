@@ -438,6 +438,15 @@ fieldset.form-row {
 .payment-details li {
   list-style: disc;
 }
+
+/* Slightly larger indent for order summary bullets */
+#order-items-list {
+  padding-left: 1.6rem; /* move bullets a bit to the right */
+  list-style-position: outside;
+}
+#order-items-list li {
+  margin-left: 0.15rem;
+}
 .payment-note {
   font-size: 0.7rem;
   opacity: 0.6;

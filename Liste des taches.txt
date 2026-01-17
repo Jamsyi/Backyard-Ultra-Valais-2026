@@ -1,0 +1,5 @@
+- Faire la page Photo
+- Faire une page avec la liste des participants
+- Faire une page pour les Happy bowls
+- Modifier la page des résultat avec de nouveaux statistique
+- Faire une systeme de chronometrage pour les participants.

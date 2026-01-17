@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <script>
+      document.documentElement.classList.add("has-header-page");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Commande de bowl - Backyard Ultra Valais</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Rubik+Dirt&family=Russo+One&family=Shippori+Antique&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../css/index_style.css" />
+    <link rel="stylesheet" href="../css/informations_style.css" />
+    <link rel="stylesheet" href="../css/benevoles_style.css" />
+    <link
+      rel="shortcut icon"
+      href="../images/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
+  <body class="has-header benevoles-page">
+    <style>
+      .toggle-chips {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+      .chip-input {
+        display: none;
+      }
+      .toggle-chips .chip {
+        display: inline-block;
+        padding: 0.5rem 0.75rem;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.15s ease;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .chip-input:checked + .chip {
+        background: #fff;
+        color: #111;
+        border-color: #fff;
+      }
+
+      .bowl-cards {
+        display: grid;
+        gap: 0.75rem;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 640px) {
+        .bowl-cards {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .card-input {
+        display: none;
+      }
+      .bowl-card {
+        display: block;
+        height: 100%;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        border: 2px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+        transition:
+          border-color 0.15s ease,
+          box-shadow 0.15s ease,
+          background 0.15s ease;
+        cursor: pointer;
+      }
+      .bowl-card .choice-title {
+        display: block;
+        font-weight: 700;
+        font-size: 1.05rem;
+        margin-bottom: 0.35rem;
+      }
+      .bowl-card .choice-desc {
+        display: block;
+        opacity: 0.9;
+        line-height: 1.3;
+      }
+      .card-input:checked + .bowl-card {
+        background: #fff;
+        color: #111;
+        border-color: #fff;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .form-note {
+        margin-top: 0.5rem;
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+        opacity: 0.95;
+      }
+      .form-note strong {
+        font-weight: 700;
+      }
+
+      /* Qty inline small input */
+      .qty-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+      }
+      .qty-row label {
+        display: inline-flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+      }
+      .qty-input {
+        width: 64px;
+      }
+      .qty-controls {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        margin-left: 0.5rem;
+      }
+      /* Hide native number input spinners */
+      .qty-input::-webkit-outer-spin-button,
+      .qty-input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      .qty-input[type="number"] {
+        -moz-appearance: textfield;
+      }
+
+      /* Actions with total */
+      .actions-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 10;
+      }
+      .total-box {
+        margin-left: auto;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: #ff8a00;
+        display: flex;
+        align-items: baseline;
+        gap: 0.4rem;
+      }
+      .total-box .currency {
+        font-weight: 700;
+        opacity: 0.95;
+      }
+
+      /* Qty stepper bubbles */
+      .qty-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .qty-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.06);
+        color: inherit;
+        font-weight: 800;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition:
+          background 0.15s ease,
+          border-color 0.15s ease,
+          color 0.15s ease;
+      }
+      .qty-btn:hover {
+        background: #fff;
+        color: #111;
+        border-color: #fff;
+      }
+      .submit-btn {
+        pointer-events: auto;
+      }
+
+      /* Flavor cards grid */
+      .flavor-cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+      @media (min-width: 640px) {
+        .flavor-cards {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .flavor-card {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        border: 2px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .flavor-visual {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.12);
+        overflow: hidden;
+      }
+      .flavor-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .flavor-title {
+        margin: 0;
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: #ff8a00;
+      }
+      .flavor-desc {
+        margin: 0;
+        opacity: 0.9;
+        line-height: 1.3;
+      }
+      .flavor-card .qty-controls {
+        margin-top: auto;
+      }
+    </style>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <a href="/">
+            <img src="../images/buv.png" alt="logo" />
+          </a>
+        </div>
+
+        <button id="hamburger-button" class="hamburger-button">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+
+        <div class="main-menu">
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/informations">Informations</a></li>
+            <li class="has-submenu">
+              <a
+                href="#"
+                class="parent-link"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Résultats</a
+              >
+              <ul class="dropdown-menu">
+                <li><a href="/resultats/2025">2025</a></li>
+                <li><a href="/resultats/2026">2026</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a
+                href="#"
+                class="parent-link"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Photos</a
+              >
+              <ul class="dropdown-menu">
+                <li><a href="/photos/2025">2025</a></li>
+                <li><a href="/photos/2026">2026</a></li>
+              </ul>
+            </li>
+            <li><a href="/about-us">Notre Equipe</a></li>
+            <li><a href="/sponsors">Partenaires</a></li>
+            <li class="social-nav">
+              <a
+                href="https://www.instagram.com/backyard.ultra.valais/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-icon"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61566704801123"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-icon"
+              >
+                <i class="fab fa-facebook"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="mobile-menu">
+      <button class="close-menu-button">&times;</button>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/informations">Informations</a></li>
+        <li class="has-submenu">
+          <a
+            href="#"
+            class="parent-link"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >Résultats</a
+          >
+          <ul class="dropdown-menu">
+            <li><a href="/resultats/2025">2025</a></li>
+            <li><a href="/resultats/2026">2026</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a
+            href="#"
+            class="parent-link"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >Photos</a
+          >
+          <ul class="dropdown-menu">
+            <li><a href="/photos/2025">2025</a></li>
+            <li><a href="/photos/2026">2026</a></li>
+          </ul>
+        </li>
+        <li><a href="/about-us">Notre Equipe</a></li>
+        <li><a href="/sponsors">Partenaires</a></li>
+        <li class="social-mobile">
+          <a
+            href="https://www.instagram.com/backyard.ultra.valais/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/profile.php?id=61566704801123"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+          >
+            <i class="fab fa-facebook"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <main
+      class="benevoles-fullscreen"
+      role="main"
+      style="background-image: url(&quot;../images/maison.jpg&quot;)"
+    >
+      <div class="blur-shell" aria-labelledby="repas-title">
+        <h1 id="repas-title" class="page-head">Commander un Happy Bowl</h1>
+
+        <section
+          class="volunteer-form-section"
+          aria-labelledby="repas-form-title"
+        >
+          <h2 id="repas-form-title" class="section-title">
+            Formulaire de commande
+          </h2>
+          <p class="form-intro">Merci de remplir le formulaire ci-dessous :</p>
+
+          <form id="repas-form" action="#" method="post" novalidate>
+            <div
+              style="
+                position: absolute;
+                left: -10000px;
+                top: auto;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+              "
+            >
+              <label for="hp">Ne pas remplir ce champ</label>
+              <input
+                id="hp"
+                name="website"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="form-grid">
+              <div class="form-row">
+                <label for="prenom">Prénom *</label>
+                <input
+                  id="prenom"
+                  name="prenom"
+                  type="text"
+                  required
+                  autocomplete="given-name"
+                />
+              </div>
+              <div class="form-row">
+                <label for="nom">Nom *</label>
+                <input
+                  id="nom"
+                  name="nom"
+                  type="text"
+                  required
+                  autocomplete="family-name"
+                />
+              </div>
+              <div class="form-row">
+                <label for="email">E-mail *</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+              <div class="form-row">
+                <label for="phone">Téléphone *</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  autocomplete="tel"
+                />
+              </div>
+
+              <fieldset class="form-row form-row-full">
+                <legend>Jour de retrait (un ou deux) *</legend>
+                <div class="toggle-chips">
+                  <input
+                    type="checkbox"
+                    id="jour-v"
+                    class="chip-input"
+                    name="jours[]"
+                    value="Vendredi 3 (Départ INFINITY)"
+                  />
+                  <label for="jour-v" class="chip"
+                    >Vendredi 3 — Départ INFINITY</label
+                  >
+                  <input
+                    type="checkbox"
+                    id="jour-s"
+                    class="chip-input"
+                    name="jours[]"
+                    value="Samedi 4 (Départ EXPLORER)"
+                  />
+                  <label for="jour-s" class="chip"
+                    >Samedi 4 — Départ EXPLORER</label
+                  >
+                </div>
+              </fieldset>
+
+              <fieldset class="form-row form-row-full">
+                <legend>Quantités par saveur</legend>
+                <div class="flavor-cards">
+                  <div class="flavor-card">
+                    <div class="flavor-visual" aria-hidden="true">
+                      <img
+                        src="bowls/poulet.webp"
+                        alt="Happy Bowl Poulet"
+                        class="flavor-img"
+                        loading="lazy"
+                      />
+                    </div>
+                    <h3 class="flavor-title">Poulet</h3>
+                    <p class="flavor-desc">
+                      Riz basmati, poulet, mangue, concombre, carottes, oignon
+                      frit
+                    </p>
+                    <div class="qty-controls">
+                      <button
+                        type="button"
+                        class="qty-btn"
+                        id="qty-p-dec"
+                        aria-label="Diminuer quantité Poulet"
+                      >
+                        −
+                      </button>
+                      <input
+                        id="qty-p"
+                        name="qty_poulet"
+                        type="number"
+                        inputmode="numeric"
+                        min="0"
+                        step="1"
+                        value="0"
+                        class="qty-input"
+                        aria-label="Quantité Poulet"
+                      />
+                      <button
+                        type="button"
+                        class="qty-btn"
+                        id="qty-p-inc"
+                        aria-label="Augmenter quantité Poulet"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div class="flavor-card">
+                    <div class="flavor-visual" aria-hidden="true">
+                      <img
+                        src="bowls/saumon.webp"
+                        alt="Happy Bowl Saumon"
+                        class="flavor-img"
+                        loading="lazy"
+                      />
+                    </div>
+                    <h3 class="flavor-title">Saumon</h3>
+                    <p class="flavor-desc">
+                      Riz basmati, saumon, avocat, chou blanc, oignon rouge,
+                      ciboulette
+                    </p>
+                    <div class="qty-controls">
+                      <button
+                        type="button"
+                        class="qty-btn"
+                        id="qty-s-dec"
+                        aria-label="Diminuer quantité Saumon"
+                      >
+                        −
+                      </button>
+                      <input
+                        id="qty-s"
+                        name="qty_saumon"
+                        type="number"
+                        inputmode="numeric"
+                        min="0"
+                        step="1"
+                        value="0"
+                        class="qty-input"
+                        aria-label="Quantité Saumon"
+                      />
+                      <button
+                        type="button"
+                        class="qty-btn"
+                        id="qty-s-inc"
+                        aria-label="Augmenter quantité Saumon"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div class="flavor-card">
+                    <div class="flavor-visual" aria-hidden="true">
+                      <img
+                        src="./bowls/vege.webp"
+                        alt="Happy Bowl Végé"
+                        class="flavor-img"
+                        loading="lazy"
+                      />
+                    </div>
+                    <h3 class="flavor-title">Végé</h3>
+                    <p class="flavor-desc">
+                      Quinoa, falafel, chou rouge, radis, edamames, graines de
+                      sésame
+                    </p>
+                    <div class="qty-controls">
+                      <button
+                        type="button"
+                        class="qty-btn"
+                        id="qty-v-dec"
+                        aria-label="Diminuer quantité Végé"
+                      >
+                        −
+                      </button>
+                      <input
+                        id="qty-v"
+                        name="qty_vege"
+                        type="number"
+                        inputmode="numeric"
+                        min="0"
+                        step="1"
+                        value="0"
+                        class="qty-input"
+                        aria-label="Quantité Végé"
+                      />
+                      <button
+                        type="button"
+                        class="qty-btn"
+                        id="qty-v-inc"
+                        aria-label="Augmenter quantité Végé"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="form-note">
+              ⚠️ Les confirmations de commandes sont envoyées manuellement dans
+              les 3 jours. Si par erreur vous n'avez pas reçu de confirmation
+              dans ces délais, contactez-nous :
+              <strong
+                ><a href="mailto:backyardultravalais@gmail.com"
+                  >backyardultravalais@gmail.com</a
+                ></strong
+              >.
+            </div>
+
+            <div class="form-actions">
+              <div class="actions-row">
+                <button type="button" id="submit-repas" class="submit-btn">
+                  Commander
+                </button>
+                <button
+                  type="button"
+                  id="bypass-repas"
+                  class="submit-btn"
+                  style="
+                    background: rgba(255, 255, 255, 0.12);
+                    border: 2px solid rgba(255, 255, 255, 0.25);
+                  "
+                >
+                  Bypass
+                </button>
+                <div class="total-box" aria-live="polite">
+                  <span>Total</span>
+                  <span id="repas-total-preview">0</span>
+                  <span class="currency">CHF</span>
+                </div>
+              </div>
+              <p class="form-hint">* Champs obligatoires</p>
+            </div>
+          </form>
+
+          <div id="repas-success" class="success-box" hidden>
+            <h3>Merci pour votre commande !</h3>
+            <p>
+              Nous avons bien reçu vos informations. Les confirmations de
+              commandes sont envoyées manuellement dans les 3 jours. Si vous ne
+              recevez rien, contactez-nous :
+              <strong
+                ><a href="mailto:backyardultravalais@gmail.com"
+                  >backyardultravalais@gmail.com</a
+                ></strong
+              >.
+            </p>
+            <p>
+              <strong>Commande :</strong>
+              <span id="repas-qty-value"></span> bowl(s).
+              <strong>Total :</strong>
+              <span id="repas-amount-value"></span> CHF. Les instructions de
+              paiement vous seront communiquées dans l'email de confirmation.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer bg-black">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a href="/">
+              <img src="../images/buv.png" alt="logo" />
+            </a>
+            <d class="copyright text-sm"
+              >© Backyard Ultra Valais 2026 - Suisse<br
+            /></d>
+          </div>
+          <div>
+            <h4 class="contact-headline">Contacts</h4>
+            <b class="contact text-md"
+              ><i class="fa fa-envelope"></i> backyardultravalais@gmail.com</b
+            >
+          </div>
+          <div></div>
+          <div>
+            <a
+              href="https://www.instagram.com/backyard.ultra.valais/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61566704801123"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+            >
+              <i class="fab fa-facebook"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/repas.js"></script>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <script>document.documentElement.classList.add('has-header-page');</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Paiement – Bowls</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Rubik+Dirt&family=Russo+One&family=Shippori+Antique&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/index_style.css" />
+    <link rel="stylesheet" href="../css/informations_style.css" />
+    <link rel="stylesheet" href="../css/inscriptions_style.css" />
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+  </head>
+  <body class="has-header">
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <a href="/"><img src="../images/buv.png" alt="logo" /></a>
+        </div>
+        <button id="hamburger-button" class="hamburger-button">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </button>
+        <div class="main-menu">
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/informations">Informations</a></li>
+            <li class="has-submenu">
+              <a href="#" class="parent-link" aria-haspopup="true" aria-expanded="false">Résultats</a>
+              <ul class="dropdown-menu">
+                <li><a href="/resultats/2025">2025</a></li>
+                <li><a href="/resultats/2026">2026</a></li>
+              </ul>
+            </li>
+            <li class="has-submenu">
+              <a href="#" class="parent-link" aria-haspopup="true" aria-expanded="false">Photos</a>
+              <ul class="dropdown-menu">
+                <li><a href="/photos/2025">2025</a></li>
+                <li><a href="/photos/2026">2026</a></li>
+              </ul>
+            </li>
+            <li><a href="/about-us">Notre Equipe</a></li>
+            <li><a href="/sponsors">Partenaires</a></li>
+            <li class="social-nav">
+              <a href="https://www.instagram.com/backyard.ultra.valais/" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.facebook.com/profile.php?id=61566704801123" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fab fa-facebook"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="inscriptions-fullscreen" role="main" style="background-image:url('../images/maison.jpg')">
+      <div class="blur-shell" aria-labelledby="paiement-title">
+        <h1 id="paiement-title" class="page-head">Paiement</h1>
+        <p class="sub-head">Finaliser la commande de bowls</p>
+
+        <div class="payment-section" style="display:block;" aria-labelledby="paiement-title">
+          
+
+          <div class="order-details-card" aria-label="Détails de commande" style="margin:.75rem 0 1rem; padding:.75rem 1rem; border:2px solid rgba(255,255,255,.25); background:rgba(255,255,255,.08); border-radius:.5rem;">
+            <h3 style="margin-top:0;">Détails de commande</h3>
+            <ul id="order-items-list" class="payment-details" style="margin:0; list-style:none; padding-left:0;"></ul>
+            <p id="order-days-line" class="payment-extras" style="margin:.5rem 0 0;"></p>
+            <p class="payment-total-highlight" style="margin:.5rem 0 0;">
+              <strong>Total:</strong>
+              <span id="order-total-value">0</span>
+              <span>CHF</span>
+            </p>
+          </div>
+
+          <div class="submission-note" style="margin:.75rem 0 1rem; padding:.75rem 1rem; border:2px solid rgba(255,255,255,.25); background:rgba(255,255,255,.08); border-radius:.5rem;">
+            <strong>Formulaire envoyé :</strong> vos informations ont bien été transmises. Vous pouvez maintenant choisir votre mode de paiement ci-dessous.
+          </div>
+
+          <div class="payment-choices-wrapper">
+            <a href="#" class="inscription-format payment-choice-card" data-method="twint" tabindex="0">
+              <div class="format-content">
+                <img src="../images/twintlogo.png" alt="TWINT" class="format-logo" />
+                <h2>TWINT</h2>
+                <span class="fee-tag">+1 CHF frais</span>
+              </div>
+            </a>
+            <a href="#" class="inscription-format payment-choice-card" data-method="bank" tabindex="0">
+              <div class="format-content">
+                <i class="fa-solid fa-building-columns format-logo icon" aria-hidden="true"></i>
+                <h2>Virement bancaire</h2>
+              </div>
+            </a>
+          </div>
+
+          <div class="payment-details-wrapper" hidden>
+            <div id="payment-details-twint" hidden>
+              <h3>Paiement TWINT</h3>
+              <div class="payment-total-highlight">
+                <span id="twint-total">0</span>
+                <span>CHF</span>
+                <span class="fee-note">(+1 CHF frais inclus)</span>
+              </div>
+              <p class="payment-extras" id="twint-extras"></p>
+              <p class="payment-format"><strong id="twint-format">Bowls</strong></p>
+              <div class="payment-actions">
+                <a class="submit-btn" id="twint-pay-link" href="https://go.twint.ch/1/e/tw?tw=acq.zXMzIZp8TpOTjIqBPeO4PxTBKDjflBHOH9oLJo-qPOmf0Kwo0vt3nOo4FbL_Fx0u" rel="noopener">Payer via TWINT</a>
+              </div>
+            </div>
+            <div id="payment-details-bank" hidden>
+              <h3>Virement bancaire</h3>
+              <div class="payment-total-highlight">
+                <span id="bank-total">0</span>
+                <span>CHF</span>
+              </div>
+              <p class="payment-extras" id="bank-extras"></p>
+              <p class="payment-format"><strong id="bank-format">Bowls</strong></p>
+              <div class="bank-info-box">
+                <ul class="payment-details">
+                  <li><strong>Bénéficiaire:</strong> Backyard Ultra Valais</li>
+                  <li><strong>Adresse:</strong> 1912 Leytron</li>
+                  <li><strong>IBAN:</strong> CH06 8080 8007 9890 2427 1</li>
+                  <li><strong>SWIFT-BIC:</strong> RAIFCH22</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/repas_payment.js"></script>
+  </body>
+</html>

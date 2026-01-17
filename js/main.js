@@ -1,8 +1,14 @@
 console.log("JavaScript file is loaded correctly.")
 
 const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby3MvEKMPdH2f0r-WZ7mkndA0PhyKU2xs9GLNVu0PEIXjNmicb06DOPBCWEUT05yg7oGA/exec';
-
 const NEWSLETTER_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwQ-n1irhuLnm8MGaXaTLxsmH0u5l9VoxtdebdGF7bkbzTIiwc9iyWoWDp8E28hfXoHtA/exec';
+// Expose to window for scripts that reference window.GOOGLE_SHEETS_WEB_APP_URL, etc.
+try {
+    window.GOOGLE_SHEETS_WEB_APP_URL = GOOGLE_SHEETS_WEB_APP_URL;
+    // Use same endpoint for repas unless a dedicated one is set elsewhere
+    window.GOOGLE_SHEETS_WEB_APP_URL_REPAS = window.GOOGLE_SHEETS_WEB_APP_URL_REPAS || GOOGLE_SHEETS_WEB_APP_URL;
+    window.NEWSLETTER_WEB_APP_URL = NEWSLETTER_WEB_APP_URL;
+} catch (_) { /* noop for non-browser contexts */ }
 
 // Detect header ASAP to prevent navbar flash
 const pageHeader = document.querySelector('.page-header');

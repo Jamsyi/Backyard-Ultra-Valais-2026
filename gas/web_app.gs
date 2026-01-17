@@ -17,6 +17,7 @@
 // ====== CONFIGURE ME ======
 var SHEET_ID = "1J22hh3C9LCM4qPKiHWGGo9lS6cVH4uxsVY1eqviHO9E";
 var SHEET_NAME = "Inscriptions";
+var SHEET_NAME_REPAS = "Repas"; // New sheet for Happy Bowls orders
 var DEST_EMAIL = "buv.inscription@gmail.com";
 var SUBJECT_PREFIX = "Inscription Backyard Ultra Valais";
 // Save uploaded files to Google Drive (optional)
@@ -101,6 +102,13 @@ function doPost(e) {
     }
 
     // Normalize + map
+    var form_type = String((e && e.parameter && e.parameter.form_type) || safe_(fields.form_type)).toLowerCase();
+
+    // Route 'repas' orders to dedicated sheet and exit early
+    if (form_type === 'repas') {
+      return handleRepasOrder_(fields);
+    }
+
     var format = safe_(fields.format);
     var prenom = safe_(fields.prenom);
     var nom = safe_(fields.nom);
@@ -287,6 +295,59 @@ function doPost(e) {
     });
   }
 }
+/**
+ * Handle Happy Bowls (repas) orders
+ * Expects fields: prenom, nom, email, phone, jours (array or csv),
+ * qty_poulet, qty_saumon, qty_vege, qty, amount
+ */
+function handleRepasOrder_(fields) {
+  try {
+    var prenom = safe_(fields.prenom);
+    var nom = safe_(fields.nom);
+    var email = safe_(fields.email);
+    var phone = safe_(fields.phone);
+    var jours = joinMulti_(fields.jours || fields["jours[]"] || "");
+    var qP = toInt_(fields.qty_poulet);
+    var qS = toInt_(fields.qty_saumon);
+    var qV = toInt_(fields.qty_vege);
+    var qty = toInt_(fields.qty);
+    var amount = toFloat_(fields.amount);
+
+    var sheet = getOrCreateSheet_(SHEET_ID, SHEET_NAME_REPAS);
+    ensureHeader_(sheet, [
+      'Timestamp',
+      'Prénom',
+      'Nom',
+      'Email',
+      'Téléphone',
+      'Jour(s)',
+      'Poulet',
+      'Saumon',
+      'Végé',
+      'Quantité totale',
+      'Montant (CHF)'
+    ]);
+
+    sheet.appendRow([
+      new Date(),
+      prenom,
+      nom,
+      email,
+      "'" + phone,
+      jours,
+      qP,
+      qS,
+      qV,
+      qty,
+      amount
+    ]);
+
+    return json_({ ok: true });
+  } catch (err) {
+    return json_({ ok: false, error: String(err) });
+  }
+}
+
 
 // ---------------- Helpers ----------------
 
@@ -418,4 +479,24 @@ function parseHeaders_(raw) {
     headers[key] = val;
   }
   return headers;
+}
+
+// ---------- Utilities for repas routing ----------
+function toInt_(v) {
+  var n = parseInt(String(v || '0'), 10);
+  return isNaN(n) ? 0 : n;
+}
+function toFloat_(v) {
+  var n = parseFloat(String(v || '0').replace(',', '.'));
+  return isNaN(n) ? 0 : n;
+}
+function joinMulti_(v) {
+  if (v === void 0 || v === null) return '';
+  if (Array.isArray(v)) {
+    return v.filter(function(x){ return String(x).trim(); }).join(' | ');
+  }
+  var s = String(v);
+  // If CSV-like, normalize separators
+  if (s.indexOf(',') !== -1) return s.split(',').map(function(x){return x.trim();}).filter(Boolean).join(' | ');
+  return s;
 }
