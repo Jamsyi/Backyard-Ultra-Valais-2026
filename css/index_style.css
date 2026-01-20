@@ -91,7 +91,9 @@ img {
   width: 100%;
   top: 0;
   z-index: 1000;
-  transition: transform 0.2s ease-in-out, background 0.4s ease,
+  transition:
+    transform 0.2s ease-in-out,
+    background 0.4s ease,
     backdrop-filter 0.4s ease;
 }
 
@@ -193,7 +195,7 @@ body.has-header:not(.scrolled) .navbar ul li a:hover {
   left: 50%;
   transform: translateX(-50%) scaleY(0);
   transform-origin: top; /* open from top */
-  background: #fff; /* white background */
+  background: #222; /* white background */
   padding: 12px 0;
   min-width: 160px;
   max-width: 260px;
@@ -202,7 +204,9 @@ body.has-header:not(.scrolled) .navbar ul li a:hover {
   z-index: 1100;
   visibility: hidden;
   pointer-events: none;
-  transition: transform 0.3s ease, visibility 0s 0.3s;
+  transition:
+    transform 0.3s ease,
+    visibility 0s 0.3s;
   will-change: transform;
 }
 
@@ -225,7 +229,9 @@ body.has-header:not(.scrolled) .navbar ul li a:hover {
   pointer-events: auto;
   transform: translateX(-50%) scaleY(1);
   transform-origin: top;
-  transition: transform 0.3s ease, visibility 0s 0s;
+  transition:
+    transform 0.3s ease,
+    visibility 0s 0s;
 }
 
 /* JS-controlled open state (for mobile and delayed desktop close) */
@@ -234,19 +240,25 @@ body.has-header:not(.scrolled) .navbar ul li a:hover {
   pointer-events: auto;
   transform: translateX(-50%) scaleY(1);
   transform-origin: top;
-  transition: transform 0.3s ease, visibility 0s 0s;
+  transition:
+    transform 0.3s ease,
+    visibility 0s 0s;
 }
 
 /* Closing animation: collapse from bottom to top */
 .main-menu li .dropdown-menu.closing {
   transform-origin: top; /* collapse toward top so bottom edge moves up */
   transform: translateX(-50%) scaleY(0);
-  transition: transform 0.3s ease, visibility 0s 0.3s;
+  transition:
+    transform 0.3s ease,
+    visibility 0s 0.3s;
 }
 
 .social-nav .social-icon {
   font-size: 1.5rem;
-  transition: color 0.2s, transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition:
+    color 0.2s,
+    transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .social-nav .social-icon:hover {
@@ -378,7 +390,9 @@ body:not(.has-header) .hamburger-button .hamburger-line {
 .social-mobile .social-icon {
   font-size: 1.8rem;
   color: #fff;
-  transition: color 0.2s, transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition:
+    color 0.2s,
+    transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .social-mobile .social-icon:hover {
@@ -513,7 +527,9 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   font-weight: 600;
   border-radius: 8px;
   text-transform: uppercase;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -610,8 +626,12 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   text-transform: uppercase;
   /* strong orange outline + subtle glow to make the edge visible */
 
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 0 6px rgba(241, 132, 40, 0.08);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 0 0 6px rgba(241, 132, 40, 0.08);
 }
 .benevole-btn:hover {
   transform: translateY(-2px);
@@ -816,7 +836,9 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   font-weight: 700;
   letter-spacing: 0.3px;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.25s ease,
+  transition:
+    transform 0.15s ease,
+    background 0.25s ease,
     border-color 0.25s ease;
 }
 
@@ -1213,7 +1235,9 @@ body:not(.has-header) .hamburger-button .hamburger-line {
   text-decoration: none;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
   border: 1px solid transparent;
-  transition: transform 0.15s ease, filter 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    filter 0.2s ease;
   pointer-events: auto; /* force clickable */
 }
 .cta-format-btn:hover {
