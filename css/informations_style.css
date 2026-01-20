@@ -95,13 +95,17 @@ body.results-page .page-header {
   border-radius: 15px;
   padding: 40px;
   margin-bottom: 30px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(255, 107, 53, 0.3);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.4),
+    0 0 0 2px rgba(255, 107, 53, 0.3);
   border: 2px solid transparent;
   transition: all 0.3s ease;
 }
 
 .info-section:hover {
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 0 3px rgba(255, 107, 53, 0.6);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 3px rgba(255, 107, 53, 0.6);
   transform: translateY(-3px);
 }
 
@@ -133,7 +137,9 @@ body.results-page .page-header {
   border-radius: 10px;
   padding: 30px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   border: 2px solid transparent;
 }
 
@@ -171,7 +177,8 @@ body.results-page .page-header {
 
 .about-page .team-card {
   position: relative;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       1200px 600px at 0% 0%,
       rgba(241, 132, 40, 0.08) 0%,
       rgba(26, 26, 26, 0.9) 35%,
@@ -181,10 +188,18 @@ body.results-page .page-header {
   border-radius: 16px;
   padding: 22px;
   border: 1px solid rgba(241, 132, 40, 0.18);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 32px rgba(241, 132, 40, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease,
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 0 32px rgba(241, 132, 40, 0.08);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
     border-color 0.25s ease;
   overflow: hidden;
+  min-height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .about-page .team-card::before {
@@ -202,7 +217,9 @@ body.results-page .page-header {
 
 .about-page .team-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), 0 0 48px rgba(241, 132, 40, 0.14);
+  box-shadow:
+    0 12px 36px rgba(0, 0, 0, 0.45),
+    0 0 48px rgba(241, 132, 40, 0.14);
   border-color: rgba(241, 132, 40, 0.35);
 }
 
@@ -224,6 +241,43 @@ body.results-page .page-header {
   color: #cfcfcf;
   font-size: 0.98rem;
   line-height: 1.7;
+}
+
+/* Spacing for collaborators heading */
+.collaborators-title {
+  margin-top: 45px;
+}
+
+/* Make single collaborator card match the width of other cards and center it */
+.collaborators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+.collaborators-grid .team-card {
+  max-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .collaborators-grid {
+    display: block;
+  }
+  .collaborators-grid .team-card {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.about-page .team-card .social-link a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0px;
+}
+.about-page .team-card .social-link a .fa-instagram {
+  color: var(--secondary-color);
 }
 
 .about-page .info-grid .info-card img {
@@ -277,7 +331,9 @@ body.results-page .page-header {
   border: 1px solid rgba(241, 132, 40, 0.25);
   border-radius: 16px;
   padding: 22px 26px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 24px rgba(241, 132, 40, 0.08);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 0 24px rgba(241, 132, 40, 0.08);
 }
 
 .about-page .intro-card .section-title {
@@ -343,7 +399,9 @@ body.results-page .page-header {
   border-radius: 10px;
   padding: 30px;
   color: #fff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .format-info-card:hover {
@@ -377,7 +435,9 @@ body.results-page .page-header {
   text-decoration: none;
   display: inline-block;
   font-weight: 600;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -407,7 +467,9 @@ body.results-page .page-header {
   width: min(1100px, 96vw);
   background: #1a1a1a;
   border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(241, 132, 40, 0.25);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 2px rgba(241, 132, 40, 0.25);
   border: 1px solid rgba(241, 132, 40, 0.25);
   overflow: hidden;
 }
@@ -489,7 +551,9 @@ body.results-page .page-header {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .program-card:hover {
