@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
   <head>
     <script>
@@ -215,7 +215,10 @@
                 alt="Format Explorer"
                 class="format-logo"
               />
-              <h2>EXPLORER</h2>
+              <h2>
+                EXPLORER
+                <span class="format-by">by Le Relais du Petit Bourg</span>
+              </h2>
               <p>Format découverte sur nombre de boucles limité.</p>
             </div>
           </a>
@@ -707,14 +710,14 @@
       (function () {
         // Scope to format cards only (avoid payment cards)
         const formatLinks = document.querySelectorAll(
-          ".formats-wrapper .inscription-format"
+          ".formats-wrapper .inscription-format",
         );
         const formatsWrapper = document.querySelector(".formats-wrapper");
         const soonNote = document.querySelector(".soon-note");
         const pageHead = document.getElementById("inscriptions-title");
         const subHeadEl = document.querySelector(".sub-head");
         const formWrapper = document.querySelector(
-          ".registration-form-wrapper"
+          ".registration-form-wrapper",
         );
         const paymentSection = document.querySelector(".payment-section");
         const goPaymentBtn = document.getElementById("go-payment-btn");
@@ -722,14 +725,14 @@
           ? goPaymentBtn.textContent
           : "Passer au paiement";
         const selectedFormatInput = document.getElementById(
-          "selected-format-input"
+          "selected-format-input",
         );
         const selectedFormatLabel = document.querySelector(
-          ".selected-format-label"
+          ".selected-format-label",
         );
         const paymentPriceSpan = document.getElementById("payment-price");
         const paymentSectionPrice = document.getElementById(
-          "payment-section-price"
+          "payment-section-price",
         );
         const summary = document.getElementById("selected-summary");
         const summaryFormat = document.getElementById("summary-format");
@@ -742,10 +745,10 @@
 
         function showWaitlistOnly() {
           const choiceWrapper = document.querySelector(
-            ".payment-choices-wrapper"
+            ".payment-choices-wrapper",
           );
           const detailsWrapper = document.querySelector(
-            ".payment-details-wrapper"
+            ".payment-details-wrapper",
           );
           if (choiceWrapper) choiceWrapper.hidden = true;
           if (detailsWrapper) detailsWrapper.hidden = true;
@@ -825,15 +828,15 @@
 
         function initPaymentCards() {
           const choiceWrapper = document.querySelector(
-            ".payment-choices-wrapper"
+            ".payment-choices-wrapper",
           );
           const detailsWrapper = document.querySelector(
-            ".payment-details-wrapper"
+            ".payment-details-wrapper",
           );
           const twintDetails = document.getElementById("payment-details-twint");
           const bankDetails = document.getElementById("payment-details-bank");
           const cards = document.querySelectorAll(
-            ".payment-choice-card.inscription-format"
+            ".payment-choice-card.inscription-format",
           );
           if (!choiceWrapper || !detailsWrapper || !cards.length) return;
           // Reset view
@@ -878,21 +881,21 @@
               (summaryFormat && summaryFormat.textContent) ||
               "";
             const paySummaryPriceEl = document.getElementById(
-              "payment-summary-price"
+              "payment-summary-price",
             );
             const base =
               parseFloat(
                 String(paySummaryPriceEl?.textContent || "").replace(
                   /[^0-9.]/g,
-                  ""
-                )
+                  "",
+                ),
               ) ||
               0 ||
               currentBasePrice ||
               parseFloat(
                 String(
-                  (summaryPrice && summaryPrice.textContent) || "0"
-                ).replace(/[^0-9.]/g, "")
+                  (summaryPrice && summaryPrice.textContent) || "0",
+                ).replace(/[^0-9.]/g, ""),
               ) ||
               0;
             // Add Poké Bowl fee (+15 CHF) only if INFINITY and user selected "Oui"
@@ -900,7 +903,7 @@
               (document.querySelector('input[name="poke_bowl_wants"]:checked')
                 ?.value || "") === "Oui";
             const allowsBowl = /(INFINITY|EXPLORER)/.test(
-              String(fmt).toUpperCase()
+              String(fmt).toUpperCase(),
             );
             const bowlFee = allowsBowl && wantsBowl ? 15 : 0;
             const twTotalEl = document.getElementById("twint-total");
@@ -968,11 +971,11 @@
                   const margin = 16;
                   const popupW = Math.max(
                     360,
-                    Math.min(520, Math.floor(window.innerWidth * 0.35))
+                    Math.min(520, Math.floor(window.innerWidth * 0.35)),
                   );
                   const popupH = Math.max(
                     480,
-                    Math.min(720, Math.floor(window.innerHeight * 0.85))
+                    Math.min(720, Math.floor(window.innerHeight * 0.85)),
                   );
                   let left = winX + outerW - popupW - margin;
                   let top = winY + margin;
@@ -1031,7 +1034,7 @@
           const tier = getPriceInfo(formatName);
           const fallbackPrice =
             parseFloat(
-              String(link.dataset.price || "").replace(/[^0-9.]/g, "")
+              String(link.dataset.price || "").replace(/[^0-9.]/g, ""),
             ) || 0;
           const priceNum =
             typeof tier.price === "number" && tier.price > 0
@@ -1065,7 +1068,7 @@
           const optionsRow = document.getElementById("poke-bowl-options");
           // Allow Poké Bowl for both INFINITY and EXPLORER
           const allowsBowl = /(INFINITY|EXPLORER)/.test(
-            formatName.toUpperCase()
+            formatName.toUpperCase(),
           );
           if (bowlBox && optionsRow) {
             // Show only for allowed formats
@@ -1089,10 +1092,10 @@
             } catch (_) {}
             // Reset and wire radios
             const wantsRadios = bowlBox.querySelectorAll(
-              'input[name="poke_bowl_wants"]'
+              'input[name="poke_bowl_wants"]',
             );
             const dishRadios = optionsRow.querySelectorAll(
-              'input[name="poke_bowl"]'
+              'input[name="poke_bowl"]',
             );
             wantsRadios.forEach((r) => {
               r.checked = false;
@@ -1106,7 +1109,7 @@
             });
             function updateOptionsVisibility() {
               const wants = bowlBox.querySelector(
-                'input[name="poke_bowl_wants"]:checked'
+                'input[name="poke_bowl_wants"]:checked',
               )?.value;
               const show = wants === "Oui";
               optionsRow.hidden = !show;
@@ -1122,7 +1125,7 @@
             }
             if (allowsBowl) {
               wantsRadios.forEach((r) =>
-                r.addEventListener("change", updateOptionsVisibility)
+                r.addEventListener("change", updateOptionsVisibility),
               );
             }
           }
@@ -1174,7 +1177,7 @@
               // Permettre l'ouverture même si aria-disabled = true
               selectFormat(link);
             },
-            true
+            true,
           );
           link.addEventListener("keypress", (e) => {
             if (e.key === "Enter" || e.key === " ") {
@@ -1204,10 +1207,10 @@
             bowlBox.hidden = true;
             optionsRow.hidden = true;
             const wantsRadios = bowlBox.querySelectorAll(
-              'input[name="poke_bowl_wants"]'
+              'input[name="poke_bowl_wants"]',
             );
             const dishRadios = optionsRow.querySelectorAll(
-              'input[name="poke_bowl"]'
+              'input[name="poke_bowl"]',
             );
             wantsRadios.forEach((r) => {
               r.checked = false;
@@ -1249,7 +1252,10 @@
             const base =
               currentBasePrice ||
               parseFloat(
-                String(summaryPrice?.textContent || "0").replace(/[^0-9.]/g, "")
+                String(summaryPrice?.textContent || "0").replace(
+                  /[^0-9.]/g,
+                  "",
+                ),
               ) ||
               0;
             if (psFmt) psFmt.textContent = fmt;
@@ -1318,7 +1324,7 @@
 
           if (!url) {
             console.warn(
-              "GOOGLE_SHEETS_WEB_APP_URL manquant - passage direct au paiement"
+              "GOOGLE_SHEETS_WEB_APP_URL manquant - passage direct au paiement",
             );
             proceedToPayment();
             return;
